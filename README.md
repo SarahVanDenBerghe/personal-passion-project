@@ -33,6 +33,6 @@ Doorheen de weken wil ik mijn lat hoger zetten voor de mijn webanimaties, terwij
 
 # Rough planning
 * Week 1: research & playground. Onderzoeken naar de verschillende technologieën, al dingen uittesten binnen React, API van libraries doornemen en begrijpen
-* Week 1: focus op 2D animaties & toepassen in demo's
-* Week 2: focus op 3D animaties & toepassen in demo's
+* Week 2: focus op 2D animaties & toepassen in demo's, GSAP of andere technologiën die in week 1 ontdekt zijn
+* Week 3: focus op 3D animaties & toepassen in demo's, WebGL & ThreeJS of andere technologiën die in week 1 ontdekt zijn
 * Week 4 & 5: grote demo uitwerken waarbij alles van voorbije weken samenkomt
