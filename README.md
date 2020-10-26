@@ -36,3 +36,5 @@ Doorheen de weken wil ik mijn lat hoger zetten voor de mijn webanimaties, terwij
 * Week 2: focus op 2D animaties & toepassen in demo's, GSAP of andere technologiën die in week 1 ontdekt zijn
 * Week 3: focus op 3D animaties & toepassen in demo's, WebGL & ThreeJS of andere technologiën die in week 1 ontdekt zijn
 * Week 4 & 5: grote demo uitwerken waarbij alles van voorbije weken samenkomt
+
+Week 1 staat al uitgewerkt onder 'Projects', de overige weken, naarmate dat de demo's duidelijker worden, zullen toegevoegd worden en aangevuld. Wat voor soort demo's staat voor mij niet zozeer hard. Ht is de leerervaring en handleiding die voor mij de focus wordt binnen de 5 weken, zodanig dat ik dit later zelf in websites kan toepassen.
