@@ -24,10 +24,9 @@ Research question: **How to create a better user experience with interactive web
 
 Ik wil binnen een web framework zoals React, 2D & 3D webanimaties kunnen gebruiken op een effeciënte manier. Waarbij de animaties de functionaliteit van de website niet wegneemt, en de website nog steeds responsive blijft. Aangezien WebGL & GSAP de standaard zijn voor webanimaties, wil ik mij daar op focussen. Maar zeker in de eerste week, wil ik graag op zoek gaan naar andere mogelijkheden en verschillende demo's opstellen, vertrokken vanuit verschillende libraries. Op die manier wil ik de sterktes en zwaktes leren kennen van verschillende libraries. 
 
-Doorheen de weken wil ik mijn lat hoger zetten voor de mijn webanimaties, terwijl ik mijn progress goed bijhoudt zodat ik deze als handleiding steeds kan doornemen als het ware. Op het einde van de rit, wil ik mezelf een expert kunnen noemen voor webanimaties, wetende hoe ik binnen verschillende used cased welke technologie te gebruiken en animaties kan coderen. Ik had graag deze webanimaties toegepast op mijn eigen portfolio website 
+Doorheen de weken wil ik mijn lat hoger zetten voor de mijn webanimaties, terwijl ik mijn progress goed bijhoudt zodat ik deze als handleiding steeds kan doornemen als het ware. Op het einde van de rit, wil ik mezelf een expert kunnen noemen voor webanimaties, wetende hoe ik binnen verschillende used cased welke technologie te gebruiken en animaties kan coderen. Ik had graag deze webanimaties toegepast op mijn eigen portfolio website.
 
 # Deliverables
 * **Zelfgeschreven handleiding over 2D & 3D animaties** Dit gaat hem niet zozeer over de progress zelf, maar met uitleg hoe de technologie toe te passen. Dit zullen bruikbare up-to-date code zijn en toegepaste voorbeelden waarbij steeds teruggegrepen kan worden in de toekomst, maar ook perfect bruikbaar zou kunnen zijn voor iemand zonder ervaring met 2D / 3D animeren - hierbij wordt wel kennis van React verwacht.
 * **Uitgewerkte demo's van de verschillende gebruikte libraries**
-* **Eén verder uitgewerkte responsive website binnen React framework** waarbij een combinatie van 2D & 3D animaties inzit
-
+* **Eén verder uitgewerkte responsive website binnen React framework** waarbij een combinatie van 2D & 3D animaties inzit.
