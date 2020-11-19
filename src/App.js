@@ -4,6 +4,7 @@ import { softShadows, OrbitControls } from "drei";
 import { Header } from "./components/ui";
 import "./App.scss";
 import { Lights, Tree, Floor, Ball } from './components/scene';
+// import { api } from './utils/api';
 
 softShadows();
 
@@ -31,9 +32,11 @@ const App = () => {
             args={[3, 9, 9]}
             speed={2}
           />
+
           {baubles.map(bauble => { 
             return bauble
           })}
+
           {baublePreview ? baublePreview : ''};
 
         </group>

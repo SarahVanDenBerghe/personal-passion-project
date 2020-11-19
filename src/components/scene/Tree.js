@@ -2,12 +2,35 @@ import React, { useRef, useState, useEffect } from "react";
 import { useSpring, a } from "react-spring/three";
 import { useFrame } from "react-three-fiber";
 import { Bauble } from '../scene';
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: 'https://xmas-ppp-api.herokuapp.com/messages'
+});
 
 const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, args }) => {
-    
+    useEffect(() => {
+        // TO CHECK: async / await juist
+        // Tutorial: https://www.youtube.com/watch?v=12l6lkW6JhE&ab_channel=AdrianTwarog
+        api.get('/').then(async response => {
+            let allBaubles = [];
+            await response.data.map((bauble, i) => {
+                allBaubles.push(<Bauble key={i} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>);
+            });
+            setBaubles(allBaubles);
+        })
+    }, []);
+
     const addBauble = (point) => {
-        const newElement = <Bauble position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
-        setBaubles([...baubles, newElement]); // Strapi database
+        api.post('/', {
+            name: 'Default',
+            x: point.x,
+            y: point.y,
+            z: point.z
+        })
+
+        const newBauble = <Bauble key={baubles.length} position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
+        setBaubles([...baubles, newBauble]);
     }
 
     const showBaublePreview = (point) => {
