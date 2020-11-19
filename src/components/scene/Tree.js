@@ -7,7 +7,7 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
     
     const addBauble = (point) => {
         const newElement = <Bauble position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
-        setBaubles([...baubles, newElement]);
+        setBaubles([...baubles, newElement]); // Strapi database
     }
 
     const showBaublePreview = (point) => {
