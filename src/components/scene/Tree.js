@@ -14,8 +14,8 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
         // Tutorial: https://www.youtube.com/watch?v=12l6lkW6JhE&ab_channel=AdrianTwarog
         api.get('/').then(async response => {
             let allBaubles = [];
-            await response.data.map((bauble, i) => {
-                allBaubles.push(<Bauble key={i} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>);
+            await response.data.map(bauble => {
+                allBaubles.push(<Bauble key={bauble.id} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>);
             });
             setBaubles(allBaubles);
         })
@@ -27,10 +27,12 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
             x: point.x,
             y: point.y,
             z: point.z
+        }).then(response => {
+            const newBauble = <Bauble key={response.data.id} position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
+            setBaubles([...baubles, newBauble]);
         })
 
-        const newBauble = <Bauble key={baubles.length} position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
-        setBaubles([...baubles, newBauble]);
+
     }
 
     const showBaublePreview = (point) => {
