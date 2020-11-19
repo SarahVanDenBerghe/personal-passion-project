@@ -1,6 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useSpring, a } from "react-spring/three";
-import { useFrame } from "react-three-fiber";
+import React, { useEffect } from "react";
 import { Bauble } from '../scene';
 import axios from "axios";
 
@@ -19,7 +17,7 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
             });
             setBaubles(allBaubles);
         })
-    }, []);
+    }, [setBaubles]);
 
     const addBauble = (point) => {
         api.post('/', {

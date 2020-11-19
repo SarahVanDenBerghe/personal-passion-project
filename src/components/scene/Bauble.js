@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 
 const Bauble = ({ position, color, speed, args, preview }) => {
     return (

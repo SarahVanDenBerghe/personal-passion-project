@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Canvas } from "react-three-fiber";
 import { softShadows, OrbitControls } from "drei";
 import { Header } from "./components/ui";
 import "./App.scss";
-import { Lights, Tree, Floor, Ball } from './components/scene';
+import { Lights, Tree, Floor } from './components/scene';
 // import { api } from './utils/api';
 
 softShadows();
