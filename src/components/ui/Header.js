@@ -7,7 +7,7 @@ const Header = () => {
         <span>CHRISTMAS DEMO</span>
       </div>
       <div className='episode'>
-        <span>W2</span>
+        <span>W3</span>
       </div>
     </header>
   );
