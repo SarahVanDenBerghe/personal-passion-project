@@ -11,11 +11,10 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
         // TO CHECK: async / await juist
         // Tutorial: https://www.youtube.com/watch?v=12l6lkW6JhE&ab_channel=AdrianTwarog
         api.get('/').then(async response => {
-            let allBaubles = [];
-            await response.data.map(bauble => {
-                allBaubles.push(<Bauble key={bauble.id} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>);
+            const getBaubles = response.data.map(bauble => {
+                return <Bauble key={bauble.id} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>;
             });
-            setBaubles(allBaubles);
+            setBaubles(getBaubles);
         })
     }, [setBaubles]);
 
