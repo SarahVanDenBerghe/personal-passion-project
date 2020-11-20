@@ -2,16 +2,7 @@ import React, { useEffect } from "react";
 import { Bauble } from '../scene';
 import axios from "axios";
 
-const getApiURL = () => {
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-        return `http://localhost:1337/messages`
-    } else {
-        return `${process.env.REACT_APP_STRAPI_API}`
-    }
-}
-
 const api = axios.create({
-  // baseURL: getApiURL()
   baseURL: `${process.env.REACT_APP_STRAPI_API}`
 });
 
