@@ -26,6 +26,7 @@ const Custom = ({ setBaublePreview, baubles, setBaubles }) => {
     });
   }, [setBaubles]);
 
+  // Probleem online
   const addBauble = (point) => {
     api
       .post('/', {
