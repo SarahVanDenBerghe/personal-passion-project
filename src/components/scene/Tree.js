@@ -26,8 +26,6 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, a
             const newBauble = <Bauble key={response.data.id} position={[point.x, point.y, point.z]} color='red' args={[.2, 10, 10]}/>;
             setBaubles([...baubles, newBauble]);
         })
-
-
     }
 
     const showBaublePreview = (point) => {
