@@ -12,7 +12,7 @@ const Custom = ({ setBaublePreview, baubles, setBaubles }) => {
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
 
   useEffect(() => {
-    api.get('/').then(async (response) => {
+    api.get('').then(async (response) => {
       const getBaubles = response.data.map((bauble) => {
         return (
           <Bauble
@@ -30,7 +30,7 @@ const Custom = ({ setBaublePreview, baubles, setBaubles }) => {
   // Probleem online
   const addBauble = (point) => {
     api
-      .post('/', {
+      .post('', {
         name: 'Default',
         x: point.x,
         y: point.y,
