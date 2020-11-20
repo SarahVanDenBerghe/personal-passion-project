@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import { useGLTFLoader } from 'drei';
 const api = axios.create({
-  // baseURL: `${process.env.REACT_APP_STRAPI_API}`,
-  baseURL: 'https://xmas-ppp-api.herokuapp.com/messages'
+  baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
+  // baseURL: 'https://xmas-ppp-api.herokuapp.com/messages'
 });
 
 const Custom = ({ setBaublePreview, baubles, setBaubles }) => {
