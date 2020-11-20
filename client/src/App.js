@@ -4,7 +4,6 @@ import { softShadows, OrbitControls } from "drei";
 import { Header } from "./components/ui";
 import "./App.scss";
 import { Lights, Tree, Floor } from './components/scene';
-// import { api } from './utils/api';
 
 softShadows();
 
