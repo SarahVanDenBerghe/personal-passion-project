@@ -1,8 +1,8 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Bauble } from '../scene';
-import { useGLTFLoader } from 'drei';
 import axios from 'axios';
 
+import { useGLTFLoader } from 'drei';
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_STRAPI_API}`,
 });
