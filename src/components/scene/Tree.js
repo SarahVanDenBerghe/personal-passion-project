@@ -11,7 +11,8 @@ const getApiURL = () => {
 }
 
 const api = axios.create({
-  baseURL: getApiURL()
+  // baseURL: getApiURL()
+  baseURL: `${process.env.REACT_APP_STRAPI_API}`
 });
 
 const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, args }) => {
