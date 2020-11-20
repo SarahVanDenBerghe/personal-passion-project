@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Bauble } from '../scene';
 import axios from "axios";
 
+// Test with Env Variables
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_STRAPI_API}`
 });
