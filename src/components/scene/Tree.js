@@ -2,14 +2,20 @@ import React, { useEffect } from "react";
 import { Bauble } from '../scene';
 import axios from "axios";
 
+const getApiURL = () => {
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        return `http://localhost:1337/messages`
+    } else {
+        return `${process.env.REACT_APP_STRAPI_API}`
+    }
+}
+
 const api = axios.create({
-  baseURL: 'https://xmas-ppp-api.herokuapp.com/messages'
+  baseURL: getApiURL()
 });
 
 const Tree = ({ setBaublePreview, baubles, setBaubles, position, color, speed, args }) => {
     useEffect(() => {
-        // TO CHECK: async / await juist
-        // Tutorial: https://www.youtube.com/watch?v=12l6lkW6JhE&ab_channel=AdrianTwarog
         api.get('/').then(async response => {
             const getBaubles = response.data.map(bauble => {
                 return <Bauble key={bauble.id} position={[bauble.x, bauble.y, bauble.z]} color='red' args={[.2, 10, 10]}/>;
