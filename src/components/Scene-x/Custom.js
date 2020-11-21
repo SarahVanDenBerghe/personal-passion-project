@@ -1,22 +1,18 @@
-import React, { useEffect } from 'react';
-import { Bauble } from '../scene';
+import React, { useState, Suspense, useEffect } from 'react';
+import { Bauble } from '.';
 import axios from 'axios';
 
+import { useGLTFLoader } from 'drei';
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_STRAPI_API}`,
+  baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
+  // baseURL: 'https://xmas-ppp-api.herokuapp.com/messages'
 });
 
-const Tree = ({
-  setBaublePreview,
-  baubles,
-  setBaubles,
-  position,
-  color,
-  speed,
-  args,
-}) => {
+const Custom = ({ setBaublePreview, baubles, setBaubles }) => {
+  const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
+
   useEffect(() => {
-    api.get('/').then(async (response) => {
+    api.get('').then(async (response) => {
       const getBaubles = response.data.map((bauble) => {
         return (
           <Bauble
@@ -31,9 +27,10 @@ const Tree = ({
     });
   }, [setBaubles]);
 
+  // Probleem online
   const addBauble = (point) => {
     api
-      .post('/', {
+      .post('', {
         name: 'Default',
         x: point.x,
         y: point.y,
@@ -64,16 +61,16 @@ const Tree = ({
   };
 
   return (
-    <mesh
-      onPointerDown={(e) => addBauble(e.point)}
-      onPointerMove={(e) => showBaublePreview(e.point)}
-      position={position}
-      castShadow
-    >
-      <coneBufferGeometry attach="geometry" args={args} />
-      <meshStandardMaterial attach="material" color={color} />
-    </mesh>
+    <>
+      <mesh
+        position={[0, -5, 0]}
+        onPointerDown={(e) => addBauble(e.point)}
+        onPointerMove={(e) => showBaublePreview(e.point)}
+      >
+        <primitive object={gltf.scene} dispose={null} />
+      </mesh>
+    </>
   );
 };
 
-export default Tree;
+export default Custom;

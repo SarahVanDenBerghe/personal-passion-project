@@ -1,9 +1,9 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { softShadows, OrbitControls } from 'drei';
-import { Header } from './components/ui';
+import { Header } from './components/UI';
 import './App.scss';
-import { Lights, Tree, Bauble, Floor, Custom } from './components/scene';
+import { Lights, Tree, Bauble, Floor, Custom } from './components/Scene';
 
 softShadows();
 const App = () => {
@@ -12,12 +12,12 @@ const App = () => {
 
   return (
     <>
+      <div className="noise"></div>
       <Header />
       <Canvas
         colorManagement
         shadowMap
         camera={{ position: [-7, 10, 3], fov: 60 }}
-        background={'pink'}
       >
         <Lights />
         <group>
