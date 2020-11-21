@@ -1,0 +1,13 @@
+@import '../../../styles/styles.scss';
+
+button {
+    color: $light;
+    // text-transform: uppercase;
+    font-size: 1.8rem;
+    font-family: $font-title;
+    font-weight: 300;
+    padding: 1.5rem 2rem;
+  
+    background: $accent;
+
+}

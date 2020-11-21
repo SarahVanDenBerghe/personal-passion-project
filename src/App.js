@@ -1,7 +1,7 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
-import { softShadows, OrbitControls } from 'drei';
-import { Navbar } from './components/UI';
+import { softShadows, OrbitControls, Html } from 'drei';
+import { Navbar, Button } from './components/UI';
 import './App.scss';
 import { Lights, Tree, Bauble, Floor, Custom } from './components/Scene';
 
@@ -13,7 +13,11 @@ const App = () => {
   return (
     <>
       <div className="noise"></div>
+
       <Navbar />
+      <div className="button--add">
+        <Button />
+      </div>
       <Canvas
         colorManagement
         shadowMap
@@ -43,9 +47,7 @@ const App = () => {
           })}
           {baublePreview ? baublePreview : ''};
         </group>
-        <OrbitControls
-        // enableZoom={false}
-        />
+        <OrbitControls />
       </Canvas>
     </>
   );
