@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Bauble } from '../';
+import { Bauble } from '..';
 import axios from 'axios';
 
 const api = axios.create({
