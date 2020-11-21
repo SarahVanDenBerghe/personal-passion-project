@@ -1,5 +1,5 @@
 import React, { useState, Suspense, useEffect } from 'react';
-import { Bauble } from '.';
+import { Bauble } from '..';
 import axios from 'axios';
 
 import { useGLTFLoader } from 'drei';
