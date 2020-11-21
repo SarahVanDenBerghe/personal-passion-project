@@ -1,6 +1,0 @@
-@value tokens: "./tokens.module.css";
-@value fontTitle from tokens;
-
-.title {
-    font-family: fontTitle;
-}

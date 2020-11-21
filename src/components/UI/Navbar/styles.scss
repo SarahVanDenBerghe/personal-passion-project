@@ -1,0 +1,51 @@
+@import '../../../styles/styles.scss';
+
+.header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 100;
+  width: 8.5rem;
+  opacity: .7;
+  
+  & .header__content  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-right: 0.1rem solid $light;
+    height: calc(100% - 5rem);
+    padding: 2rem 0;
+  }
+}
+
+.icon {
+  width: 2.4rem;
+  height: 2.5rem;
+  position: relatve;
+  transform: rotate(0deg);
+
+  & span {
+    display: block;
+    height: 0.1rem;
+    width: 100%;
+    background: white;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+    border-radius: 0;
+    transform-origin: center;
+    position: absolute;
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+
+  & span:nth-of-type(2) {
+    top: 9px;
+  }
+
+  & span:nth-of-type(3) {
+    transform: translate3d(0, 18px, 0) rotate(0);
+    width: 75%;
+  }
+}

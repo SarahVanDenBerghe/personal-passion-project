@@ -1,7 +1,7 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { softShadows, OrbitControls } from 'drei';
-import { Header } from './components/UI';
+import { Navbar } from './components/UI';
 import './App.scss';
 import { Lights, Tree, Bauble, Floor, Custom } from './components/Scene';
 
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <div className="noise"></div>
-      <Header />
+      <Navbar />
       <Canvas
         colorManagement
         shadowMap
