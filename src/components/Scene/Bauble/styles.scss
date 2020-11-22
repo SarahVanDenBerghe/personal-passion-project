@@ -1,0 +1,11 @@
+@import '../../../styles/styles.scss';
+
+.info {
+    pointer-events: none;
+    background: $light;
+    padding: 1rem;
+    margin-top: -2rem;
+    & p {
+        font-family: $font-copy;
+    }
+}

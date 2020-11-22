@@ -20,6 +20,7 @@ html {
 
 body {
   font-size: 1.4rem;
+  font-family: $font-copy;
   background: $background;
   position: fixed;
   overflow: hidden;
@@ -29,7 +30,6 @@ body {
 button {
   border: none;
   background-color: transparent;
-  font-family: $font-copy;
 }
 
 a {

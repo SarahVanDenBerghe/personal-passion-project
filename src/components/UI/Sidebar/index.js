@@ -1,6 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import styles from './styles.scss';
+import './styles.scss';
 
 const Sidebar = () => (
   <div

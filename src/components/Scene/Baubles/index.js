@@ -3,7 +3,7 @@ import Bauble from '../Bauble';
 import { BaublesContext } from '../../../contexts/BaublesContext';
 
 const Baubles = () => {
-  const [baubles, setBaubles] = useContext(BaublesContext);
+  const [baubles] = useContext(BaublesContext);
   
   return (
     <>

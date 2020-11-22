@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.scss';
+import './styles.scss';
 
 const Navbar = () => {
 
@@ -15,7 +15,7 @@ const Navbar = () => {
         </nav>
 
         <div>
-          <img className="image" src="/assets/icons/volume.svg" />
+          <img className="image" alt="volume icon" src="/assets/icons/volume.svg" />
         </div>
       </div>
     </header>

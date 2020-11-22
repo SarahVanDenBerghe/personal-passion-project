@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from './styles.scss';
+import './styles.scss';
 import { Button } from '../../UI'
 import { ViewContext } from '../../../contexts/ViewContext';
 import { VIEWS } from '../../../consts/views'

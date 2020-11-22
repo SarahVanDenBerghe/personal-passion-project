@@ -1,8 +1,8 @@
 import React, { useState, Suspense, useContext } from 'react';
 import { Canvas } from 'react-three-fiber';
-import { softShadows, OrbitControls, Html } from 'drei';
-import { Lights, Tree, Floor, Baubles, Add } from '../';
-import { BaublesProvider, ViewProvider } from '../../../contexts/index';
+import { softShadows, OrbitControls } from 'drei';
+import { Lights, Tree, Floor, Baubles } from '../';
+import { BaublesProvider } from '../../../contexts/index';
 import { ViewContext } from '../../../contexts/ViewContext';
 import { VIEWS } from '../../../consts/views'
 
