@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './styles.scss';
 
-const Button = () => {
-  return <button>Add a wish</button>;
+const Button = ({text}) => {
+  return <button>{text}</button>;
 };
 
 export default Button;

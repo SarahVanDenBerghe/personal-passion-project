@@ -10,7 +10,7 @@ const api = axios.create({
   baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
 });
 
-export const BaublesProvider = ({children}) => {
+const BaublesProvider = ({children}) => {
   const [baubles, setBaubles] = useState([]);
 
   useEffect(() => {
@@ -25,3 +25,5 @@ export const BaublesProvider = ({children}) => {
     </BaublesContext.Provider>
   );
 }
+
+export default BaublesProvider;

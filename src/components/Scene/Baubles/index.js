@@ -9,12 +9,15 @@ const Baubles = () => {
     <>
       {baubles.map((bauble) => {
         return (
-          <Bauble
-            key={bauble.id}
-            position={[bauble.x, bauble.y, bauble.z]}
-            color="red"
-            args={[0.2, 10, 10]}
-          />
+          <>
+            <Bauble
+              key={bauble.id}
+              position={[bauble.x, bauble.y, bauble.z]}
+              color="red"
+              args={[0.2, 10, 10]}
+              id={bauble.id}
+            />
+          </>
         );
       })}
     </>
