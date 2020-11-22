@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Bauble from '../Bauble';
 import { BaublesContext } from '../../../contexts/BaublesContext';
 
-const Baubles = () => {
+const Baubles = ({ setDetail }) => {
   const [baubles] = useContext(BaublesContext);
   
   return (
@@ -11,6 +11,7 @@ const Baubles = () => {
         return (
           <>
             <Bauble
+              setDetail={setDetail}
               key={bauble.id}
               position={[bauble.x, bauble.y, bauble.z]}
               color="red"

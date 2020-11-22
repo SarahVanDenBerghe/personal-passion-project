@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navbar } from './components/UI';
 import { Home } from './components/Pages';
-import { ViewProvider } from './contexts/index';
+import { ViewProvider, DetailProvider } from './contexts/index';
 import './App.scss';
 import { CanvasWrapper } from './components/Scene';
 
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 const App = () => {
@@ -14,8 +14,14 @@ const App = () => {
       <div className="noise" />
       <Navbar />
       <ViewProvider>
-        <CanvasWrapper />
+        <DetailProvider>
+          <CanvasWrapper />
+        </DetailProvider>
         <Switch>
+          {/* <Router>
+            <Route path={['/:id', '/']} component={Home} />
+          </Router> */}
+
           <Route exact path="/">
             <Home />
           </Route>

@@ -1,9 +1,32 @@
-.modal-wrapper {
-  position: fixed;
-  left: 0;
+@import '../../../styles/styles.scss';
+
+.sidebar {
+  position: absolute;
+  right: 0;
   top: 0;
-  width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 60rem;
+  background: $dark;
+  color: $light;
+  padding: 8rem;
+
+  & .title {
+    font-family: $font-title;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: $accent;
+    font-weight: 400;
+    letter-spacing: .3rem;
+    text-align: center;
+  }
+
+  .name {
+    font-family: $font-title;
+    font-size: 7rem;
+    font-weight: 600;
+    letter-spacing: .15rem;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 8rem;
+  }
 }

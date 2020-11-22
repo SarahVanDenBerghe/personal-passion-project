@@ -3,10 +3,9 @@ import { Add } from '../../Scene';
 import './styles.scss';
 
 const Home = () => {
-
   return (
     <>
-        <Add />
+      <Add />
     </>
   );
 };
