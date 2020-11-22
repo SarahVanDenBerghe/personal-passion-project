@@ -1,53 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Bauble } from '..';
 import axios from 'axios';
+import { useGLTFLoader } from 'drei';
+import { BaublesContext } from '../../../contexts/BaublesContext';
 
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_STRAPI_API}`,
+  baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
 });
 
-const Tree = ({
-  setBaublePreview,
-  baubles,
-  setBaubles,
-  position,
-  color,
-  speed,
-  args,
-}) => {
-  useEffect(() => {
-    api.get('/').then(async (response) => {
-      const getBaubles = response.data.map((bauble) => {
-        return (
-          <Bauble
-            key={bauble.id}
-            position={[bauble.x, bauble.y, bauble.z]}
-            color="red"
-            args={[0.2, 10, 10]}
-          />
-        );
-      });
-      setBaubles(getBaubles);
-    });
-  }, [setBaubles]);
+const Tree = ({ setBaublePreview }) => {
+  const [baubles, setBaubles] = useContext(BaublesContext);
+  const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
 
   const addBauble = (point) => {
     api
-      .post('/', {
+      .post('', {
         name: 'Default',
         x: point.x,
         y: point.y,
         z: point.z,
       })
       .then((response) => {
-        const newBauble = (
-          <Bauble
-            key={response.data.id}
-            position={[point.x, point.y, point.z]}
-            color="red"
-            args={[0.2, 10, 10]}
-          />
-        );
+        const newBauble = {
+          name: response.data.name,
+          x: response.data.x,
+          y: response.data.y,
+          z: response.data.z,
+          id: response.data.id,
+        };
         setBaubles([...baubles, newBauble]);
       });
   };
@@ -64,15 +44,15 @@ const Tree = ({
   };
 
   return (
-    <mesh
-      onPointerDown={(e) => addBauble(e.point)}
-      onPointerMove={(e) => showBaublePreview(e.point)}
-      position={position}
-      castShadow
-    >
-      <coneBufferGeometry attach="geometry" args={args} />
-      <meshStandardMaterial attach="material" color={color} />
-    </mesh>
+    <>
+      <mesh
+        position={[0, -5, 0]}
+        onPointerDown={(e) => addBauble(e.point)}
+        onPointerMove={(e) => showBaublePreview(e.point)}
+      >
+        <primitive object={gltf.scene} dispose={null} />
+      </mesh>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.scss';
 
 const Navbar = () => {
+
   return (
     <header className="header">
       <div className="header__content">
