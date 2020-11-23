@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar } from './components/UI';
 import { Home } from './components/Pages';
-import { ViewProvider, DetailProvider } from './contexts/index';
+import { ViewProvider, DetailProvider, BaublesProvider } from './contexts/index';
 import './App.scss';
 import { CanvasWrapper } from './components/Scene';
 
@@ -15,13 +15,14 @@ const App = () => {
       <Navbar />
       <ViewProvider>
         <DetailProvider>
-          <CanvasWrapper />
+          <BaublesProvider>
+            <CanvasWrapper />
+          </BaublesProvider>
         </DetailProvider>
         <Switch>
           {/* <Router>
             <Route path={['/:id', '/']} component={Home} />
           </Router> */}
-
           <Route exact path="/">
             <Home />
           </Route>

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Bauble } from '..';
 import axios from 'axios';
 import { useGLTFLoader } from 'drei';
-import { BaublesContext } from '../../../contexts/BaublesContext';
 import { VIEWS } from '../../../consts/views';
 
 
@@ -10,8 +9,7 @@ const api = axios.create({
   baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
 });
 
-const Tree = ({ setBaublePreview, view, setView }) => {
-  const [baubles, setBaubles] = useContext(BaublesContext);
+const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
 
   const addBauble = (point) => {
@@ -38,6 +36,7 @@ const Tree = ({ setBaublePreview, view, setView }) => {
   };
 
   const showBaublePreview = (point) => {
+    // Geeft problemen!!!
     setBaublePreview(
       <Bauble
         preview

@@ -3,7 +3,15 @@ import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
 
-const Bauble = ({ position, color, id, args, preview, setDetail }) => {
+const Bauble = ({
+  position,
+  color,
+  bauble,
+  args,
+  preview,
+  setDetail,
+  clickTest,
+}) => {
   const [hovered, setHover] = useState(false);
 
   const toggleInfo = (e) => {
@@ -13,8 +21,10 @@ const Bauble = ({ position, color, id, args, preview, setDetail }) => {
 
   const handleClickBauble = (e) => {
     e.stopPropagation();
-    setDetail(id);
-  }
+    // niet mogelijk bij nieuwe kerstballen soms?
+    setDetail(bauble);
+    clickTest(bauble.id);
+  };
 
   const animate = useSpring({
     scale: hovered ? [1.2, 1.2, 1.2] : [1, 1, 1],
@@ -28,10 +38,11 @@ const Bauble = ({ position, color, id, args, preview, setDetail }) => {
       onPointerOver={(e) => toggleInfo(e)}
       onPointerOut={(e) => toggleInfo(e)}
       onClick={(e) => handleClickBauble(e)}
+      // onClick={(e) => clickTest(e)}
     >
       {hovered && (
         <Html className="info" center>
-          <p>{id}</p>
+          <p>{bauble && bauble.id}</p>
         </Html>
       )}
       <sphereBufferGeometry attach="geometry" args={args} />
