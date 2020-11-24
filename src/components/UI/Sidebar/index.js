@@ -5,13 +5,13 @@ import { gsap } from 'gsap';
 const Sidebar = ({ detail, setDetail }) => {
   const sidebar = useRef();
 
-  useEffect(() => {
-    gsap.to(sidebar.current, {
-      backgroundColor: 'green',
-      duration: 1,
-      ease: 'none',
-    });
-  }, [detail]);
+  // useEffect(() => {
+  //   gsap.to(sidebar.current, {
+  //     backgroundColor: 'green',
+  //     duration: 1,
+  //     ease: 'none',
+  //   });
+  // }, [detail]);
 
   return (
     <div className="sidebar" ref={sidebar}>
