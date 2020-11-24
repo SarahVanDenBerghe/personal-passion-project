@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import './styles.scss';
 
 const Sidebar = ({ detail, setDetail }) => {
+  console.log(setDetail);
+  
   return (
     <div className="sidebar">
       <p onClick={(e) => setDetail(null)} className="close">Close</p>
