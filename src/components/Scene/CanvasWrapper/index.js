@@ -105,7 +105,8 @@ const CanvasWrapper = () => {
           target={spring.target}
         /> */}
       </Canvas>
-      {detail && <Sidebar setDetail={setDetail} detail={detail} />}
+      <Sidebar setDetail={setDetail} detail={detail} />
+      {/* {detail && <Sidebar setDetail={setDetail} detail={detail} />} */}
     </>
   );
 };
