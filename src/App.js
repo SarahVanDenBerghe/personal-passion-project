@@ -13,6 +13,7 @@ import { BaublesContext } from './contexts/BaublesContext';
 import { Switch } from 'react-router';
 
 const App = () => {
+  // Vercel
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
 
   return (
