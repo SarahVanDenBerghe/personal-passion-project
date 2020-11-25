@@ -21,14 +21,14 @@ import { BaublesContext } from '../../../contexts/BaublesContext';
 softShadows();
 
 const CanvasWrapper = () => {
-  const [baubles, setBaubles] = useContext(BaublesContext);
+  const [baubles, setBaubles, loading] = useContext(BaublesContext);
   const [baublePreview, setBaublePreview] = useState(null);
   const [view, setView] = useContext(ViewContext);
   const [detail, setDetail] = useContext(DetailContext);
   const [position, setPosition] = useState([-7, 10, 3]);
   const [isAnimating, setIsAnimating] = useState(false);
-  let selectedItemIndex;
   const AnimatedOrbitControls = animated(OrbitControls);
+  let selectedItemIndex;
 
   // useEffect(() => {
   //   if (detail) {
@@ -90,14 +90,14 @@ const CanvasWrapper = () => {
               view={view}
               setBaublePreview={setBaublePreview}
             />
+            <Baubles
+              view={view}
+              setView={setView}
+              baubles={baubles}
+              clickTest={clickTest}
+              setDetail={setDetail}
+            />
           </Suspense>
-          <Baubles
-            view={view}
-            setView={setView}
-            baubles={baubles}
-            clickTest={clickTest}
-            setDetail={setDetail}
-          />
           {baublePreview && view === VIEWS.edit ? baublePreview : ''};
         </group>
         <OrbitControls />

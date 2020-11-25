@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useContext } from 'react';
 import { VIEWS } from '../../../consts/views';
 import './styles.scss';
 import { gsap } from 'gsap';
-import { PointerLockControls } from 'drei';
 import { ViewContext } from '../../../contexts/ViewContext';
 
 const Sidebar = ({ detail, setDetail }) => {
@@ -17,7 +16,8 @@ const Sidebar = ({ detail, setDetail }) => {
     // show : hide
     opacity: active ? 1 : 0,
     sidebar: {
-      xPos: active ? 0 : 700,
+      xPos: active ? 0 : 600,
+      borderRadius: active ? 0 : "100% 0 0 50%"
     },
     text: {
       yPos: active ? 0 : 150,
@@ -33,7 +33,8 @@ const Sidebar = ({ detail, setDetail }) => {
       duration: 0.55,
       ease: 'Power2.easeIn',
       x: animation.sidebar.xPos,
-      opacity: animation.opacity
+      opacity: animation.opacity,
+      // borderRadius: animation.sidebar.borderRadius
     });
 
     gsap.to([title, name, message], {
@@ -60,9 +61,10 @@ const Sidebar = ({ detail, setDetail }) => {
         sidebar = el;
       }}
     >
-      <p onClick={(e) => handleClickClose()} className="close">
-        Close
-      </p>
+      <button onClick={(e) => handleClickClose()} className="close">
+        <span />
+        <span />
+      </button>
       <p
         className="title"
         ref={(el) => {

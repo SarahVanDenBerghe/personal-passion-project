@@ -15,14 +15,13 @@ const BaublesProvider = ({children}) => {
 
   useEffect(() => {
     api.get('').then((response) => {
-      console.log("a");
       setBaubles(response.data);
-      setLoading(true);
+      setLoading(false);
     });
   }, [setBaubles]);
 
   return (
-    <BaublesContext.Provider value={[baubles, setBaubles]}>
+    <BaublesContext.Provider value={[baubles, setBaubles, loading]}>
       {children}
     </BaublesContext.Provider>
   );

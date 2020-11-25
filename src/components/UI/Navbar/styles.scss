@@ -7,7 +7,7 @@
   height: 100%;
   z-index: 10;
   width: 8.5rem;
-  border-right: 0.1rem solid #3D584C;
+  // border-right: 0.1rem solid #3D584C;
   background: $background;
   // background: #112C23;
   
@@ -23,6 +23,12 @@
   }
 }
 
+.header__line {
+  height: 0;
+  width: 0.1rem;
+  background: #3D584C;
+}
+
 .icon {
   width: 2.4rem;
   height: 2.5rem;
@@ -32,7 +38,7 @@
   & span {
     display: block;
     height: 0.1rem;
-    width: 100%;
+    width: 0;
     background: $light;
     transition-timing-function: ease;
     transition-duration: 0.5s;
@@ -48,6 +54,10 @@
 
   & span:nth-of-type(3) {
     transform: translate3d(0, 18px, 0) rotate(0);
-    width: 75%;
+    max-width: 75%;
   }
+}
+
+.image {
+  transform: scale(0, 0);
 }

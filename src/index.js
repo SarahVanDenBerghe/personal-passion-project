@@ -4,10 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BaublesProvider } from './contexts/index';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <BaublesProvider>
+      <App />
+    </BaublesProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
