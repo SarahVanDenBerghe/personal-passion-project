@@ -17,7 +17,7 @@ const Add = () => {
 
   return (
     <div onClick={handleClickButton} className="add">
-      <Button text={view === 'default' ? 'Add' : 'Cancel'} />
+      <Button text={view === 'edit' ? 'Cancel' : 'Add'} />
     </div>
   );
 };

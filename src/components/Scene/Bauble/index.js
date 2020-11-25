@@ -3,6 +3,7 @@ import { VIEWS } from '../../../consts/views';
 import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
+import { useHistory } from 'react-router-dom';
 
 const Bauble = ({
   view,
@@ -24,7 +25,6 @@ const Bauble = ({
 
   const handleClickBauble = (e) => {
     setView(VIEWS.detail);
-    // view setten!!!
     e.stopPropagation();
     // niet mogelijk bij nieuwe kerstballen soms?
     setDetail(bauble);

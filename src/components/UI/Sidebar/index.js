@@ -6,10 +6,7 @@ import { ViewContext } from '../../../contexts/ViewContext';
 
 const Sidebar = ({ detail, setDetail }) => {
   const [view, setView] = useContext(ViewContext);
-  let sidebar = useRef(null);
-  let title = useRef(null);
-  let name = useRef(null);
-  let message = useRef(null);
+  let sidebar, title, name, message, close = useRef(null);
   let active = view == VIEWS.detail;
 
   const animation = {
@@ -23,6 +20,10 @@ const Sidebar = ({ detail, setDetail }) => {
       yPos: active ? 0 : 150,
       delay: active ? 0.35 : 0.1,
       stagger: active ? 0.1 : -0.1
+    },
+    close: {
+      scale: active ? 1 : 0,
+      delay: active ? 0.3 : 0
     }
   };
 
@@ -47,6 +48,16 @@ const Sidebar = ({ detail, setDetail }) => {
         amount: animation.text.stagger,
       },
     });
+
+    gsap.to(close, {
+      duration: 0.4,
+      ease: 'Power2.easeIn',
+      // opacity: animation.opacity,
+      scaleX: animation.close.scale,
+      scaleY: animation.close.scale,
+      delay: animation.close.delay
+    });
+
   }, [view]);
 
   const handleClickClose = () => {
@@ -61,10 +72,13 @@ const Sidebar = ({ detail, setDetail }) => {
         sidebar = el;
       }}
     >
-      <button onClick={(e) => handleClickClose()} className="close">
-        <span />
-        <span />
-      </button>
+      <button
+        onClick={(e) => handleClickClose()}
+        className="close"
+        ref={(el) => {
+          close = el;
+        }}
+      />
       <p
         className="title"
         ref={(el) => {

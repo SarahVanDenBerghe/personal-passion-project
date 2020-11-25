@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Bauble } from '..';
 import axios from 'axios';
 import { useGLTFLoader } from 'drei';
 import { VIEWS } from '../../../consts/views';
-
-
-const api = axios.create({
-  baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
-});
+import { gsap } from 'gsap';
 
 const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
+  const tree = useRef(null);
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
+
+  const api = axios.create({
+    baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
+  });
 
   const addBauble = (point) => {
     if (view === VIEWS.edit) {
@@ -47,9 +48,20 @@ const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
     );
   };
 
+  useEffect(() => {
+    gsap.to(tree.current, {
+      duration: 0.8,
+      ease: 'Power2.easeIn',
+      opacity: 0,
+      scale: 0,
+      transformOrigin: '50% 50%',
+    });
+  });
+
   return (
     <>
       <mesh
+        useRef={tree}
         position={[0, -5, 0]}
         onPointerDown={(e) => addBauble(e.point)}
         onPointerMove={(e) => showBaublePreview(e.point)}
