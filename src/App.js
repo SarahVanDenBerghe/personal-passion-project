@@ -12,7 +12,8 @@ import { Switch } from 'react-router';
 const App = () => {
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
   const [showContent, setShowContent] = useState(false);
-
+  // Edit for Vercel
+  
   return (
     <>
       {/* Style elements */}
