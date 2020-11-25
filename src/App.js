@@ -4,7 +4,6 @@ import { Home } from './components/Pages';
 import {
   ViewProvider,
   DetailProvider,
-  BaublesProvider,
 } from './contexts/index';
 import './App.scss';
 import { CanvasWrapper } from './components/Scene';
@@ -32,9 +31,6 @@ const App = () => {
           </BaublesProvider> */}
             </DetailProvider>
             <Switch>
-              {/* <Router>
-            <Route path={['/:id', '/']} component={Home} />
-          </Router> */}
               <Route exact path="/">
                 <Home />
               </Route>
