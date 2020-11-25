@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Bauble from '../Bauble';
 
-const Baubles = ({ setDetail, clickTest, baubles }) => {
+const Baubles = ({ view, setView, setDetail, clickTest, baubles }) => {
 
   return (
     <>
@@ -10,6 +10,8 @@ const Baubles = ({ setDetail, clickTest, baubles }) => {
           <>
             <Bauble
               clickTest={clickTest}
+              view={view}
+              setView={setView}
               setDetail={setDetail}
               key={bauble.id}
               position={[bauble.x, bauble.y, bauble.z]}

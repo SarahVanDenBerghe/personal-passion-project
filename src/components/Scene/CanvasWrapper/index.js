@@ -92,6 +92,8 @@ const CanvasWrapper = () => {
             />
           </Suspense>
           <Baubles
+            view={view}
+            setView={setView}
             baubles={baubles}
             clickTest={clickTest}
             setDetail={setDetail}

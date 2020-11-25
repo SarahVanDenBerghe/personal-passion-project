@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { VIEWS } from '../../../consts/views';
 import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
 
 const Bauble = ({
+  view,
+  setView,
   position,
   color,
   bauble,
@@ -20,6 +23,8 @@ const Bauble = ({
   };
 
   const handleClickBauble = (e) => {
+    setView(VIEWS.detail);
+    // view setten!!!
     e.stopPropagation();
     // niet mogelijk bij nieuwe kerstballen soms?
     setDetail(bauble);
