@@ -12,6 +12,7 @@ const App = () => {
   return (
     <>
       <div className="noise" />
+
       <Navbar />
       <ViewProvider>
         <DetailProvider>
@@ -28,6 +29,7 @@ const App = () => {
           </Route>
         </Switch>
       </ViewProvider>
+      
     </>
   );
 };

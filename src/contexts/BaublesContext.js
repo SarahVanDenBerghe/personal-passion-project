@@ -11,12 +11,15 @@ const api = axios.create({
 
 const BaublesProvider = ({children}) => {
   const [baubles, setBaubles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api.get('').then((response) => {
+      console.log("a");
       setBaubles(response.data);
+      setLoading(true);
     });
-  },[setBaubles]);
+  }, [setBaubles]);
 
   return (
     <BaublesContext.Provider value={[baubles, setBaubles]}>

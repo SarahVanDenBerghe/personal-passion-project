@@ -6,7 +6,7 @@ import { VIEWS } from '../../../consts/views';
 
 
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_STRAPI_API}?_limit=-1`,
+  baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
 });
 
 const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {

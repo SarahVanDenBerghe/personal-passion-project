@@ -6,7 +6,7 @@ import React, {
   useReference,
 } from 'react';
 import { Canvas, useFrame } from 'react-three-fiber';
-import { softShadows, OrbitControls, PerspectiveCamera } from 'drei';
+import { softShadows, OrbitControls, PerspectiveCamera, Html } from 'drei';
 import { Lights, Tree, Floor, Baubles } from '../';
 import { BaublesProvider } from '../../../contexts/index';
 import { ViewContext } from '../../../contexts/ViewContext';
@@ -108,7 +108,6 @@ const CanvasWrapper = () => {
         /> */}
       </Canvas>
       <Sidebar setDetail={setDetail} detail={detail} />
-      {/* {detail && <Sidebar setDetail={setDetail} detail={detail} />} */}
     </>
   );
 };
