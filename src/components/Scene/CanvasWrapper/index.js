@@ -9,20 +9,17 @@ import { Canvas, useFrame, useThree } from 'react-three-fiber';
 import { softShadows, OrbitControls, PerspectiveCamera } from 'drei';
 import { Lights, Tree, Floor, Baubles } from '..';
 import * as THREE from 'three';
-import { ViewContext } from '../../../contexts/ViewContext';
 import { DetailContext } from '../../../contexts/DetailContext';
-import { VIEWS } from '../../../consts/views';
-import { Sidebar } from '../../UI';
-import { animated } from 'react-spring';
 import { useSpring, a } from 'react-spring/three';
 import { BaublesContext } from '../../../contexts/BaublesContext';
 import { gsap } from 'gsap';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation} from 'react-router';
 import './styles.scss';
+import { ROUTES } from '../../../consts';
 
 softShadows();
 
-const CameraControls = ({ view, canvas }) => {
+const CameraControls = ({ view, canvas, pathname }) => {
   const { gl, camera } = useThree();
   const [zoom, setZoom] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -33,12 +30,12 @@ const CameraControls = ({ view, canvas }) => {
 
   const animation = {
     sidebar: {
-      xPos: view == 'detail' ? -150 : 0,
+      xPos: pathname == 'detail' ? -150 : 0,
     },
   };
 
   useEffect(() => {
-    const zoomDistance = view == VIEWS.default ? 4 : 8;
+    const zoomDistance = pathname == ROUTES.home ? 4 : 8;
     setZoom(zoomDistance);
 
     currDistance = camera.position.length();
@@ -109,21 +106,15 @@ const CameraControls = ({ view, canvas }) => {
 const CanvasWrapper = () => {
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
   const [baublePreview, setBaublePreview] = useState(null);
-  const [view, setView] = useContext(ViewContext);
-  const [detail, setDetail] = useContext(DetailContext);
-  const [cameraZoom, setCameraZoom] = useState(5);
   const canvas = useRef(null);
   const history = useHistory();
+  const { pathname } = useLocation();
 
   return (
     <>
       <div className="canvas--wrapper" ref={canvas}>
         <Canvas colorManagement shadowMap resize={{ scroll: false }}>
-          <CameraControls
-            canvas={canvas}
-            setCameraZoom={setCameraZoom}
-            view={view}
-          />
+          <CameraControls pathname={pathname} canvas={canvas} />
           <group>
             <Lights />
             <Floor />
@@ -131,23 +122,20 @@ const CanvasWrapper = () => {
               <Tree
                 baubles={baubles}
                 setBaubles={setBaubles}
-                setView={setView}
-                view={view}
                 setBaublePreview={setBaublePreview}
+                history={history}
+                pathname={pathname}
               />
               <Baubles
-                view={view}
-                setView={setView}
                 baubles={baubles}
-                setDetail={setDetail}
                 history={history}
+                pathname={pathname}
               />
             </Suspense>
-            {baublePreview && view === VIEWS.edit ? baublePreview : ''};
+            {baublePreview && pathname == ROUTES.add ? baublePreview : ''};
           </group>
         </Canvas>
       </div>
-      <Sidebar setDetail={setDetail} detail={detail} />
     </>
   );
 };

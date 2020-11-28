@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Navbar, Loader } from './components/UI';
+import { Navbar, Loader, Sidebar } from './components/UI';
 import { Home } from './components/Pages';
-import { ViewProvider, DetailProvider } from './contexts/index';
+import { DetailProvider } from './contexts/index';
 import './App.scss';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route } from 'react-router-dom';
 import { BaublesContext } from './contexts/BaublesContext';
 import { Switch } from 'react-router';
+import { ROUTES } from './consts';
+
 
 const App = () => {
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
@@ -26,19 +28,23 @@ const App = () => {
       {showContent && (
         <>
           <Navbar />
-          <ViewProvider>
-            {/* Canvas is always shown */}
-            <DetailProvider>
-              <CanvasWrapper />
-            </DetailProvider>
+         
+            <Route>
+              {/* Canvas is always shown */}
+              <DetailProvider>
+                <CanvasWrapper />
+              </DetailProvider>
 
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/view/:id" exact></Route>
-            </Switch>
-          </ViewProvider>
+              <Switch>
+                <Route path={ROUTES.detail.path}>
+                  <Sidebar />
+                </Route>
+                <Route exact path={ROUTES.home}>
+                  <Home />
+                </Route>
+              </Switch>
+            </Route>
+    
         </>
       )}
     </>

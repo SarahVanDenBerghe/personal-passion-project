@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { VIEWS } from '../../../consts/views';
+import React, { useState } from 'react';
+import { ROUTES } from '../../../consts';
 import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
@@ -10,10 +10,8 @@ const Bauble = ({
   bauble,
   args,
   preview,
-  setDetail,
-  view,
-  setView,
-  history
+  pathname,
+  history,
 }) => {
   const [hovered, setHover] = useState(false);
 
@@ -23,16 +21,11 @@ const Bauble = ({
   };
 
   const handleClickBauble = (e) => {
-    // When clicking on a bauble, view is set to 'detail'
-    setView(VIEWS.detail);
-
-    // First bauble only
     e.stopPropagation();
 
-    // Set detail to clicked bauble
-    setDetail(bauble);
-
-    history.push(`/view/${bauble.id}`);
+    if (pathname !== ROUTES.add) {
+      history.push(ROUTES.detail.to + bauble.id);
+    }
   };
 
   const animate = useSpring({
@@ -62,6 +55,6 @@ const Bauble = ({
       />
     </a.mesh>
   );
-};
+};;
 
 export default Bauble;

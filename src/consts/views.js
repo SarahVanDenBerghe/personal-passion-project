@@ -1,7 +1,7 @@
-const VIEWS = {
-  default: 'default',
-  detail: 'detail',
-  edit: 'edit'
-};
+// const VIEWS = {
+//   default: 'default',
+//   detail: 'detail',
+//   edit: 'edit'
+// };
 
-export { VIEWS };
+// export { VIEWS };

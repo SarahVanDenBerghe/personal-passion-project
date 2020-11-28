@@ -1,23 +1,24 @@
 import React, { useContext } from 'react';
 import './styles.scss';
 import { Button } from '../../UI'
-import { ViewContext } from '../../../contexts/ViewContext';
-import { VIEWS } from '../../../consts/views'
+import { ROUTES } from '../../../consts';
+import { useHistory, useLocation } from 'react-router';
 
 const Add = () => {
-  const [view, setView] = useContext(ViewContext);
+  const history = useHistory();
+  const { pathname } = useLocation();
 
   const handleClickButton = () => {
-    if (view === VIEWS.edit) {
-      setView(VIEWS.default);
+    if (pathname === ROUTES.add) {
+      history.push(ROUTES.home);
     } else {
-      setView(VIEWS.edit);
+      history.push(ROUTES.add);
     }
   };
 
   return (
     <div onClick={handleClickButton} className="add">
-      <Button text={view === 'edit' ? 'Cancel' : 'Add'} />
+      <Button text="Add" />
     </div>
   );
 };

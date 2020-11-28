@@ -1,27 +1,20 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Bauble } from '..';
 import axios from 'axios';
-import { useFrame } from 'react-three-fiber';
-import { MeshWobbleMaterial, useGLTFLoader } from 'drei';
+import { useGLTFLoader } from 'drei';
 import { VIEWS } from '../../../consts/views';
-import { gsap } from 'gsap';
-import { useSpring, a } from 'react-spring/three';
+import { ROUTES } from '../../../consts';
 
-const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
+const Tree = ({ setBaublePreview, baubles, setBaubles, history, pathname }) => {
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
-
-  useEffect(() => {
-    // useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-    // console.log(mesh);
-  }, [mesh]);
 
   const api = axios.create({
     baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
   });
 
   const addBauble = (point) => {
-    if (view === VIEWS.edit) {
+    if (pathname === ROUTES.add) {
       api
         .post('', {
           name: 'Default',
@@ -38,33 +31,34 @@ const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
             id: response.data.id,
           };
           setBaubles([...baubles, newBauble]);
-          setView(VIEWS.default);
+          history.push(ROUTES.home);
         });
     }
   };
 
   const showBaublePreview = (point) => {
-    // Geeft problemen!!!
     setBaublePreview(
       <Bauble
         preview
         position={[point.x, point.y, point.z]}
         color="blue"
         args={[0.2, 10, 10]}
+        history={history}
+        pathname={pathname}
       />
     );
   };
 
   return (
     <>
-      <a.mesh
+      <mesh
         useRef={mesh}
         position={[0, -5, 0]}
         onPointerDown={(e) => addBauble(e.point)}
         onPointerMove={(e) => showBaublePreview(e.point)}
       >
         <primitive object={gltf.scene} dispose={null} />
-      </a.mesh>
+      </mesh>
     </>
   );
 };

@@ -1,20 +1,36 @@
 @import '../../../styles/styles.scss';
-$margin: 3rem;
+$spacing: 3rem;
 $width: 60rem;
 
-.sidebar {
+.sidebar__wrapper {
+  // transform: translateX($width + $spacing);
   position: absolute;
   right: 0;
   top: 0;
-  height: calc(100% - (#{$margin} * 2));
-  width: 60rem;
+  height: 100%;
+  width: calc(60rem + (#{$spacing} * 2));
+  z-index: 10;
+  padding: $spacing;
+}
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  transform: translateX(calc(60rem + (#{$spacing} * 2)));
+  opacity: 0;
+
+  // Werkt zonder wrapper
+  // height: calc(100% - (#{$spacing} * 2));
+  // width:  calc(60rem + (#{$spacing} * 2));
+  // position: absolute;
+  // right: 0;
+  // top: 0;
+  // margin: 3rem;
+
   background: $dark;
   color: $light;
   padding: 8rem;
-  transform: translateX($width + $margin);
-  // opacity: 0;
-  z-index: 10;
-  margin: $margin;
+  z-index: 12;
   border-radius: 0.7rem;
 
   .close {
