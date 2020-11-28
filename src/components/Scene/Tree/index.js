@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { Bauble } from '..';
 import axios from 'axios';
 import { useGLTFLoader } from 'drei';
-import { VIEWS } from '../../../consts/views';
 import { ROUTES } from '../../../consts';
 
 const Tree = ({ setBaublePreview, baubles, setBaubles, history, pathname }) => {

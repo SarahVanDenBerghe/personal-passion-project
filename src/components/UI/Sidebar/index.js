@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
-import { VIEWS } from '../../../consts/views';
 import './styles.scss';
 import { gsap } from 'gsap';
 import { useSpring, a } from 'react-spring';
-import { ViewContext } from '../../../contexts/ViewContext';
 import { useHistory, useParams } from 'react-router';
 import { BaublesContext } from '../../../contexts/BaublesContext';
 
