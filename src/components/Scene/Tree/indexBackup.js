@@ -10,6 +10,9 @@ import { useSpring, a } from 'react-spring/three';
 const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
+  const meshTest = useRef();
+
+  useFrame(() => (meshTest.current.rotation.x = meshTest.current.rotation.y += 0.05));
 
   useEffect(() => {
     // useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
@@ -55,8 +58,29 @@ const Tree = ({ setBaublePreview, view, setView, baubles, setBaubles }) => {
     );
   };
 
+  // useEffect(() => {
+  //   gsap.to(tree.current, {
+  //     duration: 0.8,
+  //     ease: 'Power2.easeIn',
+  //     opacity: 0,
+  //     scale: 0,
+  //     transformOrigin: '50% 50%',
+  //   });
+  // });
+
+  // console.log(tree);
+
+  // useFrame(() => {
+  //   tree.current.rotation.y += 0.01;
+  // });
+
   return (
     <>
+      <a.mesh position={[0, 5, 0]} ref={meshTest}>
+        <boxBufferGeometry attach="geometry" />
+        <MeshWobbleMaterial color="lightblue" attach="material" />
+      </a.mesh>
+
       <a.mesh
         useRef={mesh}
         position={[0, -5, 0]}

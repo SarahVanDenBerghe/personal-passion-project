@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
-import Bauble from '../Bauble';
+import React from 'react';
+import { Bauble } from '..';
+import { useHistory } from 'react-router';
 
-const Baubles = ({ view, setView, setDetail, clickTest, baubles }) => {
+
+const Baubles = ({ setDetail, baubles, view, setView, history }) => {
 
   return (
     <>
@@ -9,15 +11,15 @@ const Baubles = ({ view, setView, setDetail, clickTest, baubles }) => {
         return (
           <>
             <Bauble
-              clickTest={clickTest}
-              view={view}
-              setView={setView}
               setDetail={setDetail}
               key={bauble.id}
               position={[bauble.x, bauble.y, bauble.z]}
               color="red"
               args={[0.2, 10, 10]}
               bauble={bauble}
+              view={view}
+              setView={setView}
+              history={history}
             />
           </>
         );

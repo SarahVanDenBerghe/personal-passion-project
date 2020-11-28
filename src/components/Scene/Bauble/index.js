@@ -3,18 +3,17 @@ import { VIEWS } from '../../../consts/views';
 import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
-import { useHistory } from 'react-router-dom';
 
 const Bauble = ({
-  view,
-  setView,
   position,
   color,
   bauble,
   args,
   preview,
   setDetail,
-  clickTest,
+  view,
+  setView,
+  history
 }) => {
   const [hovered, setHover] = useState(false);
 
@@ -24,11 +23,16 @@ const Bauble = ({
   };
 
   const handleClickBauble = (e) => {
+    // When clicking on a bauble, view is set to 'detail'
     setView(VIEWS.detail);
+
+    // First bauble only
     e.stopPropagation();
-    // niet mogelijk bij nieuwe kerstballen soms?
+
+    // Set detail to clicked bauble
     setDetail(bauble);
-    clickTest(bauble.id);
+
+    history.push(`/view/${bauble.id}`);
   };
 
   const animate = useSpring({
@@ -43,7 +47,6 @@ const Bauble = ({
       onPointerOver={(e) => toggleInfo(e)}
       onPointerOut={(e) => toggleInfo(e)}
       onClick={(e) => handleClickBauble(e)}
-      // onClick={(e) => clickTest(e)}
     >
       {hovered && (
         <Html className="info" center>

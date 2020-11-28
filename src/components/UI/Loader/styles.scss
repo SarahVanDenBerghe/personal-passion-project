@@ -13,4 +13,8 @@
     opacity: .3;
     z-index: 999;
     position: absolute;
+    
+    circle {
+      transform: translateY(-30px);
+    }
 }

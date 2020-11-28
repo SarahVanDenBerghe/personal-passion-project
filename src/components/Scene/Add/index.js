@@ -8,7 +8,7 @@ const Add = () => {
   const [view, setView] = useContext(ViewContext);
 
   const handleClickButton = () => {
-    if (view === 'edit') {
+    if (view === VIEWS.edit) {
       setView(VIEWS.default);
     } else {
       setView(VIEWS.edit);

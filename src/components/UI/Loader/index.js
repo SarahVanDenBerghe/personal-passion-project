@@ -9,12 +9,12 @@ const circleThree = useRef(null);
 const loader = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      [circleOne.current, circleTwo.current, circleThree.current],
-      1.5,
-      { y: -30 },
-      { y: 0, yoyo: true, repeat: -1, stagger: 0.3 }
-    );
+    gsap.to(
+      [circleOne.current, circleTwo.current, circleThree.current],{
+      y: 0,
+      stagger: { each: 0.15, yoyo: true, repeat: -1 },
+      ease: 'sine.inOut'
+      });
   });
 
   useEffect(() => {
@@ -27,6 +27,8 @@ const loader = useRef(null);
         transformOrigin: '50% 50%',
       });
     }
+
+    /* Content inladen */
     setTimeout(() => setShowContent(true), 1000);
   }, [loading]);
 
