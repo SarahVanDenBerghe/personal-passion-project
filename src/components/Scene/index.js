@@ -4,4 +4,5 @@ export { default as Bauble } from './Bauble/index';
 export { default as Tree } from './Tree/index';
 export { default as Baubles } from './Baubles/index';
 export { default as Add } from './Add/index';
+export { default as CameraControls } from './CameraControls/index';
 export { default as CanvasWrapper } from './CanvasWrapper/index';

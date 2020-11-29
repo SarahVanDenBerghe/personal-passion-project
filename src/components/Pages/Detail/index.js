@@ -5,7 +5,7 @@ import './styles.scss';
 const Detail = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar view="detail" />
     </>
   );
 };

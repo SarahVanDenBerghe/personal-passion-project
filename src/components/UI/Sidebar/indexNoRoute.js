@@ -8,9 +8,11 @@ import './styles.scss';
 
 // https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js
 
-const Sidebar = ({view}) => {
+const Sidebar = () => {
   const [active, setActive] = useState(false);
   const { pathname } = useLocation();
+  const history = useHistory();
+  const page = pathname.split('/')[1];
 
   let sidebar,
     wrapper = useRef(null);
@@ -87,7 +89,7 @@ const Sidebar = ({view}) => {
           sidebar = el;
         }}
       >
-        {view == 'detail' && <DetailInfo active={active} setActive={setActive} />}
+        {`/${page}/` == ROUTES.detail.to && <DetailInfo active={active} setActive={setActive} />}
       </a.div>
     </a.div>
   );

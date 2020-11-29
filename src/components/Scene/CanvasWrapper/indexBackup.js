@@ -10,7 +10,6 @@ import { softShadows, OrbitControls, PerspectiveCamera, Html } from 'drei';
 import { Lights, Tree, Floor, Baubles } from '..';
 import { BaublesProvider } from '../../../contexts/index';
 import { ViewContext } from '../../../contexts/ViewContext';
-import { DetailContext } from '../../../contexts/DetailContext';
 import { Sidebar } from '../../UI';
 import { useSpring, animated, config } from 'react-spring';
 import { BaublesContext } from '../../../contexts/BaublesContext';

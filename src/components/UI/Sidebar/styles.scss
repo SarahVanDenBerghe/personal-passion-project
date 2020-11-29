@@ -11,92 +11,17 @@ $width: 60rem;
   width: calc(60rem + (#{$spacing} * 2));
   z-index: 10;
   padding: $spacing;
-}
 
-.sidebar {
-  height: 100%;
-  width: 100%;
-  transform: translateX(calc(60rem + (#{$spacing} * 2)));
-  opacity: 0;
+  .sidebar {
+    height: 100%;
+    width: 100%;
+    transform: translateX(calc(60rem + (#{$spacing} * 2)));
+    opacity: 0;
 
-  // Werkt zonder wrapper
-  // height: calc(100% - (#{$spacing} * 2));
-  // width:  calc(60rem + (#{$spacing} * 2));
-  // position: absolute;
-  // right: 0;
-  // top: 0;
-  // margin: 3rem;
-
-  background: $dark;
-  color: $light;
-  padding: 8rem;
-  z-index: 12;
-  border-radius: 0.7rem;
-
-  .close {
-    padding: 3rem;
-    margin-left: auto;
-    position: absolute;
-    top: 4rem;
-    right: 4rem;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 0.3rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    transform: scale(0, 0);
-
-    &:before,
-    &:after {
-      position: absolute;
-      content: ' ';
-      height: 2.5rem;
-      width: 0.1rem;
-      background-color: $light;
-      left: 3rem;
-      top: 1.75rem;
-    }
-
-    &:before {
-      transform: rotate(45deg);
-    }
-
-    &:after {
-      transform: rotate(-45deg);
-    }
-
-    // & span {
-    //   display: block;
-    //   height: 0.1rem;
-    //   width: 100%;
-    //   background: $light;
-    //   transition-timing-function: ease;
-    //   transition-duration: 0.5s;
-    //   border-radius: 0;
-    //   transform-origin: center;
-    //   position: absolute;
-    //   transform: translate3d(0, 0, 0) rotate(0);
-    // }
-  }
-
-  .title {
-    margin-top: 8rem;
-    font-family: $font-title;
-    font-size: 2rem;
-    text-transform: uppercase;
-    color: $accent;
-    font-weight: 400;
-    letter-spacing: 0.3rem;
-    text-align: center;
-  }
-
-  .name {
-    font-family: $font-title;
-    font-size: 7rem;
-    font-weight: 600;
-    letter-spacing: 0.15rem;
-    text-align: center;
-    line-height: 1.2;
-    margin-bottom: 8rem;
+    background: $dark;
+    color: $light;
+    padding: 8rem;
+    z-index: 12;
+    border-radius: 0.7rem;
   }
 }

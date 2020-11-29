@@ -16,8 +16,10 @@ const Bauble = ({
   const [hovered, setHover] = useState(false);
 
   const toggleInfo = (e) => {
-    e.stopPropagation();
-    setHover(!hovered);
+    if (pathname !== ROUTES.add) {
+      e.stopPropagation();
+      setHover(!hovered);
+    }
   };
 
   const handleClickBauble = (e) => {
@@ -55,6 +57,6 @@ const Bauble = ({
       />
     </a.mesh>
   );
-};;
+};
 
 export default Bauble;
