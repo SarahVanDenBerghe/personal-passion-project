@@ -1,0 +1,8 @@
+@mixin button {
+  color: $light;
+  font-size: 1.8rem;
+  font-family: $font-title;
+  font-weight: 300;
+  padding: 1.5rem 2rem;
+  background: $accent;
+}

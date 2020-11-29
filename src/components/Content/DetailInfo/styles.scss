@@ -33,18 +33,14 @@
   }
 }
 
-.title {
+.detail__title {
+  @include title-accent;
   margin-top: 8rem;
-  font-family: $font-title;
-  font-size: 2rem;
-  text-transform: uppercase;
-  color: $accent;
-  font-weight: 400;
-  letter-spacing: 0.3rem;
   text-align: center;
 }
 
-.name {
+.detail__name {
+  @include title-large;
   font-family: $font-title;
   font-size: 7rem;
   font-weight: 600;
@@ -54,9 +50,9 @@
   margin-bottom: 8rem;
 }
 
-.title,
-.name,
-.message {
+.detail__title,
+.detail__name,
+.detail__message {
   transform: translateY(15rem);
   opacity: 0;
 }

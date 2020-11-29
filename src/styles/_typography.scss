@@ -1,0 +1,16 @@
+@mixin title-accent {
+  color: $accent;
+  font-family: $font-title;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.3rem;
+}
+
+@mixin title-large {
+  color: $light;
+  font-family: $font-title;
+  font-size: 7rem;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+}

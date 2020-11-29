@@ -3,7 +3,6 @@ import { useThree } from 'react-three-fiber';
 import { gsap } from 'gsap';
 import { ROUTES } from '../../../consts';
 import { OrbitControls } from 'drei';
-import { useSpring, a } from 'react-spring/three';
 
 const CameraControls = ({ canvas, pathname, baubles, setGroupPos }) => {
   const { gl, camera } = useThree();

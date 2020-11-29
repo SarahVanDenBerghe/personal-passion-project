@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Navbar, Loader, Sidebar } from './components/UI';
-import { Home, Detail } from './components/Pages';
+import { Navbar, Loader } from './components/UI';
+import { Home, Detail, Add } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route } from 'react-router-dom';
@@ -9,9 +9,9 @@ import { Switch } from 'react-router';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router';
-import './App.scss';
 import Particles from 'react-particles-js';
-import particlesConfig from './particles-config.js';
+import particlesConfig from './assets/configs/particles-config';
+import './App.scss';
 
 const App = () => {
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
@@ -41,6 +41,9 @@ const App = () => {
               <Switch location={location}>
                 <Route path={ROUTES.detail.path}>
                   <Detail />
+                </Route>
+                <Route path={ROUTES.add}>
+                  <Add />
                 </Route>
                 <Route exact path={ROUTES.home}>
                   <Home />

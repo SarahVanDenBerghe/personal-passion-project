@@ -8,8 +8,7 @@ import './styles.scss';
 
 // https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js
 
-const Sidebar = ({view}) => {
-  const [active, setActive] = useState(false);
+const Sidebar = ({ children, active, setActive }) => {
   const { pathname } = useLocation();
 
   let sidebar,
@@ -55,20 +54,10 @@ const Sidebar = ({view}) => {
         wrapper = el;
       }}
       onMouseMove={({ clientX, clientY }) => {
-        const x =
-          clientX -
-          (wrapper.offsetLeft -
-            (window.scrollX || window.pageXOffset || document.body.scrollLeft));
-        const y =
-          clientY -
-          (wrapper.offsetTop -
-            (window.scrollY || window.pageYOffset || document.body.scrollTop));
+        const x = clientX - (wrapper.offsetLeft - (window.scrollX || window.pageXOffset || document.body.scrollLeft));
+        const y = clientY - (wrapper.offsetTop - (window.scrollY || window.pageYOffset || document.body.scrollTop));
         const dampen = 500;
-        const xys = [
-          -(y - wrapper.clientHeight / 2) / dampen,
-          (x - wrapper.clientWidth / 2) / dampen,
-          1,
-        ];
+        const xys = [-(y - wrapper.clientHeight / 2) / dampen, (x - wrapper.clientWidth / 2) / dampen, 1];
         setAnimatedProps({ xys: xys });
       }}
       onMouseLeave={() => {
@@ -76,8 +65,7 @@ const Sidebar = ({view}) => {
       }}
       style={{
         transform: animatedProps.xys.interpolate(
-          (x, y, s) =>
-            `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+          (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
         ),
       }}
     >
@@ -87,7 +75,7 @@ const Sidebar = ({view}) => {
           sidebar = el;
         }}
       >
-        {view == 'detail' && <DetailInfo active={active} setActive={setActive} />}
+        {children}
       </a.div>
     </a.div>
   );

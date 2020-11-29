@@ -1,6 +1,6 @@
 @import '../../../styles/styles.scss';
 $spacing: 3rem;
-$width: 60rem;
+$width: 50rem;
 
 .sidebar__wrapper {
   // transform: translateX($width + $spacing);
@@ -8,19 +8,18 @@ $width: 60rem;
   right: 0;
   top: 0;
   height: 100%;
-  width: calc(60rem + (#{$spacing} * 2));
+  width: calc(#{$width} + (#{$spacing} * 2));
   z-index: 10;
   padding: $spacing;
 
   .sidebar {
     height: 100%;
     width: 100%;
-    transform: translateX(calc(60rem + (#{$spacing} * 2)));
+    transform: translateX(calc(#{$width} + (#{$spacing} * 2)));
     opacity: 0;
-
     background: $dark;
     color: $light;
-    padding: 8rem;
+    padding: 6rem;
     z-index: 12;
     border-radius: 0.7rem;
   }

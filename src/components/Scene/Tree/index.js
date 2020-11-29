@@ -14,6 +14,7 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, history, pathname }) => {
 
   const addBauble = (point) => {
     if (pathname === ROUTES.add) {
+      // Post location to session
       api
         .post('', {
           name: 'Default',
@@ -29,7 +30,9 @@ const Tree = ({ setBaublePreview, baubles, setBaubles, history, pathname }) => {
             z: response.data.z,
             id: response.data.id,
           };
+          // Set new bauble in all baubles
           setBaubles([...baubles, newBauble]);
+          // Back home
           history.push(ROUTES.home);
         });
     }
