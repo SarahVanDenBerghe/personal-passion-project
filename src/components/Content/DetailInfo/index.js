@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { gsap } from 'gsap';
 import { useHistory, useParams } from 'react-router';
-import { BaublesContext } from '../../../contexts/BaublesContext';
+import { useBaublesStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
 import './styles.scss';
 
 const DetailInfo = ({ active, setActive }) => {
-  const [baubles, setBaubles, loading] = useContext(BaublesContext);
+  const baublesStore = useBaublesStore();
   const [detail, setDetail] = useState(null);
   const history = useHistory();
   const { id } = useParams();
@@ -21,7 +21,7 @@ const DetailInfo = ({ active, setActive }) => {
   }, []);
 
   useEffect(() => {
-    const info = baubles.find((bauble) => bauble.id == id);
+    const info = baublesStore.getBaubleById(id);
     setDetail(info);
   }, [id]);
 

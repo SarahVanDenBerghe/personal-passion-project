@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useSpring, a } from 'react-spring';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
-import { DetailInfo } from '../../Content';
 import './styles.scss';
 
 // https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js

@@ -4,17 +4,17 @@ import { Home, Detail, Add } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route } from 'react-router-dom';
-import { BaublesContext } from './contexts/BaublesContext';
 import { Switch } from 'react-router';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router';
 import Particles from 'react-particles-js';
 import particlesConfig from './assets/configs/particles-config';
+import { useBaublesStore } from './hooks';
 import './App.scss';
 
 const App = () => {
-  const [baubles, setBaubles, loading] = useContext(BaublesContext);
+  const baublesStore = useBaublesStore();
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
 
@@ -26,7 +26,7 @@ const App = () => {
       <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
 
       {/* Animated loader */}
-      <Loader setShowContent={setShowContent} loading={loading} />
+      <Loader setShowContent={setShowContent} loading={baublesStore.loading} />
 
       {/* showContent is set to true after a delay for smooth transition */}
       {showContent && (

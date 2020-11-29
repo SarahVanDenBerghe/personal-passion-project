@@ -1,54 +1,42 @@
 import React, { useRef } from 'react';
-import { Bauble } from '..';
-import axios from 'axios';
 import { useGLTFLoader } from 'drei';
 import { ROUTES } from '../../../consts';
+import Bauble from '../../../models/Bauble';
+import { useBaublesStore } from '../../../hooks';
 
-const Tree = ({ setBaublePreview, baubles, setBaubles, history, pathname }) => {
+const Tree = ({ setBaublePreview, history, pathname }) => {
+  const baublesStore = useBaublesStore();
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
 
-  const api = axios.create({
-    baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
-  });
-
   const addBauble = (point) => {
     if (pathname === ROUTES.add) {
-      // Post location to session
-      api
-        .post('', {
-          name: 'Default',
-          x: point.x,
-          y: point.y,
-          z: point.z,
-        })
-        .then((response) => {
-          const newBauble = {
-            name: response.data.name,
-            x: response.data.x,
-            y: response.data.y,
-            z: response.data.z,
-            id: response.data.id,
-          };
-          // Set new bauble in all baubles
-          setBaubles([...baubles, newBauble]);
-          // Back home
-          history.push(ROUTES.home);
-        });
+      const bauble = new Bauble({
+        name: 'Default',
+        text: 'idk',
+        location: 'loc',
+        x: point.x,
+        y: point.y,
+        z: point.z,
+        store: baublesStore,
+      });
+
+      bauble.create();
+      history.push(ROUTES.home);
     }
   };
 
   const showBaublePreview = (point) => {
-    setBaublePreview(
-      <Bauble
-        preview
-        position={[point.x, point.y, point.z]}
-        color="blue"
-        args={[0.2, 10, 10]}
-        history={history}
-        pathname={pathname}
-      />
-    );
+    // setBaublePreview(
+    //   <Bauble
+    //     preview
+    //     position={[point.x, point.y, point.z]}
+    //     color="blue"
+    //     args={[0.2, 10, 10]}
+    //     history={history}
+    //     pathname={pathname}
+    //   />
+    // );
   };
 
   return (

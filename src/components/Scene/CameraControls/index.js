@@ -38,7 +38,7 @@ const CameraControls = ({ canvas, pathname, baubles, setGroupPos }) => {
     let x = camera.position.x * factor;
     let y = camera.position.y * factor;
     let z = camera.position.z * factor;
-    console.log(camera);
+
     if (bauble) {
       // Set X and Z coördinates of camera to bauble coördinates
       x = bauble.x * 2;
