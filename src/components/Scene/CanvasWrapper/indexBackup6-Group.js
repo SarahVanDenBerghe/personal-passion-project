@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useState, Suspense, useContext, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from 'react-three-fiber';
 import { softShadows, OrbitControls, PerspectiveCamera } from 'drei';
 import { Lights, Tree, Floor, Baubles } from '..';
@@ -125,8 +119,8 @@ const CanvasWrapper = () => {
         resize={{ scroll: false }}
         // camera={{ position: [-7, 0, 5], rotation: [0, 0, 0] }}
       >
-        <CameraControls setCameraZoom={setCameraZoom} view={view} />
         <a.group position={spring.group}>
+          <CameraControls setCameraZoom={setCameraZoom} view={view} />
           <Lights />
           <Floor />
           <Suspense fallback={null}>
@@ -137,12 +131,7 @@ const CanvasWrapper = () => {
               view={view}
               setBaublePreview={setBaublePreview}
             />
-            <Baubles
-              view={view}
-              setView={setView}
-              baubles={baubles}
-              setDetail={setDetail}
-            />
+            <Baubles view={view} setView={setView} baubles={baubles} setDetail={setDetail} />
           </Suspense>
           {baublePreview && view === VIEWS.edit ? baublePreview : ''};
         </a.group>

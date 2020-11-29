@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useState, Suspense, useContext, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from 'react-three-fiber';
 import { softShadows, OrbitControls, PerspectiveCamera } from 'drei';
 import { Lights, Tree, Floor, Baubles } from '..';
@@ -91,7 +85,11 @@ const CameraControls = ({ view }) => {
       camera.position.y = y;
       camera.position.z = z;
     },
-    onRest: () => {if (view == 'detail') { setIsAnimating(false) }}
+    onRest: () => {
+      if (view == 'detail') {
+        setIsAnimating(false);
+      }
+    },
   });
 
   //codesandbox.io/s/r3f-basic-demo-f8zii?file=/src/index.js:492-612
@@ -111,9 +109,6 @@ const CameraControls = ({ view }) => {
     </>
   );
 };
-
-
-
 
 const CanvasWrapper = () => {
   const [baubles, setBaubles, loading] = useContext(BaublesContext);
@@ -158,12 +153,7 @@ const CanvasWrapper = () => {
               view={view}
               setBaublePreview={setBaublePreview}
             />
-            <Baubles
-              view={view}
-              setView={setView}
-              baubles={baubles}
-              setDetail={setDetail}
-            />
+            <Baubles view={view} setView={setView} baubles={baubles} setDetail={setDetail} />
           </Suspense>
           {baublePreview && view === VIEWS.edit ? baublePreview : ''};
         </a.group>
