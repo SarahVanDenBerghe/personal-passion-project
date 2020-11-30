@@ -1,10 +1,14 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+import { useBaublesStore } from '../../../hooks';
 import { Bauble } from '..';
 
-const Baubles = ({ baubles, history, pathname }) => {
+const Baubles = observer(({ history, pathname }) => {
+  const baublesStore = useBaublesStore();
+
   return (
     <>
-      {baubles.map((bauble, i) => (
+      {baublesStore.baubles.map((bauble, i) => (
         <Bauble
           key={i}
           position={[bauble.x, bauble.y, bauble.z]}
@@ -17,6 +21,6 @@ const Baubles = ({ baubles, history, pathname }) => {
       ))}
     </>
   );
-};
+});
 
 export default Baubles;

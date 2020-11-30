@@ -21,7 +21,7 @@ const DetailInfo = ({ active, setActive }) => {
   }, []);
 
   useEffect(() => {
-    const info = baublesStore.getBaubleById(id);
+    const info = baublesStore.getBaubleById(parseInt(id));
     setDetail(info);
   }, [id]);
 
@@ -91,7 +91,7 @@ const DetailInfo = ({ active, setActive }) => {
             name = el;
           }}
         >
-          Name
+          {detail && <>{detail.name}</>}
         </p>
         <p
           className="detail__message"
@@ -99,13 +99,7 @@ const DetailInfo = ({ active, setActive }) => {
             message = el;
           }}
         >
-          {detail && (
-            <>
-              {detail.id} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra ut turpis vitae
-              blandit. Donec varius sed nibh vel posuere. Vestibulum dictum posuere lorem at dapibus. Aliquam malesuada
-              ipsum et viverra congue. Class aptent taciti sociosqu ad litora torquent per.
-            </>
-          )}
+          {detail && <>{detail.text}</>}
         </p>
       </div>
     </>

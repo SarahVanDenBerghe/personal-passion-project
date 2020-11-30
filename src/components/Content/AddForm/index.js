@@ -1,19 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
-import axios from 'axios';
+import { useBaublesStore } from '../../../hooks';
+import { action } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import './styles.scss';
 
-const AddForm = ({ active, setActive }) => {
+const AddForm = observer(({ active, setActive }) => {
+  const baublesStore = useBaublesStore();
   const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
-  const [place, setPlace] = useState('');
+  const [text, setText] = useState('');
+  const [location, setLocation] = useState('');
   const history = useHistory();
-
-  const api = axios.create({
-    baseURL: `${process.env.REACT_APP_STRAPI_API}/messages`,
-  });
 
   let titleRef,
     nameRef,
@@ -22,29 +21,22 @@ const AddForm = ({ active, setActive }) => {
     submitRef,
     cancelRef = useRef(null);
 
-  const handleSubmitForm = () => {
-    api
-      .post('', {
-        name: name,
-        message: message,
-        // x: point.x,
-        // y: point.y,
-        // z: point.z,
-      })
-      .then((response) => {
-        const newBauble = {
-          name: response.data.name,
-          x: response.data.x,
-          y: response.data.y,
-          z: response.data.z,
-          message: response.data.message,
-          id: response.data.id,
-        };
-        // Set new bauble in all baubles
-        // setBaubles([...baubles, newBauble]);
-        // Back home
-        history.push(ROUTES.home);
-      });
+  useEffect(() => {
+    setActive(true);
+  }, []);
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    const bauble = baublesStore.baubleFromUser;
+    bauble.setInfo({ name, text, location });
+
+    // Push to database
+    await bauble.create();
+
+    // Get updated bauble with right id
+    const updatedBauble = baublesStore.baubleFromUser;
+    updatedBauble.setOrigin('data');
+    history.push(`${ROUTES.detail.to}${updatedBauble.id}`);
   };
 
   const animation = {
@@ -72,6 +64,7 @@ const AddForm = ({ active, setActive }) => {
   }, [active]);
 
   const handleClickClose = () => {
+    baublesStore.removeBaubleFromUser();
     setActive(false);
     history.push(ROUTES.home);
   };
@@ -116,10 +109,10 @@ const AddForm = ({ active, setActive }) => {
             <textarea
               id="message"
               className="textarea"
-              value={message}
+              value={text}
               cols="50"
               rows="5"
-              onChange={(e) => setMessage(e.currentTarget.value)}
+              onChange={(e) => setText(e.currentTarget.value)}
               required
             />
           </label>
@@ -135,8 +128,8 @@ const AddForm = ({ active, setActive }) => {
               id="place"
               className="input"
               type="text"
-              value={place}
-              onChange={(e) => setPlace(e.currentTarget.value)}
+              value={location}
+              onChange={(e) => setLocation(e.currentTarget.value)}
               required
             />
           </label>
@@ -153,7 +146,7 @@ const AddForm = ({ active, setActive }) => {
           </div>
         </form>
         <button
-          onClick={(e) => handleClickClose()}
+          onClick={action((e) => handleClickClose())}
           ref={(el) => {
             cancelRef = el;
           }}
@@ -164,6 +157,6 @@ const AddForm = ({ active, setActive }) => {
       </div>
     </div>
   );
-};
+});
 
 export default AddForm;

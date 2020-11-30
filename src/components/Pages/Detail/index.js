@@ -8,7 +8,6 @@ const Detail = () => {
 
   return (
     <>
-      {/* <Sidebar view="detail" /> */}
       <Sidebar active={active} setActive={setActive}>
         <DetailInfo active={active} setActive={setActive} />
       </Sidebar>

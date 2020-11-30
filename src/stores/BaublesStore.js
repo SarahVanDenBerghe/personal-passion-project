@@ -16,9 +16,12 @@ class BaublesStore {
       loadAllBaubles: action,
       addBauble: action,
       getBaubleById: action,
+      baubleFromUser: computed,
+      removeBaubleFromUser: action,
     });
   }
 
+  // Loading all baubles from database
   loadAllBaubles = async () => {
     const jsonBaubles = await this.strapiService.getAllBaubles();
     this.loading = false;
@@ -33,7 +36,8 @@ class BaublesStore {
   };
 
   updateBaubleFromServer(json) {
-    let bauble = this.baubles.find((bauble) => bauble.id == json.id);
+    let bauble = this.baubles.find((bauble) => bauble.id === json.id);
+
     if (!bauble) {
       bauble = new Bauble({
         id: json.id,
@@ -43,6 +47,7 @@ class BaublesStore {
         z: json.z,
         text: json.text,
         location: json.location,
+        origin: 'data',
         store: this,
       });
     }
@@ -52,7 +57,16 @@ class BaublesStore {
     this.baubles.push(bauble);
   }
 
-  getBaubleById = (id) => this.baubles.find((bauble) => bauble.id == id);
+  getBaubleById = (id) => this.baubles.find((bauble) => bauble.id === id);
+
+  get baubleFromUser() {
+    return this.baubles.find((bauble) => bauble.origin === 'user');
+  }
+
+  removeBaubleFromUser() {
+    const bauble = this.baubles.find((bauble) => bauble.origin === 'user');
+    this.baubles.remove(bauble);
+  }
 }
 
 export default BaublesStore;

@@ -3,32 +3,40 @@ import { useThree } from 'react-three-fiber';
 import { gsap } from 'gsap';
 import { ROUTES } from '../../../consts';
 import { OrbitControls } from 'drei';
+import { useBaublesStore } from '../../../hooks';
 
-const CameraControls = ({ canvas, pathname, baubles, setGroupPos }) => {
+const CameraControls = ({ canvas, pathname, setGroupPos }) => {
+  const baublesStore = useBaublesStore();
   const { gl, camera } = useThree();
   const [zoom, setZoom] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [zoomIn, setZoomIn] = useState(false);
   const [target, setTarget] = useState([0, 0, 0]);
   const controls = useRef(null);
   const page = pathname.split('/')[1];
   const id = pathname.split('/')[2];
-  const bauble = baubles.find((bauble) => bauble.id == id);
+  const bauble = baublesStore.baubles.find((bauble) => bauble.id == id);
 
   let currDistance = 0;
   let factor = 0;
 
   const animation = {
     canvas: {
-      xPos: `/${page}/` === ROUTES.detail.to ? -150 : 0,
+      xPos: zoomIn ? -150 : 0,
     },
     group: {
-      yPos: `/${page}/` === ROUTES.detail.to ? -3 : 0,
+      yPos: zoomIn ? -3 : 0,
     },
   };
 
-  // Animating tree on each route change
+  // Set zoomIn of tree on each route change
   useEffect(() => {
-    const zoomDistance = `/${page}/` === ROUTES.detail.to ? 8 : 4;
+    const checkZoom = `/${page}/` == ROUTES.detail.to;
+    setZoomIn(checkZoom);
+  }, [pathname]);
+
+  useEffect(() => {
+    const zoomDistance = zoomIn ? 8 : 4;
     setZoom(zoomDistance);
 
     currDistance = camera.position.length();
@@ -79,7 +87,7 @@ const CameraControls = ({ canvas, pathname, baubles, setGroupPos }) => {
       ease: 'Power2.easeIn',
       x: animation.canvas.xPos,
     });
-  }, [pathname]);
+  }, [zoomIn]);
 
   // Animating tree from start
   useEffect(() => {

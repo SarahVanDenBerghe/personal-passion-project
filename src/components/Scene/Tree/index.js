@@ -11,18 +11,13 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
 
   const addBauble = (point) => {
     if (pathname === ROUTES.add) {
-      const bauble = new Bauble({
-        name: 'Default',
-        text: 'idk',
-        location: 'loc',
+      new Bauble({
         x: point.x,
         y: point.y,
         z: point.z,
         store: baublesStore,
+        origin: 'user',
       });
-
-      bauble.create();
-      history.push(ROUTES.home);
     }
   };
 
