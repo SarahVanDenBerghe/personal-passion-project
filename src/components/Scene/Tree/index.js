@@ -4,13 +4,14 @@ import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
 import { useBaublesStore } from '../../../hooks';
 
-const Tree = ({ setBaublePreview, navigate, pathname }) => {
+const Tree = ({ setBaublePreview, history, pathname }) => {
   const baublesStore = useBaublesStore();
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
 
   const addBauble = (point) => {
-    if (pathname === ROUTES.add.to) {
+    const addBaublePath = `${ROUTES.add.to}/${ROUTES.add.firststep}`;
+    if (pathname === addBaublePath) {
       new Bauble({
         x: point.x,
         y: point.y,
@@ -28,7 +29,7 @@ const Tree = ({ setBaublePreview, navigate, pathname }) => {
     //     position={[point.x, point.y, point.z]}
     //     color="blue"
     //     args={[0.2, 10, 10]}
-    //     navigate={navigate}
+    //     history={history}
     //     pathname={pathname}
     //   />
     // );

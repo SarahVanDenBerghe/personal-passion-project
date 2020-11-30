@@ -2,7 +2,7 @@ import React, { useState, Suspense, useContext, useRef } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { softShadows } from 'drei';
 import { Lights, Tree, Floor, Baubles, CameraControls } from '..';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { useSpring, a } from 'react-spring/three';
 import './styles.scss';
@@ -12,7 +12,7 @@ const CanvasWrapper = () => {
   const [baublePreview, setBaublePreview] = useState(null);
   const [groupPos, setGroupPos] = useState([0, 0, 0]);
   const canvas = useRef(null);
-  const navigate = useNavigate();
+  const history = useHistory();
   const { pathname } = useLocation();
 
   const spring = useSpring({
@@ -28,8 +28,8 @@ const CanvasWrapper = () => {
           <Floor />
           <a.group position={spring.group}>
             <Suspense fallback={null}>
-              <Tree setBaublePreview={setBaublePreview} navigate={navigate} pathname={pathname} />
-              <Baubles navigate={navigate} pathname={pathname} />
+              <Tree setBaublePreview={setBaublePreview} history={history} pathname={pathname} />
+              <Baubles history={history} pathname={pathname} />
             </Suspense>
           </a.group>
           {baublePreview && pathname == ROUTES.add.to ? baublePreview : ''};

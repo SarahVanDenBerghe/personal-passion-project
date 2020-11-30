@@ -3,10 +3,10 @@ import { Navbar, Loader } from './components/UI';
 import { Home, Detail, Add } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
-import { Routes, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { Switch, useLocation } from 'react-router';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { useLocation } from 'react-router';
 import Particles from 'react-particles-js';
 import particlesConfig from './assets/configs/particles-config';
 import { useBaublesStore } from './hooks';
@@ -37,17 +37,13 @@ const App = () => {
           {/* TransitionGroup & CSSTransition give time to animate page transitions */}
           <TransitionGroup>
             <CSSTransition key={location.pathname} timeout={500}>
-              <Routes location={location}>
+              <Switch location={location}>
                 <Route path={ROUTES.detail.path}>
                   <Detail />
                 </Route>
-                <Route path={ROUTES.add.to}>
-                  <Add />
-                </Route>
-                <Route exact path={ROUTES.home}>
-                  <Home />
-                </Route>
-              </Routes>
+                <Route path={ROUTES.add.to} component={Add} />
+                <Route path={ROUTES.home} component={Home} />
+              </Switch>
             </CSSTransition>
           </TransitionGroup>
         </>

@@ -1,18 +1,18 @@
 import React from 'react';
 import { Button } from '../../UI';
 import { ROUTES } from '../../../consts';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import './styles.scss';
 
 const Home = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const { pathname } = useLocation();
 
   const handleClickButton = () => {
     if (pathname === ROUTES.add.to) {
-      navigate(ROUTES.home);
+      history.push(ROUTES.home);
     } else {
-      navigate(ROUTES.add.to);
+      history.push(ROUTES.add.to);
     }
   };
 

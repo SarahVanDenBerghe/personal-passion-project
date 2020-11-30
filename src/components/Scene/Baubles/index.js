@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useBaublesStore } from '../../../hooks';
 import { Bauble } from '..';
 
-const Baubles = observer(({ navigate, pathname }) => {
+const Baubles = observer(({ history, pathname }) => {
   const baublesStore = useBaublesStore();
 
   return (
@@ -16,7 +16,7 @@ const Baubles = observer(({ navigate, pathname }) => {
           args={[0.2, 10, 10]}
           bauble={bauble}
           pathname={pathname}
-          navigate={navigate}
+          history={history}
         />
       ))}
     </>

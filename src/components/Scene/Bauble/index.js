@@ -4,7 +4,7 @@ import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
 
-const Bauble = ({ position, color, bauble, args, preview, pathname, navigate }) => {
+const Bauble = ({ position, color, bauble, args, preview, pathname, history }) => {
   const [hovered, setHover] = useState(false);
 
   const toggleInfo = (e) => {
@@ -18,7 +18,7 @@ const Bauble = ({ position, color, bauble, args, preview, pathname, navigate }) 
     e.stopPropagation();
 
     if (pathname !== ROUTES.add.to) {
-      navigate(ROUTES.detail.to + bauble.id);
+      history.push(ROUTES.detail.to + bauble.id);
     }
   };
 
