@@ -4,7 +4,7 @@ import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
 import { useBaublesStore } from '../../../hooks';
 
-const Tree = ({ setBaublePreview, history, pathname }) => {
+const Tree = ({ setBaublePreview, navigate, pathname }) => {
   const baublesStore = useBaublesStore();
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
@@ -28,7 +28,7 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
     //     position={[point.x, point.y, point.z]}
     //     color="blue"
     //     args={[0.2, 10, 10]}
-    //     history={history}
+    //     navigate={navigate}
     //     pathname={pathname}
     //   />
     // );

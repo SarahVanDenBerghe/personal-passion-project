@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 import { useBaublesStore } from '../../../hooks';
@@ -12,7 +12,7 @@ const AddForm = observer(({ active, setActive }) => {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [location, setLocation] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   let titleRef,
     nameRef,
@@ -36,7 +36,7 @@ const AddForm = observer(({ active, setActive }) => {
     // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
     updatedBauble.setOrigin('data');
-    history.push(`${ROUTES.detail.to}${updatedBauble.id}`);
+    navigate(`${ROUTES.detail.to}${updatedBauble.id}`);
   };
 
   const animation = {
@@ -66,7 +66,7 @@ const AddForm = observer(({ active, setActive }) => {
   const handleClickClose = () => {
     baublesStore.removeBaubleFromUser();
     setActive(false);
-    history.push(ROUTES.home);
+    navigate(ROUTES.home);
   };
 
   return (

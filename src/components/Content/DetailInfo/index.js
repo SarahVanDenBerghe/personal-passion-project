@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { gsap } from 'gsap';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useBaublesStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
 import './styles.scss';
@@ -8,7 +8,7 @@ import './styles.scss';
 const DetailInfo = ({ active, setActive }) => {
   const baublesStore = useBaublesStore();
   const [detail, setDetail] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   let title,
@@ -64,7 +64,7 @@ const DetailInfo = ({ active, setActive }) => {
 
   const handleClickClose = () => {
     setActive(false);
-    history.push(ROUTES.home);
+    navigate(ROUTES.home);
   };
 
   return (

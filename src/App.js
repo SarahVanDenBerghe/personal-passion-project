@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Loader } from './components/UI';
 import { Home, Detail, Add } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
-import { Route } from 'react-router-dom';
-import { Switch } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useLocation } from 'react-router';
@@ -38,7 +37,7 @@ const App = () => {
           {/* TransitionGroup & CSSTransition give time to animate page transitions */}
           <TransitionGroup>
             <CSSTransition key={location.pathname} timeout={500}>
-              <Switch location={location}>
+              <Routes location={location}>
                 <Route path={ROUTES.detail.path}>
                   <Detail />
                 </Route>
@@ -48,7 +47,7 @@ const App = () => {
                 <Route exact path={ROUTES.home}>
                   <Home />
                 </Route>
-              </Switch>
+              </Routes>
             </CSSTransition>
           </TransitionGroup>
         </>
