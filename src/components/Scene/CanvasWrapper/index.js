@@ -32,7 +32,7 @@ const CanvasWrapper = () => {
               <Baubles history={history} pathname={pathname} />
             </Suspense>
           </a.group>
-          {baublePreview && pathname == ROUTES.add ? baublePreview : ''};
+          {baublePreview && pathname == ROUTES.add.to ? baublePreview : ''};
         </Canvas>
       </div>
     </>

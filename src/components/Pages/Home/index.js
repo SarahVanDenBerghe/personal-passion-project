@@ -9,10 +9,10 @@ const Home = () => {
   const { pathname } = useLocation();
 
   const handleClickButton = () => {
-    if (pathname === ROUTES.add) {
+    if (pathname === ROUTES.add.to) {
       history.push(ROUTES.home);
     } else {
-      history.push(ROUTES.add);
+      history.push(ROUTES.add.to);
     }
   };
 

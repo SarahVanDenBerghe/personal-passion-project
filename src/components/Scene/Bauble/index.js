@@ -4,19 +4,11 @@ import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
 import './styles.scss';
 
-const Bauble = ({
-  position,
-  color,
-  bauble,
-  args,
-  preview,
-  pathname,
-  history,
-}) => {
+const Bauble = ({ position, color, bauble, args, preview, pathname, history }) => {
   const [hovered, setHover] = useState(false);
 
   const toggleInfo = (e) => {
-    if (pathname !== ROUTES.add) {
+    if (pathname !== ROUTES.add.to) {
       e.stopPropagation();
       setHover(!hovered);
     }
@@ -25,7 +17,7 @@ const Bauble = ({
   const handleClickBauble = (e) => {
     e.stopPropagation();
 
-    if (pathname !== ROUTES.add) {
+    if (pathname !== ROUTES.add.to) {
       history.push(ROUTES.detail.to + bauble.id);
     }
   };
@@ -49,12 +41,7 @@ const Bauble = ({
         </Html>
       )}
       <sphereBufferGeometry attach="geometry" args={args} />
-      <meshStandardMaterial
-        attach="material"
-        color={color}
-        opacity={0.1}
-        transparent={preview ? true : false}
-      />
+      <meshStandardMaterial attach="material" color={color} opacity={0.1} transparent={preview ? true : false} />
     </a.mesh>
   );
 };

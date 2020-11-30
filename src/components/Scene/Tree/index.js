@@ -10,7 +10,7 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
   const mesh = useRef();
 
   const addBauble = (point) => {
-    if (pathname === ROUTES.add) {
+    if (pathname === ROUTES.add.to) {
       new Bauble({
         x: point.x,
         y: point.y,

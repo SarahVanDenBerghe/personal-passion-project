@@ -1,6 +1,6 @@
 const ROUTES = {
   home: '/',
-  add: '/add',
+  add: { to: '/add', firststep: '/add/place', secondstep: '/add/info' },
   detail: { path: '/view/:id', to: '/view/' },
 };
 

@@ -42,7 +42,7 @@ const App = () => {
                 <Route path={ROUTES.detail.path}>
                   <Detail />
                 </Route>
-                <Route path={ROUTES.add}>
+                <Route path={ROUTES.add.to}>
                   <Add />
                 </Route>
                 <Route exact path={ROUTES.home}>
