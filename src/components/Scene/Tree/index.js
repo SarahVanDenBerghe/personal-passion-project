@@ -20,13 +20,14 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
         store: baublesStore,
         origin: 'user',
       });
-    }
 
-    history.push(`${ROUTES.add.to}/${ROUTES.add.secondstep}`);
+      history.push(`${ROUTES.add.to}/${ROUTES.add.secondstep}`);
+    }
   };
 
   const showBaublePreview = (point) => {
-    setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
+    // Warning
+    // setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
   };
 
   return (

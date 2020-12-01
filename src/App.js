@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Loader } from './components/UI';
 import { Home, Detail, Add } from './components/Pages';
-import { AddIntro, AddBauble, AddInfo } from './components/Content';
+import { AddBauble, AddInfo } from './components/Content';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route, Redirect } from 'react-router-dom';
@@ -15,6 +15,7 @@ import './App.scss';
 
 const App = () => {
   const baublesStore = useBaublesStore();
+  // baublesStore.removeBaubleFromUser();
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
   const bauble = baublesStore.baubleFromUser;
@@ -41,15 +42,9 @@ const App = () => {
             <CSSTransition key={location.pathname} timeout={500}>
               <Switch location={location}>
                 <Route exact path={ROUTES.detail.path} component={Detail} />
-                {/* <Route path={ROUTES.add.to} component={Add} /> */}
-
-                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep}>
-                  {bauble ? <AddInfo /> : <Redirect to="/" />}
-                </Route>
-
+                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep} component={AddInfo} />
                 <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
-                <Route exact path={ROUTES.add.to} component={AddIntro} />
-
+                <Route exact path={ROUTES.add.to} component={Add} />
                 <Route exact path={ROUTES.home} component={Home} />
               </Switch>
             </CSSTransition>

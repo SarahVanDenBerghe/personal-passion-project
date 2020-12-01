@@ -1,20 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 import { useBaublesStore } from '../../../hooks';
-import { action } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import './styles.scss';
 
-const AddForm = observer(({ active, setActive }) => {
+const AddForm = observer(({ active, setActive, setRedirect }) => {
   const baublesStore = useBaublesStore();
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [location, setLocation] = useState('');
   const history = useHistory();
-
-  console.log(active);
 
   let titleRef,
     nameRef,
@@ -25,6 +23,7 @@ const AddForm = observer(({ active, setActive }) => {
 
   useEffect(() => {
     setActive(true);
+    setRedirect(false);
   }, []);
 
   const handleSubmitForm = async (e) => {
@@ -65,13 +64,10 @@ const AddForm = observer(({ active, setActive }) => {
     });
   }, [active]);
 
-  const handleClickClose = () => {
-    baublesStore.removeBaubleFromUser();
+  const handleClickClose = async () => {
     setActive(false);
-
-    // Currently on page /add/info
-    // On cancel go back to index /
-    history.push('/'); // Goes to /add
+    baublesStore.removeBaubleFromUser(); // Removes a bauble from store, gives redirect issues!
+    history.push('/');
   };
 
   return (
@@ -150,11 +146,12 @@ const AddForm = observer(({ active, setActive }) => {
             </button>
           </div>
         </form>
+
         <button
-          onClick={action((e) => handleClickClose())}
           ref={(el) => {
             cancelRef = el;
           }}
+          onClick={() => handleClickClose()}
           className="form__cancel"
         >
           Cancel
