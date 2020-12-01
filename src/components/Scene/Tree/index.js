@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useGLTFLoader } from 'drei';
 import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
+import { Preview } from '..';
 import { useBaublesStore } from '../../../hooks';
 
 const Tree = ({ setBaublePreview, history, pathname }) => {
@@ -20,19 +21,12 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
         origin: 'user',
       });
     }
+
+    history.push(`${ROUTES.add.to}/${ROUTES.add.secondstep}`);
   };
 
   const showBaublePreview = (point) => {
-    // setBaublePreview(
-    //   <Bauble
-    //     preview
-    //     position={[point.x, point.y, point.z]}
-    //     color="blue"
-    //     args={[0.2, 10, 10]}
-    //     history={history}
-    //     pathname={pathname}
-    //   />
-    // );
+    setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
   };
 
   return (

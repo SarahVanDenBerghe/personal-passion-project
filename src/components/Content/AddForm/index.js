@@ -14,6 +14,8 @@ const AddForm = observer(({ active, setActive }) => {
   const [location, setLocation] = useState('');
   const history = useHistory();
 
+  console.log(active);
+
   let titleRef,
     nameRef,
     messageRef,
@@ -66,7 +68,10 @@ const AddForm = observer(({ active, setActive }) => {
   const handleClickClose = () => {
     baublesStore.removeBaubleFromUser();
     setActive(false);
-    history.push(ROUTES.home);
+
+    // Currently on page /add/info
+    // On cancel go back to index /
+    history.push('/'); // Goes to /add
   };
 
   return (

@@ -4,11 +4,16 @@ import { Sidebar } from '../../UI';
 
 const AddInfo = () => {
   const [active, setActive] = useState(false);
+  console.log('test');
+  console.log(active);
 
   return (
-    <Sidebar active={active} setActive={setActive}>
-      <AddForm active={active} setActive={setActive} />
-    </Sidebar>
+    <>
+      <p>Hallooo</p>
+      <Sidebar active={active} setActive={setActive}>
+        <AddForm active={active} setActive={setActive} />
+      </Sidebar>
+    </>
   );
 };
 

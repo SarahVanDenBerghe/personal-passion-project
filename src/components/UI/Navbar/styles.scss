@@ -10,8 +10,8 @@
   // border-right: 0.1rem solid #3D584C;
   background: $background;
   // background: #112C23;
-  
-  & .header__content  {
+
+  & .header__content {
     // border-right: 0.1rem solid $light;
     display: flex;
     flex-direction: column;
@@ -26,10 +26,10 @@
 .header__line {
   height: 0;
   width: 0.1rem;
-  background: #3D584C;
+  background: #3d584c;
 }
 
-.icon {
+.nav__icon {
   width: 2.4rem;
   height: 2.5rem;
   position: relatve;
@@ -58,6 +58,8 @@
   }
 }
 
-.image {
+.header__volume {
+  height: 1.7rem;
+  width: 1.7rem;
   transform: scale(0, 0);
 }

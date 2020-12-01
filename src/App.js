@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Navbar, Loader } from './components/UI';
 import { Home, Detail, Add } from './components/Pages';
+import { AddIntro, AddBauble, AddInfo } from './components/Content';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { Switch, useLocation } from 'react-router';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -16,6 +17,7 @@ const App = () => {
   const baublesStore = useBaublesStore();
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
+  const bauble = baublesStore.baubleFromUser;
 
   return (
     <>
@@ -38,11 +40,17 @@ const App = () => {
           <TransitionGroup>
             <CSSTransition key={location.pathname} timeout={500}>
               <Switch location={location}>
-                <Route path={ROUTES.detail.path}>
-                  <Detail />
+                <Route exact path={ROUTES.detail.path} component={Detail} />
+                {/* <Route path={ROUTES.add.to} component={Add} /> */}
+
+                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep}>
+                  {bauble ? <AddInfo /> : <Redirect to="/" />}
                 </Route>
-                <Route path={ROUTES.add.to} component={Add} />
-                <Route path={ROUTES.home} component={Home} />
+
+                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
+                <Route exact path={ROUTES.add.to} component={AddIntro} />
+
+                <Route exact path={ROUTES.home} component={Home} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

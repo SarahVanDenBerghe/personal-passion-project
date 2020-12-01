@@ -19,6 +19,8 @@ const CanvasWrapper = () => {
     group: groupPos,
   });
 
+  const showPreview = pathname == `${ROUTES.add.to}/${ROUTES.add.firststep}`;
+
   return (
     <>
       <div className="canvas__wrapper" ref={canvas}>
@@ -32,7 +34,7 @@ const CanvasWrapper = () => {
               <Baubles history={history} pathname={pathname} />
             </Suspense>
           </a.group>
-          {baublePreview && pathname == ROUTES.add.to ? baublePreview : ''};
+          {baublePreview && showPreview ? baublePreview : ''};
         </Canvas>
       </div>
     </>

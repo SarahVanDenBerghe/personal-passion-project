@@ -4,24 +4,10 @@ import './styles.scss';
 
 const Navbar = () => {
   let line = useRef(null);
-  let hamburgerOne = useRef(null);
-  let hamburgerTwo = useRef(null);
-  let hamburgerThree = useRef(null);
-  let music = useRef(null);
-
-  // const animation = {
-  //   // show : hide
-  //   opacity: active ? 1 : 0,
-  //   sidebar: {
-  //     xPos: active ? 0 : 600,
-  //     borderRadius: active ? 0 : '100% 0 0 50%',
-  //   },
-  //   text: {
-  //     yPos: active ? 0 : 150,
-  //     delay: active ? 0.35 : 0.1,
-  //     stagger: active ? 0.1 : -0.1,
-  //   },
-  // };
+  let hamburgerOne,
+    hamburgerTwo,
+    hamburgerThree,
+    music = useRef(null);
 
   useEffect(() => {
     gsap.to(line, {
@@ -53,7 +39,7 @@ const Navbar = () => {
     <header className="header">
       <div className="header__content">
         <nav className="nav">
-          <div className="icon">
+          <div className="nav__icon">
             <span
               ref={(el) => {
                 hamburgerOne = el;
@@ -76,7 +62,7 @@ const Navbar = () => {
             ref={(el) => {
               music = el;
             }}
-            className="image"
+            className="header__volume"
             alt="volume icon"
             src="/assets/icons/volume.svg"
           />
