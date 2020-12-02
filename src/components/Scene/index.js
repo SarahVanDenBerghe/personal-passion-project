@@ -7,4 +7,3 @@ export { default as CanvasWrapper } from './CanvasWrapper/index';
 export { default as Preview } from './Preview/index';
 export { default as Tree } from './Tree/index';
 export { default as HomeTrees } from './HomeTrees/index';
-export { default as Model } from './Model/index';

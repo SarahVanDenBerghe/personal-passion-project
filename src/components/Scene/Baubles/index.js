@@ -1,10 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { useBaublesStore } from '../../../hooks';
+import { useStore } from '../../../hooks';
 import { Bauble } from '..';
 
 const Baubles = observer(({ history, pathname }) => {
-  const baublesStore = useBaublesStore();
+  const { baublesStore } = useStore();
 
   return (
     <>

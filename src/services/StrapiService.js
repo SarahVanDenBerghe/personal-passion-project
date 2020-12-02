@@ -5,12 +5,7 @@ const api = axios.create({
 });
 
 class StrapiService {
-  getAllBaubles = async () => {
-    const response = await api.get('/messages?_limit=-1');
-    return response.data;
-  };
-
-  /* Post message to tree */
+  /* BAUBLES -------------- */
   createBauble = async (bauble) => {
     const response = await api.post('/messages', {
       name: bauble.name,
@@ -19,6 +14,7 @@ class StrapiService {
       z: bauble.z,
       text: bauble.text,
       location: bauble.location,
+      tree: bauble.treeId,
     });
     return response.data;
   };
@@ -28,11 +24,16 @@ class StrapiService {
     return response.data;
   };
 
+  /* TREES -------------- */
   createTree = async (tree) => {
     const response = await api.post('/trees', {
       name: tree.name,
-      uid: tree.uid,
     });
+    return response.data;
+  };
+
+  findTreeById = async (id) => {
+    const response = await api.get(`/trees/${id}`);
     return response.data;
   };
 }

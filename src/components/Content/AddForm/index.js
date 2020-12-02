@@ -3,16 +3,18 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
-import { useBaublesStore } from '../../../hooks';
+import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
-  const baublesStore = useBaublesStore();
+  const { baublesStore } = useStore();
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [location, setLocation] = useState('');
   const history = useHistory();
+  const { id } = useParams();
 
   let titleRef,
     nameRef,
@@ -29,7 +31,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     const bauble = baublesStore.baubleFromUser;
-    bauble.setInfo({ name, text, location });
+    bauble.setInfo({ name, text, location, treeId: id });
 
     // Push to database
     await bauble.create();
@@ -37,7 +39,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
     updatedBauble.setOrigin('data');
-    history.push(`${ROUTES.detail.to}${updatedBauble.id}`);
+    history.push(ROUTES.tree.to + id + ROUTES.detail.to + updatedBauble.id);
   };
 
   const animation = {
@@ -66,8 +68,8 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   const handleClickClose = async () => {
     setActive(false);
-    baublesStore.removeBaubleFromUser(); // Removes a bauble from store, gives redirect issues!
-    history.push('/');
+    baublesStore.removeBaubleFromUser();
+    history.push(ROUTES.tree.to + id);
   };
 
   return (

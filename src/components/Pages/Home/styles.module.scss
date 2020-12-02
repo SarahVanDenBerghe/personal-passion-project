@@ -1,20 +1,12 @@
 @import '../../../styles/styles.scss';
 
 .home {
-  margin-left: 8rem; /* nav */
   height: 100%;
-  width: 100%;
-  color: $light;
   display: flex;
-
-  .home__text {
-    padding: 15rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 120rem;
-
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .text {
     .text__title {
       font-family: $font-title;
       font-size: 8rem;
@@ -30,11 +22,6 @@
       }
     }
 
-    .text__subtitle {
-      font-family: $font-title;
-      font-size: 5rem;
-    }
-
     .text__info {
       max-width: 40rem;
       margin-bottom: 5rem;
@@ -42,8 +29,11 @@
       opacity: 0;
     }
 
-    .add__tree {
+    .button {
+      @include button;
+      line-height: 1.2;
       opacity: 0;
+      display: flex;
       transform: translateY(15rem);
     }
   }

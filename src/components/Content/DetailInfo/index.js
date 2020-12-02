@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { useBaublesStore } from '../../../hooks';
+import { useStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
+import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 
-const DetailInfo = ({ active, setActive }) => {
-  const baublesStore = useBaublesStore();
+const DetailInfo = observer(({ active, setActive }) => {
+  const { baublesStore } = useStore();
   const [detail, setDetail] = useState(null);
   const history = useHistory();
-  const { id } = useParams();
+  const { treeId, baubleId } = useParams();
 
   let title,
     name,
@@ -22,9 +23,9 @@ const DetailInfo = ({ active, setActive }) => {
   }, []);
 
   useEffect(() => {
-    const info = baublesStore.getBaubleById(parseInt(id));
+    const info = baublesStore.getBaubleById(parseInt(baubleId));
     setDetail(info);
-  }, [id]);
+  }, [baubleId]);
 
   const animation = {
     // show : hide
@@ -65,7 +66,7 @@ const DetailInfo = ({ active, setActive }) => {
 
   const handleClickClose = () => {
     setActive(false);
-    history.push(ROUTES.home);
+    history.push(ROUTES.tree.to + treeId);
   };
 
   return (
@@ -105,6 +106,6 @@ const DetailInfo = ({ active, setActive }) => {
       </div>
     </>
   );
-};
+});
 
 export default DetailInfo;

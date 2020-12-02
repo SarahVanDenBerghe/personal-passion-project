@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Navbar, Loader } from './components/UI';
-import { Detail, Add, Tree, Home } from './components/Pages';
+import { Navbar, Loader, TreeLayout } from './components/UI';
+import { Detail, Add, Tree, Home, Create } from './components/Pages';
 import { AddBauble, AddInfo } from './components/Content';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
@@ -10,15 +10,16 @@ import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Particles from 'react-particles-js';
 import particlesConfig from './assets/configs/particles-config';
-import { useBaublesStore } from './hooks';
+import { useStore } from './hooks';
 import './App.scss';
 
 const App = () => {
-  const baublesStore = useBaublesStore();
+  const { baublesStore } = useStore();
   // baublesStore.removeBaubleFromUser();
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
   const bauble = baublesStore.baubleFromUser;
+  const isTree = 'tree' === location.pathname.split('/')[1];
   // https://stackoverflow.com/questions/56711663/react-router-v5-0-nested-routes
 
   return (
@@ -34,20 +35,14 @@ const App = () => {
       {/* showContent is set to true after a delay for smooth transition */}
       {/* {showContent && ( */}
       <>
-        {/* Canvas & navbar are always shown */}
         <Navbar />
-        {/* <CanvasWrapper /> */}
-
+        {isTree && <CanvasWrapper />}
         {/* TransitionGroup & CSSTransition give time to animate page transitions */}
         <TransitionGroup className="transition">
           <CSSTransition key={location.pathname} timeout={500}>
             <Switch location={location}>
-              <Route exact path={ROUTES.detail.path} component={Detail} />
-              <Route exact path={ROUTES.add.secondstep} component={AddInfo} />
-              <Route exact path={ROUTES.add.firststep} component={AddBauble} />
-              <Route exact path={ROUTES.add.root} component={Add} />
-              {/* <Route exact path={ROUTES.detail.path} component={Detail} /> */}
-
+              <Route path={ROUTES.tree.path} component={Tree} />
+              <Route exact path={ROUTES.create} component={Create} />
               <Route exact path={ROUTES.home} component={Home} />
             </Switch>
           </CSSTransition>

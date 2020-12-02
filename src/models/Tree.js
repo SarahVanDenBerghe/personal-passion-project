@@ -1,35 +1,31 @@
-import { makeObservable, observable, computed, action } from 'mobx';
-import { uid } from 'uid';
-import StrapiService from '../services/StrapiService';
+import { makeObservable, observable, computed, action, ObservableSet } from 'mobx';
 
 class Tree {
-  constructor({ store, name, id = uid() }) {
+  constructor({ store, name, id }) {
     this.store = store;
     this.id = id;
     this.name = name;
-    // Front-end
-    this.store.addTree(this);
-
-    if (!store) {
-      throw new Error('No store detected');
-    }
 
     makeObservable(this, {
       id: observable,
       name: observable,
       create: action,
       asJson: computed,
+      setId: action,
     });
   }
 
-  // Back-end
   create = async () => this.store.createTree(this);
+  find = async () => this.store.findTree(this);
 
   get asJson() {
     return {
       name: this.name,
-      uid: this.id,
     };
+  }
+
+  setId(id) {
+    this.id = parseFloat(id);
   }
 }
 

@@ -2,16 +2,18 @@ import React, { useRef } from 'react';
 import { useGLTFLoader } from 'drei';
 import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
+import { useParams } from 'react-router-dom';
 import { Preview } from '..';
-import { useBaublesStore } from '../../../hooks';
+import { useStore } from '../../../hooks';
 
 const Tree = ({ setBaublePreview, history, pathname }) => {
-  const baublesStore = useBaublesStore();
+  const { baublesStore } = useStore();
   const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const mesh = useRef();
+  const id = pathname.split('/')[2];
 
   const addBauble = (point) => {
-    const addBaublePath = `${ROUTES.add.to}/${ROUTES.add.firststep}`;
+    const addBaublePath = ROUTES.tree.to + id + ROUTES.add.firststep;
     if (pathname === addBaublePath) {
       new Bauble({
         x: point.x,
@@ -21,7 +23,7 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
         origin: 'user',
       });
 
-      history.push(`${ROUTES.add.to}/${ROUTES.add.secondstep}`);
+      history.push(ROUTES.tree.to + id + ROUTES.add.secondstep);
     }
   };
 

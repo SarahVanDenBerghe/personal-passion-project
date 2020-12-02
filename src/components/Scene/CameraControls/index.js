@@ -3,10 +3,10 @@ import { useThree } from 'react-three-fiber';
 import { gsap } from 'gsap';
 import { ROUTES } from '../../../consts';
 import { OrbitControls } from 'drei';
-import { useBaublesStore } from '../../../hooks';
+import { useStore } from '../../../hooks';
 
 const CameraControls = ({ canvas, pathname, setGroupPos }) => {
-  const baublesStore = useBaublesStore();
+  const { baublesStore } = useStore();
   const { gl, camera } = useThree();
   const [zoom, setZoom] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);

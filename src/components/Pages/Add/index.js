@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TransitionGroup, Transition } from 'react-transition-group';
+import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 import styles from './styles.module.scss';
 
 const Add = () => {
+  const { id } = useParams();
   let title,
     tagline = useRef(null);
   const [active, setActive] = useState(false);
@@ -43,11 +45,11 @@ const Add = () => {
 
   const handleClickNext = () => {
     setActive(false);
-    history.push(`${ROUTES.add.to}/${ROUTES.add.firststep}`);
+    history.push(ROUTES.tree.to + id + ROUTES.add.firststep);
   };
 
   return (
-    <div className={styles.add} onClick={(e) => handleClickNext()}>
+    <div className={styles.add} onClick={() => handleClickNext()}>
       {/* INFO - laten animeren dan routen naar step/one waarbij user kerstbal kan plaatsen*/}
       <motion.div className={styles.add__text}>
         <p

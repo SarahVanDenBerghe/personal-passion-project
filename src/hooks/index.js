@@ -1,5 +1,4 @@
-import { baublesStoreContext, treeStoreContext } from '../contexts';
+import { storeContext } from '../contexts';
 import { useContext } from 'react';
 
-export const useBaublesStore = () => useContext(baublesStoreContext);
-export const useTreeStore = () => useContext(treeStoreContext);
+export const useStore = () => useContext(storeContext);

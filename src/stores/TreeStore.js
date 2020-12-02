@@ -1,28 +1,42 @@
 import StrapiService from '../services/StrapiService';
 import { makeObservable, observable, computed, action } from 'mobx';
-import Bauble from '../models/Bauble';
-// https://mobx.js.org/observable-state.html
+import Tree from '../models/Tree';
 
 class TreeStore {
-  constructor() {
-    this.tree = {};
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+    this.currentTree = {};
     this.strapiService = new StrapiService();
 
     makeObservable(this, {
-      tree: observable,
+      currentTree: observable,
+      findTreeById: action,
+      createTree: action,
     });
   }
 
-  // Back-end
   createTree = async (tree) => {
     const treeJson = tree.asJson;
     const json = await this.strapiService.createTree(treeJson);
+    tree.setId(json.id);
   };
 
-  // Front-end
   addTree(tree) {
-    this.tree = tree;
+    this.currentTree = tree;
   }
+
+  findTreeById = async (id) => {
+    const json = await this.strapiService.findTreeById(id);
+
+    const tree = new Tree({
+      id: json.id,
+      name: json.name,
+      store: this,
+    });
+
+    json.messages.forEach((json) => this.rootStore.baublesStore.updateBaubleFromServer(json));
+    this.currentTree = tree;
+  };
 }
 
 export default TreeStore;

@@ -1,9 +1,14 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
 class Bauble {
-  constructor({ store, id, name, x, y, z, text, location, origin }) {
+  constructor({ store, id, name, x, y, z, text, location, origin, treeId }) {
+    if (!store) {
+      throw new Error('No store detected');
+    }
+
     this.store = store;
     this.id = id;
+    this.treeId = treeId;
     this.name = name;
     this.x = parseFloat(x);
     this.y = parseFloat(y);
@@ -12,10 +17,6 @@ class Bauble {
     this.location = location;
     this.origin = origin;
     this.store.addBauble(this);
-
-    if (!store) {
-      throw new Error('No store detected');
-    }
 
     makeObservable(this, {
       id: observable,
@@ -42,6 +43,8 @@ class Bauble {
     this.name = data.name;
     this.text = data.text;
     this.location = data.location;
+    this.treeId = data.treeId;
+    // id is ook gekend maar hoe
   };
 
   // Get bauble as JSON to send to service
@@ -53,6 +56,7 @@ class Bauble {
       z: parseFloat(this.z),
       text: this.text,
       location: this.location,
+      treeId: this.treeId,
     };
   }
 }

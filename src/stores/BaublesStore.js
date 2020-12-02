@@ -4,29 +4,22 @@ import Bauble from '../models/Bauble';
 // https://mobx.js.org/observable-state.html
 
 class BaublesStore {
-  constructor() {
+  constructor(rootStore) {
+    this.rootStore = rootStore;
     this.baubles = [];
     this.loading = true;
     this.strapiService = new StrapiService('messages');
-    this.loadAllBaubles();
 
     makeObservable(this, {
       loading: observable,
       baubles: observable,
-      loadAllBaubles: action,
+      // getAllBaublesByTreeId: action,
       addBauble: action,
       getBaubleById: action,
       baubleFromUser: computed,
       removeBaubleFromUser: action,
     });
   }
-
-  // Loading all baubles from database
-  loadAllBaubles = async () => {
-    const jsonBaubles = await this.strapiService.getAllBaubles();
-    this.loading = false;
-    jsonBaubles.forEach((json) => this.updateBaubleFromServer(json));
-  };
 
   createBauble = async (bauble) => {
     const baubleJson = bauble.asJson;

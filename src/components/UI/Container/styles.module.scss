@@ -1,0 +1,10 @@
+@import '../../../styles/styles.scss';
+
+.container {
+  margin: 0 15rem 0 calc(15rem + #{$nav-large});
+  max-width: 65rem;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+}
