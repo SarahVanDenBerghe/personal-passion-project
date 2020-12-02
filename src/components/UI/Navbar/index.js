@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const Navbar = () => {
   let line = useRef(null);
@@ -36,10 +36,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="header">
-      <div className="header__content">
-        <nav className="nav">
-          <div className="nav__icon">
+    <header className={styles.header}>
+      <div className={styles.header__content}>
+        <nav className={styles.nav}>
+          <div className={styles.nav__icon}>
             <span
               ref={(el) => {
                 hamburgerOne = el;
@@ -62,7 +62,7 @@ const Navbar = () => {
             ref={(el) => {
               music = el;
             }}
-            className="header__volume"
+            className={styles.header__volume}
             alt="volume icon"
             src="/assets/icons/volume.svg"
           />
@@ -72,7 +72,7 @@ const Navbar = () => {
         ref={(el) => {
           line = el;
         }}
-        className="header__line"
+        className={styles.header__line}
       ></span>
     </header>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { useLocation, useHistory } from 'react-router-dom';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const Tree = () => {
   const history = useHistory();
@@ -18,7 +18,7 @@ const Tree = () => {
 
   return (
     <>
-      <div onClick={handleClickButton} className="add__button">
+      <div onClick={handleClickButton} className={styles.add__button}>
         <Button text="Add" />
       </div>
     </>

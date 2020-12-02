@@ -4,7 +4,7 @@ import { TransitionGroup, Transition } from 'react-transition-group';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const Add = () => {
   let title,
@@ -47,14 +47,14 @@ const Add = () => {
   };
 
   return (
-    <div className="add" onClick={(e) => handleClickNext()}>
+    <div className={styles.add} onClick={(e) => handleClickNext()}>
       {/* INFO - laten animeren dan routen naar step/one waarbij user kerstbal kan plaatsen*/}
-      <motion.div className="add__text">
+      <motion.div className={styles.add__text}>
         <p
           ref={(el) => {
             title = el;
           }}
-          className="add__title"
+          className={styles.add__title}
         >
           Place bauble
         </p>
@@ -62,7 +62,7 @@ const Add = () => {
           ref={(el) => {
             tagline = el;
           }}
-          className="add__tagline"
+          className={styles.add__tagline}
         >
           Drag to rotate
         </p>
@@ -73,7 +73,7 @@ const Add = () => {
             x: 250,
           }}
           transition={{ ease: 'easeIn', duration: 1, repeat: Infinity, repeatType: 'reverse' }}
-          className="add_icon"
+          className={styles.add_icon}
           alt="hand icon"
           src="/assets/icons/hand.svg"
         />

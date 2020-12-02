@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { useSpring, a } from 'react-spring';
 import { useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 // https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js
 
@@ -48,7 +48,7 @@ const Sidebar = ({ children, active, setActive }) => {
 
   return (
     <a.div
-      className="sidebar__wrapper"
+      className={styles.sidebar__wrapper}
       ref={(el) => {
         wrapper = el;
       }}
@@ -69,7 +69,7 @@ const Sidebar = ({ children, active, setActive }) => {
       }}
     >
       <a.div
-        className="sidebar"
+        className={styles.sidebar}
         ref={(el) => {
           sidebar = el;
         }}

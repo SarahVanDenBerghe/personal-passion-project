@@ -37,7 +37,7 @@ const App = () => {
         <Navbar />
         {/* Tree */}
 
-        {/* <CanvasWrapper /> */}
+        <CanvasWrapper />
 
         {/* TransitionGroup & CSSTransition give time to animate page transitions */}
         <TransitionGroup className="transition">
@@ -47,7 +47,7 @@ const App = () => {
               <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep} component={AddInfo} />
               <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
               <Route exact path={ROUTES.add.to} component={Add} />
-              <Route exact path={ROUTES.home} component={Home} />
+              <Route exact path={ROUTES.home} component={Tree} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

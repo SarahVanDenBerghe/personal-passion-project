@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ROUTES } from '../../../consts';
 import { useSpring, a } from 'react-spring/three';
 import { Html } from 'drei';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const Bauble = ({ position, color, bauble, args, preview, pathname, history }) => {
   const [hovered, setHover] = useState(false);
@@ -36,7 +36,7 @@ const Bauble = ({ position, color, bauble, args, preview, pathname, history }) =
       onClick={(e) => handleClickBauble(e)}
     >
       {hovered && (
-        <Html className="info" center>
+        <Html className={styles.info} center>
           <p>{bauble && bauble.id}</p>
         </Html>
       )}

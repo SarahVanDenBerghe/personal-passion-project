@@ -6,3 +6,40 @@
   padding: 1.5rem 2rem;
   background: $accent;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* FORM */
+label {
+  @include title-accent;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+
+  & span {
+    font-family: $font-title;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+  }
+}
+
+input,
+textarea {
+  -webkit-appearance: none;
+  color: $light;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(151, 151, 151, 0.4);
+  display: block;
+  font-size: 2rem;
+  font-family: $font-copy;
+  font-weight: 300;
+  padding-bottom: 0.5rem;
+}
+
+textarea {
+  resize: none;
+}

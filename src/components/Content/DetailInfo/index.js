@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useBaublesStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const DetailInfo = ({ active, setActive }) => {
   const baublesStore = useBaublesStore();
@@ -72,14 +72,14 @@ const DetailInfo = ({ active, setActive }) => {
     <>
       <button
         onClick={(e) => handleClickClose()}
-        className="close"
+        className={styles.close}
         ref={(el) => {
           close = el;
         }}
       />
-      <div className="detail">
+      <div className={styles.detail}>
         <p
-          className="detail__title"
+          className={styles.detail__title}
           ref={(el) => {
             title = el;
           }}
@@ -87,7 +87,7 @@ const DetailInfo = ({ active, setActive }) => {
           Christmas wish of
         </p>
         <p
-          className="detail__name"
+          className={styles.detail__name}
           ref={(el) => {
             name = el;
           }}
@@ -95,7 +95,7 @@ const DetailInfo = ({ active, setActive }) => {
           {detail && <>{detail.name}</>}
         </p>
         <p
-          className="detail__message"
+          className={styles.detail__message}
           ref={(el) => {
             message = el;
           }}

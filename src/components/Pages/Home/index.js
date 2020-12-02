@@ -55,15 +55,15 @@ const Home = () => {
       <div className={styles.home}>
         <div className={styles.home__text}>
           {/* <h1
-            className="text__title"
+            className={styles.text__title}
             ref={(el) => {
               title = el;
             }}
           >
-            Create your own <span className="highlight">Christmas tree</span>
+            Create your own <span className={styles.highlight}>Christmas tree</span>
           </h1>
           <p
-            className="text__info"
+            className={styles.text__info}
             ref={(el) => {
               intro = el;
             }}
@@ -73,7 +73,7 @@ const Home = () => {
           </p>
           <div
             onClick={handleClickButton}
-            className="add__tree"
+            className={styles.add__tree}
             ref={(el) => {
               button = el;
             }}
@@ -83,20 +83,19 @@ const Home = () => {
           <div>
             <h2 className={styles.text__subtitle}>Creating your tree</h2>
             <p>Your digital tree is almost ready to be planted. Give your tree a name and you are ready to go.</p>
-            <form className="form" onSubmit={(e) => handleSubmitForm(e)}>
-              <label htmlFor="name" className="label">
+            <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
+              <label htmlFor="name">
                 <span>Name</span>
 
                 <input
                   id="name"
-                  className="input"
                   type="text"
                   // value={name}
                   // onChange={(e) => setName(e.currentTarget.value)}
                   required
                 />
               </label>
-              <button className="form__submit" type="submit">
+              <button className={styles.form__submit} type="submit">
                 Plant my tree
               </button>
             </form>

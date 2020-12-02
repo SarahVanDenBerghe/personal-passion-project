@@ -5,7 +5,7 @@ import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 import { useBaublesStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const baublesStore = useBaublesStore();
@@ -71,45 +71,35 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   return (
-    <div className="form__wrapper">
+    <div className={styles.form__wrapper}>
       <p
         ref={(el) => {
           titleRef = el;
         }}
-        className="form__title"
+        className={styles.form__title}
       >
         Write your message
       </p>
       <div>
-        <form className="form" onSubmit={(e) => handleSubmitForm(e)}>
+        <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
           <label
             ref={(el) => {
               nameRef = el;
             }}
             htmlFor="name"
-            className="label"
           >
             <span>Name</span>
-            <input
-              id="name"
-              className="input"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.currentTarget.value)}
-              required
-            />
+            <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
           </label>
           <label
             ref={(el) => {
               messageRef = el;
             }}
             htmlFor="message"
-            className="label"
           >
             <span>Message</span>
             <textarea
               id="message"
-              className="textarea"
               value={text}
               cols="50"
               rows="5"
@@ -122,24 +112,22 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               locationRef = el;
             }}
             htmlFor="place"
-            className="label"
           >
             <span>Location</span>
             <input
               id="place"
-              className="input"
               type="text"
               value={location}
               onChange={(e) => setLocation(e.currentTarget.value)}
               required
             />
           </label>
-          <div className="form__buttons">
+          <div className={styles.form__buttons}>
             <button
               ref={(el) => {
                 submitRef = el;
               }}
-              className="form__submit"
+              className={styles.form__submit}
               type="submit"
             >
               Add my message
@@ -152,7 +140,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
             cancelRef = el;
           }}
           onClick={() => handleClickClose()}
-          className="form__cancel"
+          className={styles.form__cancel}
         >
           Cancel
         </button>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar } from '../../UI';
 import { DetailInfo } from '../../Content';
-import './styles.scss';
 
 const Detail = () => {
   const [active, setActive] = useState(false);

@@ -5,7 +5,7 @@ import { Lights, Tree, Floor, Baubles, CameraControls } from '..';
 import { useHistory, useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { useSpring, a } from 'react-spring/three';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 softShadows();
 const CanvasWrapper = () => {
@@ -23,7 +23,7 @@ const CanvasWrapper = () => {
 
   return (
     <>
-      <div className="canvas__wrapper" ref={canvas}>
+      <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas colorManagement shadowMap resize={{ scroll: false }}>
           <CameraControls pathname={pathname} canvas={canvas} setGroupPos={setGroupPos} />
           <Lights />

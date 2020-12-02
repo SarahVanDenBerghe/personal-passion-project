@@ -7,7 +7,7 @@ import { ROUTES } from '../../../consts';
 import { useGLTFLoader } from 'drei';
 import { useGLTF } from '@react-three/drei';
 import { useSpring, a } from 'react-spring/three';
-import './styles.scss';
+import styles from './styles.module.scss';
 
 softShadows();
 const HomeTrees = () => {
@@ -21,7 +21,7 @@ const HomeTrees = () => {
   return (
     <>
       <Canvas
-        className="home__canvas"
+        className={styles.canvas}
         colorManagement
         shadowMap
         resize={{ scroll: false }}
