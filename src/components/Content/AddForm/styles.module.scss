@@ -25,7 +25,6 @@
 
 .form {
   .form__submit {
-    @include button;
     display: block;
     margin: 8rem auto 0;
   }

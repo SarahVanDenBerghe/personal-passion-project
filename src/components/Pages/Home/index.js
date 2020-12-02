@@ -5,11 +5,15 @@ import { ROUTES } from '../../../consts';
 import { useLocation, useHistory } from 'react-router-dom';
 import { gsap } from 'gsap';
 import styles from './styles.module.scss';
+import { useTreeStore } from '../../../hooks';
+import Tree from '../../../models/Tree';
 
 const Home = () => {
   const [active, setActive] = useState(true);
+  const [name, setName] = useState('');
   const history = useHistory();
   const { pathname } = useLocation();
+  const treeStore = useTreeStore();
 
   let title,
     intro,
@@ -48,7 +52,20 @@ const Home = () => {
     // }
   };
 
-  const handleSubmitForm = () => {};
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    const tree = new Tree({
+      store: treeStore,
+      name: name,
+    });
+
+    await tree.create();
+
+    // // Get updated bauble with right id
+    // const updatedBauble = baublesStore.baubleFromUser;
+    // updatedBauble.setOrigin('data');
+    // history.push(`${ROUTES.detail.to}${updatedBauble.id}`);
+  };
 
   return (
     <>
@@ -87,13 +104,7 @@ const Home = () => {
               <label htmlFor="name">
                 <span>Name</span>
 
-                <input
-                  id="name"
-                  type="text"
-                  // value={name}
-                  // onChange={(e) => setName(e.currentTarget.value)}
-                  required
-                />
+                <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
               </label>
               <button className={styles.form__submit} type="submit">
                 Plant my tree

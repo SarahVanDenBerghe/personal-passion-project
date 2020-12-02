@@ -21,7 +21,6 @@ class Bauble {
       id: observable,
       create: action,
       setId: action,
-      idBauble: computed,
       asJson: computed,
     });
   }
@@ -55,10 +54,6 @@ class Bauble {
       text: this.text,
       location: this.location,
     };
-  }
-
-  get idBauble() {
-    return this.id;
   }
 }
 

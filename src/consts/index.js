@@ -1,6 +1,7 @@
 const ROUTES = {
   home: '/',
-  add: { to: '/add', firststep: 'place', secondstep: 'info' },
+  add: { root: '/add', firststep: '/add/place', secondstep: '/add/info' },
+  tree: { path: '/tree/:id', to: '/tree/' },
   detail: { path: '/view/:id', to: '/view/' },
 };
 

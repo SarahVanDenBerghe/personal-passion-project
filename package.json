@@ -22,7 +22,8 @@
     "react-three-fiber": "^4.2.10",
     "react-transition-group": "^4.4.1",
     "sass": "^1.26.8",
-    "three": "^0.117.1"
+    "three": "^0.117.1",
+    "uid": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

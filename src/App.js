@@ -19,6 +19,7 @@ const App = () => {
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
   const bauble = baublesStore.baubleFromUser;
+  // https://stackoverflow.com/questions/56711663/react-router-v5-0-nested-routes
 
   return (
     <>
@@ -35,19 +36,19 @@ const App = () => {
       <>
         {/* Canvas & navbar are always shown */}
         <Navbar />
-        {/* Tree */}
-
-        <CanvasWrapper />
+        {/* <CanvasWrapper /> */}
 
         {/* TransitionGroup & CSSTransition give time to animate page transitions */}
         <TransitionGroup className="transition">
           <CSSTransition key={location.pathname} timeout={500}>
             <Switch location={location}>
               <Route exact path={ROUTES.detail.path} component={Detail} />
-              <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep} component={AddInfo} />
-              <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
-              <Route exact path={ROUTES.add.to} component={Add} />
-              <Route exact path={ROUTES.home} component={Tree} />
+              <Route exact path={ROUTES.add.secondstep} component={AddInfo} />
+              <Route exact path={ROUTES.add.firststep} component={AddBauble} />
+              <Route exact path={ROUTES.add.root} component={Add} />
+              {/* <Route exact path={ROUTES.detail.path} component={Detail} /> */}
+
+              <Route exact path={ROUTES.home} component={Home} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
