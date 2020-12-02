@@ -10,6 +10,7 @@ class StrapiService {
     return response.data;
   };
 
+  /* {Post message to tree} */
   createBauble = async (bauble) => {
     const response = await api.post('/messages', {
       name: bauble.name,
@@ -19,6 +20,12 @@ class StrapiService {
       text: bauble.text,
       location: bauble.location,
     });
+    return response.data;
+  };
+
+  /* {Get } */
+  getAllBaublesByTree = async (id) => {
+    const response = await api.get(`/trees/${id}?_limit=-1`);
     return response.data;
   };
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Loader } from './components/UI';
-import { Home, Detail, Add } from './components/Pages';
+import { Detail, Add, Tree, Home } from './components/Pages';
 import { AddBauble, AddInfo } from './components/Content';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
@@ -28,29 +28,31 @@ const App = () => {
       <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
 
       {/* Animated loader */}
-      <Loader setShowContent={setShowContent} loading={baublesStore.loading} />
+      {/* <Loader setShowContent={setShowContent} loading={baublesStore.loading} /> */}
 
       {/* showContent is set to true after a delay for smooth transition */}
-      {showContent && (
-        <>
-          {/* Canvas & navbar are always shown */}
-          <Navbar />
-          <CanvasWrapper />
+      {/* {showContent && ( */}
+      <>
+        {/* Canvas & navbar are always shown */}
+        <Navbar />
+        {/* Tree */}
 
-          {/* TransitionGroup & CSSTransition give time to animate page transitions */}
-          <TransitionGroup>
-            <CSSTransition key={location.pathname} timeout={500}>
-              <Switch location={location}>
-                <Route exact path={ROUTES.detail.path} component={Detail} />
-                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep} component={AddInfo} />
-                <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
-                <Route exact path={ROUTES.add.to} component={Add} />
-                <Route exact path={ROUTES.home} component={Home} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
-        </>
-      )}
+        {/* <CanvasWrapper /> */}
+
+        {/* TransitionGroup & CSSTransition give time to animate page transitions */}
+        <TransitionGroup className="transition">
+          <CSSTransition key={location.pathname} timeout={500}>
+            <Switch location={location}>
+              <Route exact path={ROUTES.detail.path} component={Detail} />
+              <Route exact path={ROUTES.add.to + '/' + ROUTES.add.secondstep} component={AddInfo} />
+              <Route exact path={ROUTES.add.to + '/' + ROUTES.add.firststep} component={AddBauble} />
+              <Route exact path={ROUTES.add.to} component={Add} />
+              <Route exact path={ROUTES.home} component={Home} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </>
+      {/* )} */}
     </>
   );
 };

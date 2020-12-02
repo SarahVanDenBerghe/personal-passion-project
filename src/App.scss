@@ -1,3 +1,8 @@
+.transition {
+  height: 100%;
+  width: 100%;
+}
+
 .particles {
   position: fixed;
   height: 100%;
@@ -5,6 +10,10 @@
   width: 100%;
   pointer-events: none;
   z-index: -1;
+}
+
+.root div:last-of-type {
+  height: 100%;
 }
 
 .noise {
