@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { io } from 'socket.io-client';
 
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_STRAPI_API}`,
 });
+
+const strapiSocket = io.connect(`${process.env.REACT_APP_STRAPI_API}`);
 
 class StrapiService {
   /* BAUBLES -------------- */
@@ -38,3 +41,4 @@ class StrapiService {
   };
 }
 export default StrapiService;
+export const socket = strapiSocket;

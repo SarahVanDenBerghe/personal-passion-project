@@ -1,6 +1,8 @@
 import StrapiService from '../services/StrapiService';
 import { makeObservable, observable, computed, action } from 'mobx';
 import Tree from '../models/Tree';
+import { io } from 'socket.io-client';
+// https://socket.io/docs/v3/client-api/index.html
 
 class TreeStore {
   constructor(rootStore) {
@@ -13,6 +15,8 @@ class TreeStore {
       findTreeById: action,
       createTree: action,
     });
+
+    // this.rootStore.socket.on('tree', (res) => console.log(res));
   }
 
   createTree = async (tree) => {

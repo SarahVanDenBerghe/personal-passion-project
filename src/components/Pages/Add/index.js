@@ -8,7 +8,7 @@ import { gsap } from 'gsap';
 import styles from './styles.module.scss';
 
 const Add = () => {
-  const { id } = useParams();
+  const { treeId } = useParams();
   let title,
     tagline = useRef(null);
   const [active, setActive] = useState(false);
@@ -45,7 +45,7 @@ const Add = () => {
 
   const handleClickNext = () => {
     setActive(false);
-    history.push(ROUTES.tree.to + id + ROUTES.add.firststep);
+    history.push(ROUTES.tree.to + treeId + ROUTES.add.firststep);
   };
 
   return (

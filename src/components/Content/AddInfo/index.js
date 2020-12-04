@@ -10,13 +10,13 @@ const AddInfo = () => {
   const { baublesStore } = useStore();
   const [active, setActive] = useState(false);
   const [redirect, setRedirect] = useState(true);
-  const { id } = useParams();
+  const { treeId } = useParams();
   const bauble = baublesStore.baubleFromUser;
 
   return (
     <>
       {!bauble && redirect ? (
-        <Redirect from={ROUTES.tree.path + ROUTES.add.secondstep} to={ROUTES.tree.to + id + ROUTES.add.root} />
+        <Redirect from={ROUTES.tree.path + ROUTES.add.secondstep} to={ROUTES.tree.to + treeId + ROUTES.add.root} />
       ) : (
         <Sidebar active={active} setActive={setActive}>
           <AddForm setRedirect={setRedirect} active={active} setActive={setActive} />

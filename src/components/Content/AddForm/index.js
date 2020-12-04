@@ -14,7 +14,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const [text, setText] = useState('');
   const [location, setLocation] = useState('');
   const history = useHistory();
-  const { id } = useParams();
+  const { treeId } = useParams();
 
   let titleRef,
     nameRef,
@@ -31,7 +31,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     const bauble = baublesStore.baubleFromUser;
-    bauble.setInfo({ name, text, location, treeId: id });
+    bauble.setInfo({ name, text, location, treeId: treeId });
 
     // Push to database
     await bauble.create();
@@ -39,7 +39,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
     updatedBauble.setOrigin('data');
-    history.push(ROUTES.tree.to + id + ROUTES.detail.to + updatedBauble.id);
+    history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
   };
 
   const animation = {
@@ -69,7 +69,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const handleClickClose = async () => {
     setActive(false);
     baublesStore.removeBaubleFromUser();
-    history.push(ROUTES.tree.to + id);
+    history.push(ROUTES.tree.to + treeId);
   };
 
   return (

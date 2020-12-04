@@ -8,7 +8,7 @@ class BaublesStore {
     this.rootStore = rootStore;
     this.baubles = [];
     this.loading = true;
-    this.strapiService = new StrapiService('messages');
+    this.strapiService = new StrapiService();
 
     makeObservable(this, {
       loading: observable,
@@ -19,6 +19,9 @@ class BaublesStore {
       baubleFromUser: computed,
       removeBaubleFromUser: action,
     });
+
+    // const socket = io.connect('http://localhost:1337/');
+    // socket.on('tree', (res) => console.log(res));
   }
 
   createBauble = async (bauble) => {
@@ -26,6 +29,8 @@ class BaublesStore {
     const json = await this.strapiService.createBauble(baubleJson);
     await bauble.setId(json.id);
     this.updateBaubleFromServer(json);
+    console.log('emitting bauble');
+    this.rootStore.socket.emit('bauble', { bauble: baubleJson, id: json.id });
   };
 
   updateBaubleFromServer(json) {
@@ -49,6 +54,23 @@ class BaublesStore {
   addBauble(bauble) {
     this.baubles.push(bauble);
   }
+
+  createBaubleFromSocket = async ({ bauble, id }) => {
+    const exist = this.getBaubleById(id);
+    if (this.rootStore.treeStore.currentTree.id == bauble.treeId && !exist) {
+      new Bauble({
+        id: id,
+        name: bauble.name,
+        text: bauble.text,
+        location: bauble.location,
+        x: bauble.x,
+        y: bauble.y,
+        z: bauble.z,
+        origin: 'socket',
+        store: this,
+      });
+    }
+  };
 
   getBaubleById = (id) => this.baubles.find((bauble) => bauble.id === id);
 

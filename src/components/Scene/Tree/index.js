@@ -8,13 +8,16 @@ import { useStore } from '../../../hooks';
 
 const Tree = ({ setBaublePreview, history, pathname }) => {
   const { baublesStore } = useStore();
-  const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
+  // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
+  const gltf = useGLTFLoader('/tree_simple.gltf', true);
   const mesh = useRef();
   const id = pathname.split('/')[2];
 
   const addBauble = (point) => {
     const addBaublePath = ROUTES.tree.to + id + ROUTES.add.firststep;
-    if (pathname === addBaublePath) {
+    const baubleUser = baublesStore.baubleFromUser;
+
+    if (pathname === addBaublePath && !baubleUser) {
       new Bauble({
         x: point.x,
         y: point.y,
@@ -22,7 +25,6 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
         store: baublesStore,
         origin: 'user',
       });
-
       history.push(ROUTES.tree.to + id + ROUTES.add.secondstep);
     }
   };

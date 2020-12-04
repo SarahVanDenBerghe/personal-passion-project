@@ -1,11 +1,26 @@
 @import '../../../styles/styles.scss';
 
 .info {
-    pointer-events: none;
-    background: $light;
-    padding: 1rem;
-    margin-top: -2rem;
-    & p {
-        font-family: $font-copy;
-    }
+  pointer-events: none;
+  border-radius: 0.3rem;
+  background: $light;
+  color: $background;
+  padding: 1rem;
+  margin-top: -5rem;
+  p {
+    font-family: $font-copy;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 33%;
+    top: 95%;
+    width: 0;
+    height: 0;
+    border-left: 0.9rem solid transparent;
+    border-right: 0.9rem solid transparent;
+    border-top: 0.9rem solid $light;
+    clear: both;
+  }
 }

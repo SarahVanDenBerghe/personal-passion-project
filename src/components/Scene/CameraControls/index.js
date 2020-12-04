@@ -13,8 +13,8 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
   const [zoomIn, setZoomIn] = useState(false);
   const [target, setTarget] = useState([0, 0, 0]);
   const controls = useRef(null);
-  const page = pathname.split('/')[1];
-  const id = pathname.split('/')[2];
+  const page = pathname.split('/')[3];
+  const id = pathname.split('/')[4];
   const bauble = baublesStore.baubles.find((bauble) => bauble.id == id);
 
   let currDistance = 0;
@@ -105,8 +105,6 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
       },
     });
   }, []);
-
-  //codesandbox.io/s/r3f-basic-demo-f8zii?file=/src/index.js:492-612
 
   return (
     <>

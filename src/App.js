@@ -11,16 +11,23 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Particles from 'react-particles-js';
 import particlesConfig from './assets/configs/particles-config';
 import { useStore } from './hooks';
+import { io } from 'socket.io-client';
+
 import './App.scss';
 
 const App = () => {
-  const { baublesStore } = useStore();
+  const { baublesStore, socket } = useStore();
   // baublesStore.removeBaubleFromUser();
   const [showContent, setShowContent] = useState(false);
   let location = useLocation();
   const bauble = baublesStore.baubleFromUser;
   const isTree = 'tree' === location.pathname.split('/')[1];
   // https://stackoverflow.com/questions/56711663/react-router-v5-0-nested-routes
+  socket.on('tree', (res) => console.log(res));
+
+  // socket.on('bauble', ({ bauble, id }) => {
+  //   console.log('received bauble in client App.js');
+  // });
 
   return (
     <>
@@ -37,6 +44,7 @@ const App = () => {
       <>
         <Navbar />
         {isTree && <CanvasWrapper />}
+
         {/* TransitionGroup & CSSTransition give time to animate page transitions */}
         <TransitionGroup className="transition">
           <CSSTransition key={location.pathname} timeout={500}>

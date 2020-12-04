@@ -6,8 +6,9 @@ import { useHistory, useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { useSpring, a } from 'react-spring/three';
 import styles from './styles.module.scss';
+import * as THREE from 'three';
 
-softShadows();
+// softShadows();
 const CanvasWrapper = () => {
   const [baublePreview, setBaublePreview] = useState(null);
   const [groupPos, setGroupPos] = useState([0, 0, 0]);
@@ -24,7 +25,15 @@ const CanvasWrapper = () => {
   return (
     <>
       <div className={styles.canvas__wrapper} ref={canvas}>
-        <Canvas colorManagement shadowMap resize={{ scroll: false }}>
+        <Canvas
+          // colorManagement
+          shadowMap
+          resize={{ scroll: false }}
+          // onCreated={({ gl }) => {
+          //   gl.toneMapping = THREE.Uncharted2ToneMapping;
+          //   gl.outputEncoding = THREE.sRGBEncoding;
+          // }}
+        >
           <CameraControls pathname={pathname} canvas={canvas} setGroupPos={setGroupPos} />
           <Lights />
           <Floor />

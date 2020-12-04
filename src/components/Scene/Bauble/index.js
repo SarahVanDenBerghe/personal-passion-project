@@ -9,6 +9,7 @@ import { observer } from 'mobx-react-lite';
 const Bauble = observer(({ position, color, bauble, args, preview, pathname, history }) => {
   const { treeStore } = useStore();
   const [hovered, setHover] = useState(false);
+  const isUser = bauble.origin == 'user';
 
   const toggleInfo = (e) => {
     if (pathname !== ROUTES.add.to) {
@@ -38,9 +39,9 @@ const Bauble = observer(({ position, color, bauble, args, preview, pathname, his
       onPointerOut={(e) => toggleInfo(e)}
       onClick={(e) => handleClickBauble(e)}
     >
-      {hovered && (
+      {hovered && !preview && !isUser && (
         <Html className={styles.info} center>
-          <p>{bauble && bauble.id}</p>
+          <p>{bauble && bauble.name}</p>
         </Html>
       )}
       <sphereBufferGeometry attach="geometry" args={args} />

@@ -28,6 +28,12 @@ class Bauble {
 
   create = async () => this.store.createBauble(this);
 
+  updateCoordinates({ x, y, z }) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+
   // Set id after inserting in database
   setId(id) {
     this.id = parseFloat(id);
