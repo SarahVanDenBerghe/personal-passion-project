@@ -1,36 +1,30 @@
-import React, { Suspense, useRef, useState, useEffect } from 'react';
-import { Button, Container } from '../../UI';
-import { HomeTrees } from '../../Scene';
+import React, { useRef, useState, useEffect } from 'react';
+import { Container } from '../../UI';
 import { ROUTES } from '../../../consts';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { gsap } from 'gsap';
 import styles from './styles.module.scss';
-import { useStore } from '../../../hooks';
-import Tree from '../../../models/Tree';
 
 const Home = () => {
   const [active, setActive] = useState(true);
   const history = useHistory();
-  const [name, setName] = useState('');
-  const { pathname } = useLocation();
-  const { treeStore } = useStore();
 
   let title,
     intro,
     button = useRef(null);
 
-  const animation = {
-    // show : hide
-    opacity: active ? 1 : 0,
-    text: {
-      yPos: active ? 0 : -150,
-      delay: active ? 0.35 : 0.1,
-      stagger: active ? 0.1 : 0.1,
-      duration: active ? 1 : 0.6,
-    },
-  };
-
   useEffect(() => {
+    const animation = {
+      // show : hide
+      opacity: active ? 1 : 0,
+      text: {
+        yPos: active ? 0 : -150,
+        delay: active ? 0.35 : 0.1,
+        stagger: active ? 0.1 : 0.1,
+        duration: active ? 1 : 0.6,
+      },
+    };
+
     gsap.to([title, intro, button], {
       duration: animation.text.duration,
       y: animation.text.yPos,
@@ -41,7 +35,7 @@ const Home = () => {
         amount: animation.text.stagger,
       },
     });
-  }, [active]);
+  }, [active, intro, title]);
 
   const handleClickButton = () => {
     setActive(false);

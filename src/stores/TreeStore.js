@@ -8,15 +8,15 @@ class TreeStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.currentTree = {};
+    this.loading = true;
     this.strapiService = new StrapiService();
 
     makeObservable(this, {
+      loading: observable,
       currentTree: observable,
       findTreeById: action,
       createTree: action,
     });
-
-    // this.rootStore.socket.on('tree', (res) => console.log(res));
   }
 
   createTree = async (tree) => {
@@ -40,6 +40,9 @@ class TreeStore {
 
     json.messages.forEach((json) => this.rootStore.baublesStore.updateBaubleFromServer(json));
     this.currentTree = tree;
+    if (this.loading) {
+      this.loading = false;
+    }
   };
 }
 

@@ -7,21 +7,15 @@ class BaublesStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.baubles = [];
-    this.loading = true;
     this.strapiService = new StrapiService();
 
     makeObservable(this, {
-      loading: observable,
       baubles: observable,
-      // getAllBaublesByTreeId: action,
       addBauble: action,
       getBaubleById: action,
       baubleFromUser: computed,
       removeBaubleFromUser: action,
     });
-
-    // const socket = io.connect('http://localhost:1337/');
-    // socket.on('tree', (res) => console.log(res));
   }
 
   createBauble = async (bauble) => {
@@ -29,7 +23,6 @@ class BaublesStore {
     const json = await this.strapiService.createBauble(baubleJson);
     await bauble.setId(json.id);
     this.updateBaubleFromServer(json);
-    console.log('emitting bauble');
     this.rootStore.socket.emit('bauble', { bauble: baubleJson, id: json.id });
   };
 

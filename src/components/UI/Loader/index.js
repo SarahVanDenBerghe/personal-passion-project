@@ -1,8 +1,11 @@
 import React, { useRef, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 import { gsap } from 'gsap';
+import { useStore } from '../../../hooks';
 
-const Loader = ({ loading, setShowContent }) => {
+const Loader = observer(({ setShowTree }) => {
+  const { treeStore } = useStore();
   const circleOne = useRef(null);
   const circleTwo = useRef(null);
   const circleThree = useRef(null);
@@ -17,7 +20,7 @@ const Loader = ({ loading, setShowContent }) => {
   });
 
   useEffect(() => {
-    if (!loading) {
+    if (!treeStore.loading) {
       gsap.to(loader.current, {
         duration: 0.8,
         ease: 'Power2.easeIn',
@@ -28,8 +31,8 @@ const Loader = ({ loading, setShowContent }) => {
     }
 
     /* Content inladen */
-    setTimeout(() => setShowContent(true), 1000);
-  }, [loading]);
+    setTimeout(() => setShowTree(true), 1000);
+  }, [treeStore.loading]);
 
   return (
     <div ref={loader} className={styles.loader}>
@@ -41,6 +44,6 @@ const Loader = ({ loading, setShowContent }) => {
       <p>Loading</p>
     </div>
   );
-};
+});
 
 export default Loader;
