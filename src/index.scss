@@ -58,3 +58,15 @@ body,
 // #root {
 //   overflow: auto;
 // }
+
+.Toastify__toast--default {
+  background: $dark !important;
+}
+
+.Toastify__toast-container {
+  padding: 0 !important;
+}
+
+.Toastify__toast {
+  padding: 2rem !important;
+}

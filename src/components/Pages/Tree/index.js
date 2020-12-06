@@ -1,46 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Loader } from '../../UI';
+import React, { useEffect } from 'react';
+import { Loader } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { observer } from 'mobx-react-lite';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { Detail, Add } from '../../Pages';
 import { AddBauble, AddInfo } from '../../Content';
 import { useStore } from '../../../hooks';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const Tree = observer(({ showTree, setShowTree }) => {
-  const { treeStore, baublesStore } = useStore();
-  const [name, setName] = useState('');
-  const history = useHistory();
+  const { treeStore } = useStore();
   const { treeId } = useParams();
-
   useEffect(() => {
-    const findNameOfTree = async () => {
-      await treeStore.findTreeById(treeId);
-      setName(treeStore.currentTree.name);
-    };
-    findNameOfTree();
-  }, [treeId, treeStore]);
-
-  const handleClickButton = () => {
-    history.push(ROUTES.tree.to + treeId + ROUTES.add.root);
-  };
+    treeStore.findTreeById(treeId);
+  }, [treeId]);
 
   return (
     <>
       {!showTree && <Loader setShowTree={setShowTree} />}
       {showTree && (
         <>
-          <div className={styles.title__wrapper}>
-            <p className={styles.count}>
-              {baublesStore.baubles.length} {`wish${baublesStore.baubles.length !== 1 ? 'es' : ''}`}
-            </p>
-            <h1 className={styles.title}>{name}</h1>
-          </div>
-          <div onClick={handleClickButton} className={styles.button}>
-            <Button text="Add" />
-          </div>
+          <Link className={styles.button} to={ROUTES.tree.to + treeId + ROUTES.add.root}>
+            Add
+          </Link>
 
           <Switch>
             {/* 3 - Add info */}

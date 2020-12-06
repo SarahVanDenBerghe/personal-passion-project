@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Navbar } from './components/UI';
+import React, { useState, useEffect } from 'react';
+import { Navbar, TreeLayout } from './components/UI';
 import { Tree, Home, Create } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
@@ -18,7 +18,10 @@ const App = () => {
   const [showTree, setShowTree] = useState(false);
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
-  socket.on('tree', (res) => console.log(res));
+  // socket.on('tree', (res) => console.log(res));
+  // useEffect(() => {
+  //   console.log(treeStore.currentTree);
+  // }, [treeStore]);
 
   return (
     <>

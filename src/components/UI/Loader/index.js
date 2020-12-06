@@ -1,10 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 import { gsap } from 'gsap';
 import { useStore } from '../../../hooks';
 
-const Loader = observer(({ setShowTree }) => {
+const Loader = ({ setShowTree }) => {
   const { treeStore } = useStore();
   const circleOne = useRef(null);
   const circleTwo = useRef(null);
@@ -31,8 +30,9 @@ const Loader = observer(({ setShowTree }) => {
     }
 
     /* Content inladen */
+    console.log('set true');
     setTimeout(() => setShowTree(true), 1000);
-  }, [treeStore.loading]);
+  }, [treeStore.loading, setShowTree]);
 
   return (
     <div ref={loader} className={styles.loader}>
@@ -44,6 +44,6 @@ const Loader = observer(({ setShowTree }) => {
       <p>Loading</p>
     </div>
   );
-});
+};
 
 export default Loader;

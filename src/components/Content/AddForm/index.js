@@ -12,14 +12,12 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
   const [name, setName] = useState('');
   const [text, setText] = useState('');
-  const [location, setLocation] = useState('');
   const history = useHistory();
   const { treeId } = useParams();
 
   let titleRef,
     nameRef,
     messageRef,
-    locationRef,
     submitRef,
     cancelRef = useRef(null);
 
@@ -31,7 +29,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     const bauble = baublesStore.baubleFromUser;
-    bauble.setInfo({ name, text, location, treeId: treeId });
+    bauble.setInfo({ name, text, treeId: treeId });
 
     // Push to database
     await bauble.create();
@@ -54,7 +52,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   useEffect(() => {
-    gsap.to([titleRef, nameRef, messageRef, locationRef, submitRef, cancelRef], {
+    gsap.to([titleRef, nameRef, messageRef, submitRef, cancelRef], {
       duration: animation.text.duration,
       y: animation.text.yPos,
       opacity: animation.opacity,
@@ -106,21 +104,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               cols="50"
               rows="5"
               onChange={(e) => setText(e.currentTarget.value)}
-              required
-            />
-          </label>
-          <label
-            ref={(el) => {
-              locationRef = el;
-            }}
-            htmlFor="place"
-          >
-            <span>Location</span>
-            <input
-              id="place"
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.currentTarget.value)}
               required
             />
           </label>

@@ -16,7 +16,6 @@ class StrapiService {
       y: bauble.y,
       z: bauble.z,
       text: bauble.text,
-      location: bauble.location,
       tree: bauble.treeId,
     });
     return response.data;

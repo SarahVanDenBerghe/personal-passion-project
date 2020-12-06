@@ -16,7 +16,8 @@ const DetailInfo = observer(({ active, setActive }) => {
   let title,
     name,
     message,
-    close = useRef(null);
+    close,
+    share = useRef(null);
 
   useEffect(() => {
     setActive(true);
@@ -43,7 +44,7 @@ const DetailInfo = observer(({ active, setActive }) => {
   };
 
   useEffect(() => {
-    gsap.to([title, name, message], {
+    gsap.to([title, name, message, share], {
       duration: animation.text.duration,
       y: animation.text.yPos,
       opacity: animation.opacity,
@@ -78,31 +79,55 @@ const DetailInfo = observer(({ active, setActive }) => {
           close = el;
         }}
       />
+
       <div className={styles.detail}>
-        <p
-          className={styles.detail__title}
+        <div>
+          <p
+            className={styles.detail__title}
+            ref={(el) => {
+              title = el;
+            }}
+          >
+            Christmas wish of
+          </p>
+          <p
+            className={styles.detail__name}
+            ref={(el) => {
+              name = el;
+            }}
+          >
+            {detail && <>{detail.name}</>}
+          </p>
+          <p
+            className={styles.detail__message}
+            ref={(el) => {
+              message = el;
+            }}
+          >
+            {detail && <>{detail.text}</>}
+          </p>
+        </div>
+
+        <div
           ref={(el) => {
-            title = el;
+            share = el;
           }}
+          className={styles.share}
         >
-          Christmas wish of
-        </p>
-        <p
-          className={styles.detail__name}
-          ref={(el) => {
-            name = el;
-          }}
-        >
-          {detail && <>{detail.name}</>}
-        </p>
-        <p
-          className={styles.detail__message}
-          ref={(el) => {
-            message = el;
-          }}
-        >
-          {detail && <>{detail.text}</>}
-        </p>
+          <p className={styles.share__title}>Share</p>
+          <ul className={styles.share__buttons}>
+            <li className={styles.icon + ' ' + styles.iconLink}>
+              <span className="hidden">Link</span>
+            </li>
+            <li className={styles.icon + ' ' + styles.iconTwitter}>
+              <span className="hidden">Twitter</span>
+            </li>
+            {/* https://www.facebook.com/sharer/sharer.php?u=www.google.be */}
+            <li className={styles.icon + ' ' + styles.iconFacebook}>
+              <span className="hidden">Facebook</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );

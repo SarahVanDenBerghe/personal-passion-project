@@ -1,7 +1,8 @@
 import StrapiService from '../services/StrapiService';
 import { makeObservable, observable, computed, action } from 'mobx';
 import Bauble from '../models/Bauble';
-// https://mobx.js.org/observable-state.html
+import { toast } from 'react-toastify';
+import { Notification } from '../components/Content';
 
 class BaublesStore {
   constructor(rootStore) {
@@ -37,7 +38,6 @@ class BaublesStore {
         y: json.y,
         z: json.z,
         text: json.text,
-        location: json.location,
         origin: 'data',
         store: this,
       });
@@ -55,12 +55,22 @@ class BaublesStore {
         id: id,
         name: bauble.name,
         text: bauble.text,
-        location: bauble.location,
         x: bauble.x,
         y: bauble.y,
         z: bauble.z,
         origin: 'socket',
         store: this,
+      });
+
+      toast(<Notification name={bauble.name} id={id} />, {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        closeButton: false,
       });
     }
   };

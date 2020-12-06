@@ -1,24 +1,8 @@
 @import '../../../styles/styles.scss';
 
-.title__wrapper {
-  position: absolute;
-  top: 10rem;
-  left: 20rem;
-
-  .title {
-    font-family: $font-title;
-    font-size: 4rem;
-    font-weight: 500;
-  }
-
-  .count {
-    color: $accent;
-    text-transform: uppercase;
-  }
-}
-
 .button {
   right: 5rem;
   bottom: 5rem;
   position: absolute;
+  @include button;
 }

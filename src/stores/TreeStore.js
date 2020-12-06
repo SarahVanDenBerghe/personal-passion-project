@@ -1,8 +1,6 @@
 import StrapiService from '../services/StrapiService';
-import { makeObservable, observable, computed, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import Tree from '../models/Tree';
-import { io } from 'socket.io-client';
-// https://socket.io/docs/v3/client-api/index.html
 
 class TreeStore {
   constructor(rootStore) {
@@ -16,6 +14,7 @@ class TreeStore {
       currentTree: observable,
       findTreeById: action,
       createTree: action,
+      // setCurrentTree: action,
     });
   }
 
@@ -25,9 +24,9 @@ class TreeStore {
     tree.setId(json.id);
   };
 
-  addTree(tree) {
-    this.currentTree = tree;
-  }
+  // setCurrentTree(tree) {
+  //   this.currentTree = tree;
+  // }
 
   findTreeById = async (id) => {
     const json = await this.strapiService.findTreeById(id);
