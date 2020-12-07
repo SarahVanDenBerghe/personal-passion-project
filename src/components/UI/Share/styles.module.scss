@@ -1,0 +1,55 @@
+@import '../../../styles/styles.scss';
+
+.share {
+  display: flex;
+  justify-content: center;
+}
+
+.share__title {
+  font-family: $font-title;
+  letter-spacing: 0.2rem;
+  margin-right: 3rem;
+}
+
+.share__buttons {
+  display: flex;
+
+  li {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1.2rem;
+    transition: 0.2;
+  }
+
+  .icon::after {
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    background-repeat: no-repeat;
+  }
+
+  .iconLink::after {
+    background-image: url('../../../assets/icons/link.svg');
+  }
+
+  .iconFacebook::after {
+    background-image: url('../../../assets/icons/facebook.svg');
+  }
+
+  .iconTwitter::after {
+    background-image: url('../../../assets/icons/twitter.svg');
+  }
+
+  .iconLink:hover::after {
+    background-image: url('../../../assets/icons/link-hover.svg');
+  }
+
+  .iconFacebook:hover::after {
+    background-image: url('../../../assets/icons/facebook-hover.svg');
+  }
+
+  .iconTwitter:hover::after {
+    background-image: url('../../../assets/icons/twitter-hover.svg');
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Loader } from '../../UI';
+import { Loader, Share } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { observer } from 'mobx-react-lite';
 import { Route, Switch, Link } from 'react-router-dom';
@@ -21,10 +21,12 @@ const Tree = observer(({ showTree, setShowTree }) => {
       {!showTree && <Loader setShowTree={setShowTree} />}
       {showTree && (
         <>
-          <Link className={styles.button} to={ROUTES.tree.to + treeId + ROUTES.add.root}>
-            Add
-          </Link>
-
+          <div className={styles.buttons__wrapper}>
+            <Share />
+            <Link className={styles.button} to={ROUTES.tree.to + treeId + ROUTES.add.root}>
+              Add a wish
+            </Link>
+          </div>
           <Switch>
             {/* 3 - Add info */}
             <Route exact path={ROUTES.tree.path + ROUTES.add.secondstep} component={AddInfo} />

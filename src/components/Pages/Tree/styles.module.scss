@@ -1,8 +1,15 @@
 @import '../../../styles/styles.scss';
 
-.button {
+.buttons__wrapper {
   right: 5rem;
   bottom: 5rem;
   position: absolute;
-  @include button;
+
+  display: flex;
+  align-items: center;
+
+  .button {
+    margin-left: 3rem;
+    @include button;
+  }
 }

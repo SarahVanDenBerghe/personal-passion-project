@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useParams, Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router';
 import { useStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
+import { Share } from '../../UI';
 import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 
@@ -12,6 +13,8 @@ const DetailInfo = observer(({ active, setActive }) => {
   const [detail, setDetail] = useState(null);
   const history = useHistory();
   const { treeId, baubleId } = useParams();
+  const { pathname } = useLocation();
+  // console.log(window.location.href);
 
   let title,
     name,
@@ -107,26 +110,12 @@ const DetailInfo = observer(({ active, setActive }) => {
             {detail && <>{detail.text}</>}
           </p>
         </div>
-
         <div
           ref={(el) => {
             share = el;
           }}
-          className={styles.share}
         >
-          <p className={styles.share__title}>Share</p>
-          <ul className={styles.share__buttons}>
-            <li className={styles.icon + ' ' + styles.iconLink}>
-              <span className="hidden">Link</span>
-            </li>
-            <li className={styles.icon + ' ' + styles.iconTwitter}>
-              <span className="hidden">Twitter</span>
-            </li>
-            {/* https://www.facebook.com/sharer/sharer.php?u=www.google.be */}
-            <li className={styles.icon + ' ' + styles.iconFacebook}>
-              <span className="hidden">Facebook</span>
-            </li>
-          </ul>
+          <Share />
         </div>
       </div>
     </>
