@@ -89,7 +89,14 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
             htmlFor="name"
           >
             <span>Name</span>
-            <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+              maxlength="15"
+              required
+            />
           </label>
           <label
             ref={(el) => {
@@ -104,6 +111,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               cols="50"
               rows="5"
               onChange={(e) => setText(e.currentTarget.value)}
+              maxlength="200"
               required
             />
           </label>

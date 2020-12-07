@@ -38,6 +38,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  text-align: center;
 
   .detail__title {
     @include title-accent;
@@ -48,12 +49,16 @@
   .detail__name {
     @include title-large;
     font-family: $font-title;
-    font-size: 7rem;
+    font-size: 5.5rem;
     font-weight: 600;
     letter-spacing: 0.15rem;
-    text-align: center;
+
     line-height: 1.2;
     margin-bottom: 8rem;
+  }
+
+  .detail__message {
+    font-size: 1.8rem;
   }
 
   .detail__title,
