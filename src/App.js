@@ -5,7 +5,7 @@ import { ViewProvider, DetailProvider, BaublesProvider } from './contexts/index'
 import './App.scss';
 import { CanvasWrapper } from './components/Scene';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Route } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 const App = () => {
@@ -20,9 +20,6 @@ const App = () => {
           </BaublesProvider>
         </DetailProvider>
         <Switch>
-          {/* <Router>
-            <Route path={['/:id', '/']} component={Home} />
-          </Router> */}
           <Route exact path="/">
             <Home />
           </Route>
