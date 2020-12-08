@@ -18,10 +18,6 @@ const App = () => {
   const [showTree, setShowTree] = useState(false);
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
-  // socket.on('tree', (res) => console.log(res));
-  // useEffect(() => {
-  //   console.log(treeStore.currentTree);
-  // }, [treeStore]);
 
   return (
     <>
