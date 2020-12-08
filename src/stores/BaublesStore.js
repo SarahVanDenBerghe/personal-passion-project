@@ -21,7 +21,16 @@ class BaublesStore {
 
   createBauble = async (bauble) => {
     const baubleJson = bauble.asJson;
-    const json = await this.strapiService.createBauble(baubleJson);
+    if (baubleJson.image) {
+      const json = await this.strapiService.createBaubleWithImage(baubleJson);
+      this.updateBauble(bauble, json, baubleJson);
+    } else {
+      const json = await this.strapiService.createBauble(baubleJson);
+      this.updateBauble(bauble, json, baubleJson);
+    }
+  };
+
+  updateBauble = async (bauble, json, baubleJson) => {
     await bauble.setId(json.id);
     this.updateBaubleFromServer(json);
     this.rootStore.socket.emit('bauble', { bauble: baubleJson, id: json.id });
@@ -39,6 +48,9 @@ class BaublesStore {
         z: json.z,
         text: json.text,
         origin: 'data',
+        style: json.style,
+        image: json.image,
+        color: json.color,
         store: this,
       });
     }
@@ -59,6 +71,8 @@ class BaublesStore {
         y: bauble.y,
         z: bauble.z,
         origin: 'socket',
+        style: bauble.style,
+        color: bauble.color,
         store: this,
       });
 

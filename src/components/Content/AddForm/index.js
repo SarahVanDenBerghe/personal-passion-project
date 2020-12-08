@@ -7,11 +7,19 @@ import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
+import imgTest from '../../../assets/test.jpg';
+import axios from 'axios';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [style, setStyle] = useState('color');
+  const [color, setColor] = useState('red');
+  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
+  const bauble = baublesStore.baubleFromUser;
+
   const history = useHistory();
   const { treeId } = useParams();
 
@@ -19,7 +27,9 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     nameRef,
     messageRef,
     submitRef,
-    cancelRef = useRef(null);
+    cancelRef,
+    inputNone,
+    formRef = useRef(null);
 
   useEffect(() => {
     setActive(true);
@@ -28,8 +38,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    const bauble = baublesStore.baubleFromUser;
-    bauble.setInfo({ name, text, treeId: treeId });
+    await bauble.setInfo({ name, text, treeId, style, color, image: file });
 
     // Push to database
     await bauble.create();
@@ -41,7 +50,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   const animation = {
-    // show : hide
     opacity: active ? 1 : 0,
     text: {
       yPos: active ? 0 : 150,
@@ -70,6 +78,50 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     history.push(ROUTES.tree.to + treeId);
   };
 
+  const handleLoadImage = (target) => {
+    const targetFile = target.files[0];
+    const reader = new FileReader();
+
+    // const formData = new FormData();
+    // formData.append('files', targetFile);
+    // // formData.append(`files.filename`, targetFile, targetFile.name);
+    // // formData.append('ref', 'messages');
+    // // formData.append('field', 'image');
+    // // formData.append('refId', 680); // Error 500
+
+    // axios
+    //   .post(`http://localhost:1337/upload`, formData, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data[0].id);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    const handleLoadReader = (e) => {
+      setImage(e.currentTarget.result);
+      setFile(targetFile);
+      setColor('');
+      setStyle('image');
+    };
+
+    reader.addEventListener('load', handleLoadReader);
+    reader.readAsDataURL(targetFile);
+  };
+
+  const handleClickRemoveImage = () => {
+    setImage('');
+    setStyle('color');
+    setColor('none');
+  };
+
+  const handleChangeColor = (e) => {
+    setColor(e.target.value);
+    bauble.setColor(e.target.value);
+  };
+
   return (
     <div className={styles.form__wrapper}>
       <p
@@ -81,7 +133,72 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
         Write your message
       </p>
       <div>
-        <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
+        <form
+          className={styles.form}
+          onSubmit={(e) => handleSubmitForm(e)}
+          ref={(el) => {
+            formRef = el;
+          }}
+        >
+          <fieldset className={styles.form__style}>
+            <p className={styles.style__title}>Style</p>
+            <div className={styles.style__circles}>
+              <div className={styles.style__colors}>
+                <label htmlFor="red" className="hidden">
+                  Red
+                </label>
+                <input
+                  name="color"
+                  value="red"
+                  id="red"
+                  type="radio"
+                  className={`${styles.circle} ${styles.circleRed}`}
+                  onChange={(e) => handleChangeColor(e)}
+                  checked={color === 'red' && true}
+                />
+                <label htmlFor="blue" className="hidden">
+                  Blue
+                </label>
+                <input
+                  name="color"
+                  value="blue"
+                  id="blue"
+                  type="radio"
+                  onChange={(e) => handleChangeColor(e)}
+                  className={`${styles.circle} ${styles.circleBlue}`}
+                />
+                <input
+                  className="hidden"
+                  name="color"
+                  value="none"
+                  id="none"
+                  type="radio"
+                  ref={inputNone}
+                  onChange={(e) => handleChangeColor(e)}
+                  checked={style === 'image' && true}
+                />
+              </div>
+              <div className={styles.style__image}>
+                <label htmlFor="image" className="hidden">
+                  Image
+                </label>
+                <input
+                  style={{
+                    backgroundImage: `url(${image && image})`,
+                  }}
+                  type="file"
+                  accept="image/*"
+                  id="image"
+                  name="filename"
+                  className={`${styles.circle} ${styles.circleImage} ${image && styles.circleImageActive}`}
+                  onChange={(e) => handleLoadImage(e.currentTarget)}
+                />
+                {image && <p onClick={handleClickRemoveImage}>Remove</p>}
+                {/* <input name="color" value="image" id="image" type="radio" /> */}
+              </div>
+            </div>
+          </fieldset>
+
           <label
             ref={(el) => {
               nameRef = el;
@@ -94,7 +211,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.currentTarget.value)}
-              maxlength="15"
+              maxLength="15"
               required
             />
           </label>
@@ -111,7 +228,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               cols="50"
               rows="5"
               onChange={(e) => setText(e.currentTarget.value)}
-              maxlength="200"
+              maxLength="200"
               required
             />
           </label>

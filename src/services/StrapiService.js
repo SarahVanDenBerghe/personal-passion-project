@@ -8,6 +8,13 @@ const api = axios.create({
 const strapiSocket = io.connect(`${process.env.REACT_APP_STRAPI_API}`);
 
 class StrapiService {
+  uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append('files', file);
+    const response = await api.post('/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+    return response.data[0].id;
+  };
+
   /* BAUBLES -------------- */
   createBauble = async (bauble) => {
     const response = await api.post('/messages', {
@@ -17,7 +24,27 @@ class StrapiService {
       z: bauble.z,
       text: bauble.text,
       tree: bauble.treeId,
+      style: bauble.style,
+      color: bauble.color,
     });
+
+    return response.data;
+  };
+
+  createBaubleWithImage = async (bauble) => {
+    const imageId = await this.uploadImage(bauble.image);
+
+    const response = await api.post('/messages', {
+      name: bauble.name,
+      x: bauble.x,
+      y: bauble.y,
+      z: bauble.z,
+      text: bauble.text,
+      tree: bauble.treeId,
+      style: bauble.style,
+    });
+
+    api.put(`/messages/${response.data.id}`, { image: imageId });
     return response.data;
   };
 

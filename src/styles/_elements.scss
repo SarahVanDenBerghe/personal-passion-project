@@ -30,9 +30,9 @@ label {
   }
 }
 
-input,
+input[type='text'],
 textarea {
-  -webkit-appearance: none;
+  // -webkit-appearance: none;
   color: $light;
   background: none;
   border: none;

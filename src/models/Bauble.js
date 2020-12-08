@@ -1,7 +1,8 @@
 import { makeObservable, observable, computed, action } from 'mobx';
+import { observer } from 'mobx-react-lite';
 
 class Bauble {
-  constructor({ store, id, name, x, y, z, text, origin, treeId }) {
+  constructor({ store, id, name, x, y, z, text, origin, treeId, style, color = 'red', image = null }) {
     if (!store) {
       throw new Error('No store detected');
     }
@@ -15,12 +16,27 @@ class Bauble {
     this.z = parseFloat(z);
     this.text = text;
     this.origin = origin;
+    this.style = style;
+    this.color = color;
+    this.image = image;
     this.store.addBauble(this);
+
+    console.log(this);
 
     makeObservable(this, {
       id: observable,
+      name: observable,
+      text: observable,
+      origin: observable,
+      color: observable,
+      image: observable,
+      style: observable,
+      treeId: observable,
+
       create: action,
       setId: action,
+      setInfo: action,
+      setColor: action,
       asJson: computed,
     });
   }
@@ -48,6 +64,17 @@ class Bauble {
     this.name = data.name;
     this.text = data.text;
     this.treeId = data.treeId;
+    this.style = data.style;
+    if (data.style === 'color') {
+      this.color = data.color;
+    } else if (data.style === 'image') {
+      this.image = data.image;
+      this.color = '';
+    }
+  };
+
+  setColor = (color) => {
+    this.color = color;
   };
 
   // Get bauble as JSON to send to service
@@ -59,6 +86,9 @@ class Bauble {
       z: parseFloat(this.z),
       text: this.text,
       treeId: this.treeId,
+      color: this.color,
+      style: this.style,
+      image: this.image,
     };
   }
 }

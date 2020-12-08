@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../hooks';
 import { Bauble } from '..';
@@ -9,15 +9,9 @@ const Baubles = observer(({ history, pathname }) => {
   return (
     <>
       {baublesStore.baubles.map((bauble, i) => (
-        <Bauble
-          key={i}
-          position={[bauble.x, bauble.y, bauble.z]}
-          color="red"
-          args={[0.2, 10, 10]}
-          bauble={bauble}
-          pathname={pathname}
-          history={history}
-        />
+        <Suspense fallback={null}>
+          <Bauble key={i} args={[0.2, 10, 10]} bauble={bauble} pathname={pathname} history={history} />
+        </Suspense>
       ))}
     </>
   );
