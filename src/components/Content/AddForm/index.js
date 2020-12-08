@@ -82,24 +82,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     const targetFile = target.files[0];
     const reader = new FileReader();
 
-    // const formData = new FormData();
-    // formData.append('files', targetFile);
-    // // formData.append(`files.filename`, targetFile, targetFile.name);
-    // // formData.append('ref', 'messages');
-    // // formData.append('field', 'image');
-    // // formData.append('refId', 680); // Error 500
-
-    // axios
-    //   .post(`http://localhost:1337/upload`, formData, {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data[0].id);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
     const handleLoadReader = (e) => {
       setImage(e.currentTarget.result);
       setFile(targetFile);
