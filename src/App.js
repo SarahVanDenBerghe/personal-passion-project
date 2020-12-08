@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, TreeLayout } from './components/UI';
+import React, { useState } from 'react';
+import { Navbar } from './components/UI';
 import { Tree, Home, Create } from './components/Pages';
 import { CanvasWrapper } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';

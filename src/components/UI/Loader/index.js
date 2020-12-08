@@ -30,7 +30,6 @@ const Loader = ({ setShowTree }) => {
     }
 
     /* Content inladen */
-    console.log('set true');
     setTimeout(() => setShowTree(true), 1000);
   }, [treeStore.loading, setShowTree]);
 

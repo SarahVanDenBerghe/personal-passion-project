@@ -23,6 +23,8 @@ class BaublesStore {
     const baubleJson = bauble.asJson;
     if (baubleJson.image) {
       const json = await this.strapiService.createBaubleWithImage(baubleJson);
+
+      bauble.setImage(json.image);
       this.updateBauble(bauble, json, baubleJson);
     } else {
       const json = await this.strapiService.createBauble(baubleJson);

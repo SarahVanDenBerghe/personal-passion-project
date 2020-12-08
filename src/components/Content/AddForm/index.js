@@ -1,14 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
-import imgTest from '../../../assets/test.jpg';
-import axios from 'axios';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
@@ -16,7 +13,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const [text, setText] = useState('');
   const [style, setStyle] = useState('color');
   const [color, setColor] = useState('red');
-  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
   const bauble = baublesStore.baubleFromUser;
 
@@ -28,13 +25,12 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     messageRef,
     submitRef,
     cancelRef,
-    inputNone,
-    formRef = useRef(null);
+    inputNone = useRef(null);
 
   useEffect(() => {
     setActive(true);
     setRedirect(false);
-  }, []);
+  }, [setActive, setRedirect]);
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
@@ -45,6 +41,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
     // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
+    console.log(updatedBauble.image);
     updatedBauble.setOrigin('data');
     history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
   };
@@ -70,7 +67,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
         amount: animation.text.stagger,
       },
     });
-  }, [active]);
+  });
 
   const handleClickClose = async () => {
     setActive(false);
@@ -82,11 +79,14 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     const targetFile = target.files[0];
     const reader = new FileReader();
 
-    const handleLoadReader = (e) => {
-      setImage(e.currentTarget.result);
-      setFile(targetFile);
-      setColor('');
+    const handleLoadReader = async (e) => {
+      await setPreview(e.currentTarget.result);
+      await setFile(targetFile);
+
       setStyle('image');
+      let image = new Image();
+      image.src = e.currentTarget.result;
+      bauble.setImage(image);
     };
 
     reader.addEventListener('load', handleLoadReader);
@@ -94,9 +94,9 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   const handleClickRemoveImage = () => {
-    setImage('');
+    setPreview('');
     setStyle('color');
-    setColor('none');
+    bauble.setStyle('color');
   };
 
   const handleChangeColor = (e) => {
@@ -115,13 +115,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
         Write your message
       </p>
       <div>
-        <form
-          className={styles.form}
-          onSubmit={(e) => handleSubmitForm(e)}
-          ref={(el) => {
-            formRef = el;
-          }}
-        >
+        <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
           <fieldset className={styles.form__style}>
             <p className={styles.style__title}>Style</p>
             <div className={styles.style__circles}>
@@ -148,6 +142,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                   type="radio"
                   onChange={(e) => handleChangeColor(e)}
                   className={`${styles.circle} ${styles.circleBlue}`}
+                  checked={color === 'blue' && true}
                 />
                 <input
                   className="hidden"
@@ -166,16 +161,16 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                 </label>
                 <input
                   style={{
-                    backgroundImage: `url(${image && image})`,
+                    backgroundImage: `url(${preview && preview})`,
                   }}
                   type="file"
                   accept="image/*"
                   id="image"
                   name="filename"
-                  className={`${styles.circle} ${styles.circleImage} ${image && styles.circleImageActive}`}
+                  className={`${styles.circle} ${styles.circleImage} ${preview && styles.circleImageActive}`}
                   onChange={(e) => handleLoadImage(e.currentTarget)}
                 />
-                {image && <p onClick={handleClickRemoveImage}>Remove</p>}
+                {preview && <p onClick={handleClickRemoveImage}>Remove</p>}
                 {/* <input name="color" value="image" id="image" type="radio" /> */}
               </div>
             </div>

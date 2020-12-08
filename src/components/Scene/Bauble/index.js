@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { ROUTES } from '../../../consts';
-import { useSpring, a } from 'react-spring/three';
-import { Html, Sphere, Plane } from 'drei';
+import { useSpring } from 'react-spring/three';
+import { Html, Sphere } from 'drei';
 import styles from './styles.module.scss';
 import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
@@ -13,19 +13,25 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
   const [texture, setTexture] = useState(null);
   const { treeStore } = useStore();
   const [hovered, setHover] = useState(false);
-  const isUser = bauble.origin == 'user';
+  const isUser = bauble.origin === 'user';
   let sphereRef = useRef(null);
 
-  const textureFromLoader = useLoader(
-    THREE.TextureLoader,
-    bauble.style === 'image' ? process.env.REACT_APP_STRAPI_API + bauble.image.url : imgTest
-  );
+  const getImage = () => {
+    if (bauble.style === 'image' && bauble.origin === 'user') {
+      return bauble.image.src;
+    } else if (bauble.style === 'image' && bauble.origin === 'data') {
+      return process.env.REACT_APP_STRAPI_API + bauble.image.url;
+    }
+  };
+
+  // .url bestaat niet bij nieuwe bauble
+  const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : imgTest);
   textureFromLoader.offset.x = -0.2;
 
   useEffect(() => {
     const center = new THREE.Vector3(0, bauble.y, 0);
     sphereRef.lookAt(center);
-  }, [sphereRef]);
+  }, [sphereRef, bauble.y]);
 
   const toggleInfo = (e) => {
     if (pathname !== ROUTES.add.to) {
@@ -64,7 +70,7 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
       )}
 
       {bauble.style === 'image' ? (
-        <meshBasicMaterial attach="material" map={textureFromLoader} color={bauble.color} />
+        <meshBasicMaterial attach="material" map={textureFromLoader} />
       ) : (
         <meshStandardMaterial attach="material" color={bauble.color} />
       )}
