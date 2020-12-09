@@ -18,8 +18,8 @@ const Tree = observer(({ showTree, setShowTree }) => {
 
   return (
     <>
-      {!showTree && <Loader setShowTree={setShowTree} />}
-      {showTree && (
+      {!showTree && treeStore.currentTree && <Loader setShowTree={setShowTree} />}
+      {showTree && treeStore.currentTree && (
         <>
           <div className={styles.buttons__wrapper}>
             <Share />
@@ -40,6 +40,17 @@ const Tree = observer(({ showTree, setShowTree }) => {
             {/* Detail of bauble */}
             <Route exact path={ROUTES.detail.path} component={Detail} />
           </Switch>
+        </>
+      )}
+      {!treeStore.currentTree && (
+        <>
+          <div className={styles.error}>
+            <h1 className={styles.error__title}>Tree doesn't exist</h1>
+            <p className={styles.error__text}>It seems that you are trying to access a tree that is not there.</p>
+            <Link className={styles.error__button} to={ROUTES.create}>
+              Create a tree
+            </Link>
+          </div>
         </>
       )}
     </>

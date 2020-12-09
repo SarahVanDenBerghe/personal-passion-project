@@ -17,7 +17,7 @@ const Lights = () => {
         shadow-camera-bottom={-10}
       />
       {/* <pointLight position={[-10, 0, -20]} intensity={0.5} /> */}
-      {/* <pointLight position={[0, 8, 0]} intensity={0.5} /> */}
+      <pointLight position={[0, 8, 0]} intensity={0.5} />
     </>
   );
 };

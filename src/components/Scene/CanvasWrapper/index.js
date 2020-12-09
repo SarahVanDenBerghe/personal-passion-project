@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // softShadows();
 const CanvasWrapper = observer(() => {
-  const { socket } = useStore();
   const [baublePreview, setBaublePreview] = useState(null);
   const [groupPos, setGroupPos] = useState([0, 0, 0]);
   const canvas = useRef(null);
@@ -74,7 +73,7 @@ const CanvasWrapper = observer(() => {
 
       <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas
-          // colorManagement
+          colorManagement
           shadowMap
           resize={{ scroll: false }}
           // onCreated={({ gl }) => {

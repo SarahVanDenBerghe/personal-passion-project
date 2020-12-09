@@ -61,9 +61,16 @@ class StrapiService {
     return response.data;
   };
 
-  findTreeById = async (id) => {
-    const response = await api.get(`/trees/${id}`);
-    return response.data;
+  findTreeById = (id) => {
+    return api
+      .get(`/trees/${id}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        return error.response.status;
+      });
+    // return response.data;
   };
 }
 export default StrapiService;

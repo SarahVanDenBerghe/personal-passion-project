@@ -14,7 +14,8 @@ import { useStore } from './hooks';
 import './App.scss';
 
 const App = () => {
-  const { socket } = useStore();
+  const { treeStore } = useStore();
+  console.log(treeStore.currentTree);
   const [showTree, setShowTree] = useState(false);
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
@@ -27,7 +28,7 @@ const App = () => {
       <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
 
       <Navbar />
-      {isTree && showTree && <CanvasWrapper />}
+      {isTree && showTree && treeStore.currentTree && <CanvasWrapper />}
 
       {/* TransitionGroup & CSSTransition give time to animate page transitions */}
       <TransitionGroup className="transition">

@@ -5,7 +5,7 @@ import Tree from '../models/Tree';
 class TreeStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
-    this.currentTree = {};
+    this.currentTree = undefined;
     this.loading = true;
     this.strapiService = new StrapiService();
 
@@ -14,7 +14,6 @@ class TreeStore {
       currentTree: observable,
       findTreeById: action,
       createTree: action,
-      // setCurrentTree: action,
     });
   }
 
@@ -24,23 +23,23 @@ class TreeStore {
     tree.setId(json.id);
   };
 
-  // setCurrentTree(tree) {
-  //   this.currentTree = tree;
-  // }
-
   findTreeById = async (id) => {
-    const json = await this.strapiService.findTreeById(id);
+    const data = await this.strapiService.findTreeById(id);
+    console.log(data);
 
-    const tree = new Tree({
-      id: json.id,
-      name: json.name,
-      store: this,
-    });
-
-    json.messages.forEach((json) => this.rootStore.baublesStore.updateBaubleFromServer(json));
-    this.currentTree = tree;
-    if (this.loading) {
-      this.loading = false;
+    if (data != 404) {
+      const tree = new Tree({
+        id: data.id,
+        name: data.name,
+        store: this,
+      });
+      data.messages.forEach((data) => this.rootStore.baublesStore.updateBaubleFromServer(data));
+      this.currentTree = tree;
+      if (this.loading) {
+        this.loading = false;
+      }
+    } else {
+      this.currentTree = undefined;
     }
   };
 }

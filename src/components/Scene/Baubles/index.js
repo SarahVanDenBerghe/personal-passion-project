@@ -9,8 +9,8 @@ const Baubles = observer(({ history, pathname }) => {
   return (
     <>
       {baublesStore.baubles.map((bauble, i) => (
-        <Suspense fallback={null}>
-          <Bauble key={i} args={[0.2, 10, 10]} bauble={bauble} pathname={pathname} history={history} />
+        <Suspense fallback={null} key={i}>
+          <Bauble args={[0.2, 10, 10]} bauble={bauble} pathname={pathname} history={history} />
         </Suspense>
       ))}
     </>

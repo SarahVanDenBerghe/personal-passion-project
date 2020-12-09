@@ -24,6 +24,7 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
   };
 
   const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : imgTest);
+  textureFromLoader.minFilter = THREE.LinearFilter;
   textureFromLoader.offset.x = -0.2;
 
   useEffect(() => {
@@ -73,29 +74,6 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
         <meshStandardMaterial attach="material" color={bauble.color} />
       )}
     </Sphere>
-
-    // <a.mesh
-    //   position={position}
-    //   castShadow
-    //   scale={animate.scale}
-    //   onPointerOver={(e) => toggleInfo(e)}
-    //   onPointerOut={(e) => toggleInfo(e)}
-    //   onClick={(e) => handleClickBauble(e)}
-    // >
-    //   {hovered && !preview && !isUser && (
-    //     <Html className={styles.info} center>
-    //       <p>{bauble && bauble.name}</p>
-    //     </Html>
-    //   )}
-    //   <sphereBufferGeometry attach="geometry" args={args} />
-    //   <meshStandardMaterial
-    //     attach="material"
-    //     map={img}
-    //     // color={color}
-    //     // opacity={0.1}
-    //     // transparent={preview ? true : false}
-    //   />
-    // </a.mesh>
   );
 });
 
