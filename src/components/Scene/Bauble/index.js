@@ -10,7 +10,6 @@ import * as THREE from 'three';
 import imgTest from '../../../assets/test.jpg';
 
 const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
-  const [texture, setTexture] = useState(null);
   const { treeStore } = useStore();
   const [hovered, setHover] = useState(false);
   const isUser = bauble.origin === 'user';
@@ -18,13 +17,12 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
 
   const getImage = () => {
     if (bauble.style === 'image' && bauble.origin === 'user') {
-      return bauble.image.src;
+      return bauble.image;
     } else if (bauble.style === 'image' && bauble.origin === 'data') {
       return process.env.REACT_APP_STRAPI_API + bauble.image.url;
     }
   };
 
-  // .url bestaat niet bij nieuwe bauble
   const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : imgTest);
   textureFromLoader.offset.x = -0.2;
 

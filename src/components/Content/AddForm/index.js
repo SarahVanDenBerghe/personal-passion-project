@@ -75,22 +75,32 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     history.push(ROUTES.tree.to + treeId);
   };
 
+  // const handleLoadImage = (target) => {
+  //   const targetFile = target.files[0];
+  //   const reader = new FileReader();
+
+  //   const handleLoadReader = async (e) => {
+  //     await setPreview(e.currentTarget.result);
+  //     await setFile(targetFile);
+
+  //     setStyle('image');
+  //     let image = new Image();
+  //     image.src = e.currentTarget.result;
+  //     bauble.setImage(image);
+  //   };
+
+  //   reader.addEventListener('load', handleLoadReader);
+  //   reader.readAsDataURL(targetFile);
+  // };
+
   const handleLoadImage = (target) => {
     const targetFile = target.files[0];
-    const reader = new FileReader();
+    const imageURL = URL.createObjectURL(targetFile);
+    setPreview(imageURL);
+    setFile(targetFile);
+    setStyle('image');
 
-    const handleLoadReader = async (e) => {
-      await setPreview(e.currentTarget.result);
-      await setFile(targetFile);
-
-      setStyle('image');
-      let image = new Image();
-      image.src = e.currentTarget.result;
-      bauble.setImage(image);
-    };
-
-    reader.addEventListener('load', handleLoadReader);
-    reader.readAsDataURL(targetFile);
+    bauble.setImage(imageURL);
   };
 
   const handleClickRemoveImage = () => {
@@ -171,7 +181,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                   onChange={(e) => handleLoadImage(e.currentTarget)}
                 />
                 {preview && <p onClick={handleClickRemoveImage}>Remove</p>}
-                {/* <input name="color" value="image" id="image" type="radio" /> */}
               </div>
             </div>
           </fieldset>
