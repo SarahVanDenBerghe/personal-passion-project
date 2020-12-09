@@ -61,12 +61,14 @@
 
       .circleRed {
         background: $accent;
-        // background: url('../../../assets/test.jpg');
-        // background-size: cover;
       }
 
       .circleBlue {
-        background: midnightblue;
+        background: $blue;
+      }
+
+      .circleGreen {
+        background: $green;
       }
 
       .circleImage {

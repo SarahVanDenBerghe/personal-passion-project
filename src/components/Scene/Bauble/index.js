@@ -7,9 +7,9 @@ import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
 import { useLoader } from 'react-three-fiber';
 import * as THREE from 'three';
-import imgTest from '../../../assets/test.jpg';
+import img from '../../../assets/icons/image.svg';
 
-const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
+const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
   const { treeStore } = useStore();
   const [hovered, setHover] = useState(false);
   const isUser = bauble.origin === 'user';
@@ -23,8 +23,7 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
     }
   };
 
-  const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : imgTest);
-  textureFromLoader.minFilter = THREE.LinearFilter;
+  const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : img);
   textureFromLoader.offset.x = -0.2;
 
   useEffect(() => {
@@ -51,8 +50,22 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
     scale: hovered ? [1.2, 1.2, 1.2] : [1, 1, 1],
   });
 
+  const getColor = (color) => {
+    switch (color) {
+      case 'red':
+        return `${styles.red}`;
+      case 'blue':
+        return `${styles.blue}`;
+      case 'green':
+        return `${styles.green}`;
+      default:
+        return '#ffffff;';
+    }
+  };
+
   return (
     <Sphere
+      castShadow
       position={[bauble.x, bauble.y, bauble.z]}
       args={args}
       onPointerOver={(e) => toggleInfo(e)}
@@ -69,9 +82,9 @@ const Bauble = observer(({ bauble, args, preview, pathname, history }) => {
       )}
 
       {bauble.style === 'image' ? (
-        <meshBasicMaterial attach="material" map={textureFromLoader} />
+        <meshLambertMaterial attach="material" map={textureFromLoader} />
       ) : (
-        <meshStandardMaterial attach="material" color={bauble.color} />
+        <meshStandardMaterial attach="material" color={getColor(bauble.color)} />
       )}
     </Sphere>
   );

@@ -43,7 +43,7 @@ const CanvasWrapper = observer(() => {
     timeline.play();
   }, []);
 
-  const showPreview = pathname == `${ROUTES.add.to}/${ROUTES.add.firststep}`;
+  const showPreview = ROUTES.add.firststep == `/${pathname.split('/')[3]}/${pathname.split('/')[4]}`;
 
   return (
     <>
@@ -73,7 +73,7 @@ const CanvasWrapper = observer(() => {
 
       <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas
-          colorManagement
+          // colorManagement
           shadowMap
           resize={{ scroll: false }}
           // onCreated={({ gl }) => {
@@ -86,7 +86,12 @@ const CanvasWrapper = observer(() => {
           <Floor />
           <a.group position={spring.group}>
             <Suspense fallback={null}>
-              <Tree setBaublePreview={setBaublePreview} history={history} pathname={pathname} />
+              <Tree
+                showPreview={showPreview}
+                setBaublePreview={setBaublePreview}
+                history={history}
+                pathname={pathname}
+              />
               <Baubles history={history} pathname={pathname} />
             </Suspense>
           </a.group>

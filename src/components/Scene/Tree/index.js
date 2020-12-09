@@ -2,11 +2,10 @@ import React, { useRef } from 'react';
 import { useGLTFLoader } from 'drei';
 import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
-import { useParams } from 'react-router-dom';
 import { Preview } from '..';
 import { useStore } from '../../../hooks';
 
-const Tree = ({ setBaublePreview, history, pathname }) => {
+const Tree = ({ showPreview, setBaublePreview, history, pathname }) => {
   const { baublesStore } = useStore();
   // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const gltf = useGLTFLoader('/tree_simple.gltf', true);
@@ -31,17 +30,21 @@ const Tree = ({ setBaublePreview, history, pathname }) => {
 
   const showBaublePreview = (point) => {
     // Warning
-    // setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
+    if (showPreview) {
+      setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
+    }
   };
 
   return (
     <>
       <mesh
+        castShadow
         useRef={mesh}
         position={[0, -5, 0]}
         onPointerDown={(e) => addBauble(e.point)}
         onPointerMove={(e) => showBaublePreview(e.point)}
       >
+        {/* <ambientLight color={0x404040} intensity={1.2} /> */}
         <primitive object={gltf.scene} dispose={null} />
       </mesh>
     </>

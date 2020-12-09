@@ -24,3 +24,9 @@
     clear: both;
   }
 }
+
+:export {
+  red: $accent;
+  blue: $blue;
+  green: $green;
+}

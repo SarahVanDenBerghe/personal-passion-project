@@ -15,7 +15,6 @@ import './App.scss';
 
 const App = () => {
   const { treeStore } = useStore();
-  console.log(treeStore.currentTree);
   const [showTree, setShowTree] = useState(false);
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];

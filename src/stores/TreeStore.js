@@ -25,9 +25,8 @@ class TreeStore {
 
   findTreeById = async (id) => {
     const data = await this.strapiService.findTreeById(id);
-    console.log(data);
 
-    if (data != 404) {
+    if (data !== 404) {
       const tree = new Tree({
         id: data.id,
         name: data.name,

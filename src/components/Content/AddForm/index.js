@@ -6,6 +6,7 @@ import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
+import img from '../../../assets/icons/image.svg';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
@@ -154,6 +155,18 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                   className={`${styles.circle} ${styles.circleBlue}`}
                   checked={color === 'blue' && true}
                 />
+                <label htmlFor="blue" className="hidden">
+                  Blue
+                </label>
+                <input
+                  name="color"
+                  value="green"
+                  id="green"
+                  type="radio"
+                  onChange={(e) => handleChangeColor(e)}
+                  className={`${styles.circle} ${styles.circleGreen}`}
+                  checked={color === 'green' && true}
+                />
                 <input
                   className="hidden"
                   name="color"
@@ -171,7 +184,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                 </label>
                 <input
                   style={{
-                    backgroundImage: `url(${preview && preview})`,
+                    backgroundImage: `url(${preview ? preview : img})`,
                   }}
                   type="file"
                   accept="image/*"

@@ -10,7 +10,7 @@ const Baubles = observer(({ history, pathname }) => {
     <>
       {baublesStore.baubles.map((bauble, i) => (
         <Suspense fallback={null} key={i}>
-          <Bauble args={[0.2, 10, 10]} bauble={bauble} pathname={pathname} history={history} />
+          <Bauble args={[0.2, 30, 30]} bauble={bauble} pathname={pathname} history={history} />
         </Suspense>
       ))}
     </>

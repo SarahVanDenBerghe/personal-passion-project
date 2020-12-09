@@ -1,4 +1,5 @@
 import React from 'react';
+import { Sphere } from 'drei';
 import { Bauble } from '..';
 
 const Preview = ({ point, history, pathname }) => {
@@ -6,8 +7,8 @@ const Preview = ({ point, history, pathname }) => {
     <Bauble
       preview
       position={[point.x, point.y, point.z]}
-      color="blue"
-      args={[0.2, 10, 10]}
+      bauble={{ x: point.x, y: point.y, z: point.z, style: 'color', color: 'white' }}
+      args={[0.05, 10, 10]}
       history={history}
       pathname={pathname}
     />
