@@ -8,6 +8,10 @@ import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 import img from '../../../assets/icons/image.svg';
 
+// https://www.npmjs.com/package/react-html5-camera-photo
+import Camera from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
+
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
   const [name, setName] = useState('');
@@ -97,6 +101,11 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     bauble.setColor(e.target.value);
   };
 
+  const handleTakePhoto = (dataUri) => {
+    // Do stuff with the photo...
+    console.log('takePhoto');
+  };
+
   return (
     <div className={styles.form__wrapper}>
       <p
@@ -167,6 +176,11 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                 />
               </div>
               <div className={styles.style__image}>
+                {/* <Camera
+                  onTakePhoto={(dataUri) => {
+                    handleTakePhoto(dataUri);
+                  }}
+                /> */}
                 <label htmlFor="image" className="hidden">
                   Image
                 </label>

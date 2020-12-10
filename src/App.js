@@ -19,6 +19,11 @@ const App = () => {
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
 
+  if (isTree) {
+    const treeId = location.pathname.split('/')[2];
+    treeStore.findTreeById(treeId);
+  }
+
   return (
     <>
       {/* Style elements */}

@@ -5,7 +5,7 @@ import Bauble from '../../../models/Bauble';
 import { Preview } from '..';
 import { useStore } from '../../../hooks';
 
-const Tree = ({ showPreview, setBaublePreview, history, pathname }) => {
+const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   const { baublesStore } = useStore();
   // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const gltf = useGLTFLoader('/tree_simple.gltf', true);
@@ -31,7 +31,7 @@ const Tree = ({ showPreview, setBaublePreview, history, pathname }) => {
   const showBaublePreview = (point) => {
     // Warning
     if (showPreview) {
-      setBaublePreview(<Preview point={point} history={history} pathname={pathname} />);
+      setPreviewLocation([point.x, point.y, point.z]);
     }
   };
 

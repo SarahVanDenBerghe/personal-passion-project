@@ -12,9 +12,10 @@ import styles from './styles.module.scss';
 const Tree = observer(({ showTree, setShowTree }) => {
   const { treeStore } = useStore();
   const { treeId } = useParams();
-  useEffect(() => {
-    treeStore.findTreeById(treeId);
-  }, [treeId]);
+
+  // useEffect(() => {
+  //   treeStore.findTreeById(treeId);
+  // }, [treeId]);
 
   return (
     <>

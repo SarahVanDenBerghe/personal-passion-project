@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { useParams, Link } from 'react-router-dom';
-import { useHistory, useLocation } from 'react-router';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
 import { Share } from '../../UI';
@@ -13,8 +13,6 @@ const DetailInfo = observer(({ active, setActive }) => {
   const [detail, setDetail] = useState(null);
   const history = useHistory();
   const { treeId, baubleId } = useParams();
-  const { pathname } = useLocation();
-  // console.log(window.location.href);
 
   let title,
     name,
@@ -26,12 +24,12 @@ const DetailInfo = observer(({ active, setActive }) => {
 
   useEffect(() => {
     setActive(true);
-  }, []);
+  }, [setActive]);
 
   useEffect(() => {
     const info = baublesStore.getBaubleById(parseInt(baubleId));
     setDetail(info);
-  }, [baubleId]);
+  }, [baubleId, baublesStore]);
 
   const animation = {
     // show : hide
@@ -57,6 +55,10 @@ const DetailInfo = observer(({ active, setActive }) => {
   };
 
   useEffect(() => {
+    animateContent();
+  }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const animateContent = () => {
     gsap.to([title, name, message, share], {
       duration: animation.text.duration,
       y: animation.text.yPos,
@@ -90,7 +92,7 @@ const DetailInfo = observer(({ active, setActive }) => {
       ease: 'Power2.easeIn',
       scale: animation.circle.scale,
     });
-  }, [active]);
+  };
 
   const handleClickClose = () => {
     setActive(false);
@@ -99,8 +101,9 @@ const DetailInfo = observer(({ active, setActive }) => {
 
   const getBackground = () => {
     if (detail.style === 'image') {
-      console.log(process.env.REACT_APP_STRAPI_API + detail.image.url);
-      return `center / cover no-repeat url(${process.env.REACT_APP_STRAPI_API}${detail.image.url})`;
+      return `center / cover no-repeat url(${detail.origin === 'data' ? process.env.REACT_APP_STRAPI_API : ''}${
+        detail.image.url
+      })`;
     } else {
       switch (detail.color) {
         case 'red':
@@ -110,7 +113,7 @@ const DetailInfo = observer(({ active, setActive }) => {
         case 'green':
           return `${styles.green}`;
         default:
-          return '#ffffff;';
+          return 'white';
       }
     }
   };

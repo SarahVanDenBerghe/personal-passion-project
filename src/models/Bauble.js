@@ -1,5 +1,4 @@
 import { makeObservable, observable, computed, action } from 'mobx';
-import { observer } from 'mobx-react-lite';
 
 class Bauble {
   constructor({ store, id, name, x, y, z, text, origin, treeId, style, color = 'red', image }) {
@@ -36,6 +35,7 @@ class Bauble {
       setInfo: action,
       setColor: action,
       setStyle: action,
+      setOrigin: action,
       setImage: action,
       asJson: computed,
     });

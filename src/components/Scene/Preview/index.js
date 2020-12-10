@@ -1,17 +1,20 @@
 import React from 'react';
-import { Sphere } from 'drei';
 import { Bauble } from '..';
 
-const Preview = ({ point, history, pathname }) => {
+const Preview = ({ point, history, pathname, showPreview }) => {
   return (
-    <Bauble
-      preview
-      position={[point.x, point.y, point.z]}
-      bauble={{ x: point.x, y: point.y, z: point.z, style: 'color', color: 'white' }}
-      args={[0.05, 10, 10]}
-      history={history}
-      pathname={pathname}
-    />
+    <>
+      {showPreview && (
+        <Bauble
+          preview
+          position={point}
+          bauble={{ x: point[0], y: point[1], z: point[2], style: 'color', color: 'white' }}
+          args={[0.12, 15, 15]}
+          history={history}
+          pathname={pathname}
+        />
+      )}
+    </>
   );
 };
 

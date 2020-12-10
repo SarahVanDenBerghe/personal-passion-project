@@ -1,7 +1,7 @@
 import React, { useState, Suspense, useRef, useEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { softShadows } from 'drei';
-import { Lights, Tree, Floor, Baubles, CameraControls } from '..';
+import { Lights, Tree, Floor, Baubles, CameraControls, Preview } from '..';
 import { useHistory, useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { useStore } from '../../../hooks';
@@ -12,9 +12,9 @@ import { observer } from 'mobx-react-lite';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// softShadows();
+softShadows();
 const CanvasWrapper = observer(() => {
-  const [baublePreview, setBaublePreview] = useState(null);
+  const [previewLocation, setPreviewLocation] = useState([0, 0, 0]);
   const [groupPos, setGroupPos] = useState([0, 0, 0]);
   const canvas = useRef(null);
   const history = useHistory();
@@ -43,7 +43,7 @@ const CanvasWrapper = observer(() => {
     timeline.play();
   }, []);
 
-  const showPreview = ROUTES.add.firststep == `/${pathname.split('/')[3]}/${pathname.split('/')[4]}`;
+  const showPreview = ROUTES.add.firststep === `/${pathname.split('/')[3]}/${pathname.split('/')[4]}`;
 
   return (
     <>
@@ -88,14 +88,14 @@ const CanvasWrapper = observer(() => {
             <Suspense fallback={null}>
               <Tree
                 showPreview={showPreview}
-                setBaublePreview={setBaublePreview}
+                setPreviewLocation={setPreviewLocation}
                 history={history}
                 pathname={pathname}
               />
               <Baubles history={history} pathname={pathname} />
+              <Preview point={previewLocation} history={history} pathname={pathname} showPreview={showPreview} />
             </Suspense>
           </a.group>
-          {baublePreview && showPreview ? baublePreview : ''};
         </Canvas>
       </div>
     </>

@@ -13,6 +13,7 @@ class TreeStore {
       loading: observable,
       currentTree: observable,
       findTreeById: action,
+      setCurrentTree: action,
       createTree: action,
     });
   }
@@ -24,22 +25,27 @@ class TreeStore {
   };
 
   findTreeById = async (id) => {
-    const data = await this.strapiService.findTreeById(id);
-
-    if (data !== 404) {
-      const tree = new Tree({
-        id: data.id,
-        name: data.name,
-        store: this,
-      });
-      data.messages.forEach((data) => this.rootStore.baublesStore.updateBaubleFromServer(data));
-      this.currentTree = tree;
-      if (this.loading) {
-        this.loading = false;
+    if (this.currentTree === undefined) {
+      const data = await this.strapiService.findTreeById(id);
+      if (data !== 404) {
+        const tree = new Tree({
+          id: data.id,
+          name: data.name,
+          store: this,
+        });
+        data.messages.forEach((data) => this.rootStore.baublesStore.updateBaubleFromServer(data));
+        this.setCurrentTree(tree);
+        if (this.loading) {
+          this.loading = false;
+        }
+      } else {
+        this.currentTree = undefined;
       }
-    } else {
-      this.currentTree = undefined;
     }
+  };
+
+  setCurrentTree = (tree) => {
+    this.currentTree = tree;
   };
 }
 
