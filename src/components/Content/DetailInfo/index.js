@@ -74,16 +74,18 @@ const DetailInfo = observer(({ active, setActive }) => {
   };
 
   return (
-    <>
+    <div className={styles.detail}>
       <button
         onClick={(e) => handleClickClose()}
-        className={styles.close}
+        className={styles.detail__close}
         ref={(el) => {
           close = el;
         }}
       />
 
-      <div className={styles.detail}>
+      <div className={styles.detail__bauble} />
+
+      <div className={styles.detail__text}>
         <div>
           <p
             className={styles.detail__title}
@@ -118,7 +120,7 @@ const DetailInfo = observer(({ active, setActive }) => {
           <Share />
         </div>
       </div>
-    </>
+    </div>
   );
 });
 

@@ -1,70 +1,97 @@
 @import '../../../styles/styles.scss';
 
-.close {
-  padding: 3rem;
-  margin-left: auto;
-  position: absolute;
-  top: 4rem;
-  right: 4rem;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  letter-spacing: 0.3rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  transform: scale(0, 0);
-
-  &:before,
-  &:after {
-    position: absolute;
-    content: ' ';
-    height: 2.5rem;
-    width: 0.1rem;
-    background-color: $light;
-    left: 3rem;
-    top: 1.75rem;
-  }
-
-  &:before {
-    transform: rotate(45deg);
-  }
-
-  &:after {
-    transform: rotate(-45deg);
-  }
-}
+$baubleSize: 12rem;
+$baubleMargin: 3rem;
 
 .detail {
   height: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  text-align: center;
+  display: grid;
+  grid-template-rows: calc(#{$baubleSize} + #{$baubleMargin}) 1fr;
 
-  .detail__title {
-    @include title-accent;
-    margin-top: 8rem;
+  .detail__close {
+    padding: 3rem;
+    margin-left: auto;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: scale(0, 0);
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: ' ';
+      height: 2.5rem;
+      width: 0.1rem;
+      background-color: $light;
+      left: 3rem;
+      top: 1.75rem;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  .detail__bauble {
+    height: $baubleSize;
+    width: $baubleSize;
+    background: $accent;
+    border-radius: 50%;
     text-align: center;
+    margin: $baubleMargin auto 0;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      height: 9rem;
+      width: 0.1rem;
+      background: $light;
+    }
   }
 
-  .detail__name {
-    @include title-large;
-    font-family: $font-title;
-    font-size: 5.5rem;
-    font-weight: 600;
-    letter-spacing: 0.15rem;
+  .detail__text {
+    // height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
 
-    line-height: 1.2;
-    margin-bottom: 8rem;
-  }
+    .detail__title {
+      @include title-accent;
+      margin-top: 8rem;
+      text-align: center;
+    }
 
-  .detail__message {
-    font-size: 1.8rem;
-  }
+    .detail__name {
+      @include title-large;
+      font-family: $font-title;
+      font-size: 5.5rem;
+      font-weight: 600;
+      letter-spacing: 0.15rem;
 
-  .detail__title,
-  .detail__name,
-  .detail__message {
-    transform: translateY(15rem);
-    opacity: 0;
+      line-height: 1.2;
+      margin-bottom: 8rem;
+    }
+
+    .detail__message {
+      font-size: 1.8rem;
+    }
+
+    .detail__title,
+    .detail__name,
+    .detail__message {
+      transform: translateY(15rem);
+      opacity: 0;
+    }
   }
 }
