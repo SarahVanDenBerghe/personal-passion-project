@@ -172,7 +172,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                 </label>
                 <input
                   style={{
-                    backgroundImage: `url(${preview ? preview : img})`,
+                    background: `center / cover no-repeat url(${preview ? preview : img})`,
                   }}
                   type="file"
                   accept="image/*"

@@ -20,7 +20,9 @@ const DetailInfo = observer(({ active, setActive }) => {
     name,
     message,
     close,
-    share = useRef(null);
+    share,
+    circle,
+    line = useRef(null);
 
   useEffect(() => {
     setActive(true);
@@ -44,6 +46,14 @@ const DetailInfo = observer(({ active, setActive }) => {
       scale: active ? 1 : 0,
       delay: active ? 0.3 : 0,
     },
+    line: {
+      height: active ? '9rem' : '0',
+      delay: active ? 0 : 0,
+    },
+    circle: {
+      scale: active ? 1 : 0,
+      delay: active ? 0.4 : 0,
+    },
   };
 
   useEffect(() => {
@@ -66,6 +76,20 @@ const DetailInfo = observer(({ active, setActive }) => {
       scaleY: animation.close.scale,
       delay: animation.close.delay,
     });
+
+    gsap.to(line, {
+      duration: 0.4,
+      ease: 'Power2.easeIn',
+      height: animation.line.height,
+      delay: animation.line.delay,
+    });
+
+    gsap.to(circle, {
+      delay: animation.circle.delay,
+      duration: 0.4,
+      ease: 'Power2.easeIn',
+      scale: animation.circle.scale,
+    });
   }, [active]);
 
   const handleClickClose = () => {
@@ -73,17 +97,51 @@ const DetailInfo = observer(({ active, setActive }) => {
     history.push(ROUTES.tree.to + treeId);
   };
 
+  const getBackground = () => {
+    if (detail.style === 'image') {
+      console.log(process.env.REACT_APP_STRAPI_API + detail.image.url);
+      return `center / cover no-repeat url(${process.env.REACT_APP_STRAPI_API}${detail.image.url})`;
+    } else {
+      switch (detail.color) {
+        case 'red':
+          return `${styles.red}`;
+        case 'blue':
+          return `${styles.blue}`;
+        case 'green':
+          return `${styles.green}`;
+        default:
+          return '#ffffff;';
+      }
+    }
+  };
+
   return (
     <div className={styles.detail}>
       <button
-        onClick={(e) => handleClickClose()}
+        onClick={() => handleClickClose()}
         className={styles.detail__close}
         ref={(el) => {
           close = el;
         }}
       />
 
-      <div className={styles.detail__bauble} />
+      <div className={styles.detail__bauble}>
+        <span
+          className={styles.bauble__line}
+          ref={(el) => {
+            line = el;
+          }}
+        />
+        <div
+          className={styles.bauble__circle}
+          ref={(el) => {
+            circle = el;
+          }}
+          style={{
+            background: detail && getBackground(),
+          }}
+        />
+      </div>
 
       <div className={styles.detail__text}>
         <div>
