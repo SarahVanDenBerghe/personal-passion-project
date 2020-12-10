@@ -26,6 +26,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     messageRef,
     submitRef,
     cancelRef,
+    styleRef,
     inputNone = useRef(null);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   useEffect(() => {
-    gsap.to([titleRef, nameRef, messageRef, submitRef, cancelRef], {
+    gsap.to([titleRef, styleRef, nameRef, messageRef, submitRef, cancelRef], {
       duration: animation.text.duration,
       y: animation.text.yPos,
       opacity: animation.opacity,
@@ -74,24 +75,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     baublesStore.removeBaubleFromUser();
     history.push(ROUTES.tree.to + treeId);
   };
-
-  // const handleLoadImage = (target) => {
-  //   const targetFile = target.files[0];
-  //   const reader = new FileReader();
-
-  //   const handleLoadReader = async (e) => {
-  //     await setPreview(e.currentTarget.result);
-  //     await setFile(targetFile);
-
-  //     setStyle('image');
-  //     let image = new Image();
-  //     image.src = e.currentTarget.result;
-  //     bauble.setImage(image);
-  //   };
-
-  //   reader.addEventListener('load', handleLoadReader);
-  //   reader.readAsDataURL(targetFile);
-  // };
 
   const handleLoadImage = (target) => {
     const targetFile = target.files[0];
@@ -126,7 +109,13 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
       </p>
       <div>
         <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
-          <fieldset className={styles.form__style}>
+          <fieldset
+            className={styles.form__style}
+            ref={(el) => {
+              styleRef = el;
+            }}
+            htmlFor="message"
+          >
             <p className={styles.style__title}>Style</p>
             <div className={styles.style__circles}>
               <div className={styles.style__colors}>
