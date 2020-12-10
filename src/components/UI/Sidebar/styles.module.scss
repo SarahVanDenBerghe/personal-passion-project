@@ -3,7 +3,6 @@ $spacing: 3rem;
 $width: 50rem;
 
 .sidebar__wrapper {
-  // transform: translateX($width + $spacing);
   position: absolute;
   right: 0;
   top: 0;
@@ -13,6 +12,7 @@ $width: 50rem;
   padding: $spacing;
 
   .sidebar {
+    overflow: scroll;
     height: 100%;
     width: 100%;
     transform: translateX(calc(#{$width} + (#{$spacing} * 2)));
