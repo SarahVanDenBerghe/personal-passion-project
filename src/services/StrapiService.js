@@ -32,7 +32,7 @@ class StrapiService {
   };
 
   createBaubleWithImage = async (bauble) => {
-    const imageId = await this.uploadImage(bauble.image);
+    const imageId = await this.uploadImage(bauble.image.file);
 
     const response = await api.post('/messages', {
       name: bauble.name,

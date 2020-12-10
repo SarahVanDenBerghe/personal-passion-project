@@ -23,17 +23,20 @@ class BaublesStore {
     const baubleJson = bauble.asJson;
     if (baubleJson.image) {
       const data = await this.strapiService.createBaubleWithImage(baubleJson);
+      // console.log(json); image van database
       bauble.setImage(data.image);
+      await bauble.setId(data.id);
       this.updateBauble(bauble, data, baubleJson);
     } else {
       const data = await this.strapiService.createBauble(baubleJson);
+      await bauble.setId(data.id);
       this.updateBauble(bauble, data, baubleJson);
     }
   };
 
-  updateBauble = async (bauble, data, baubleJson) => {
-    await bauble.setId(data.id);
+  updateBauble = async (data, baubleJson) => {
     this.updateBaubleFromServer(data);
+    console.log(baubleJson);
     this.rootStore.socket.emit('bauble', { bauble: baubleJson, id: data.id });
   };
 
@@ -77,6 +80,8 @@ class BaublesStore {
         image: bauble.image,
         store: this,
       });
+
+      console.log(bauble.image); // array buffer what
 
       toast(<Notification name={bauble.name} id={id} />, {
         position: 'bottom-left',

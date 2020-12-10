@@ -16,8 +16,8 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
   let sphereRef = useRef(null);
 
   const getImage = () => {
-    if (bauble.style === 'image' && bauble.origin === 'user') {
-      return bauble.image;
+    if ((bauble.style === 'image' && bauble.origin === 'user') || bauble.origin === 'socket') {
+      return bauble.image.url;
     } else if (bauble.style === 'image' && bauble.origin === 'data') {
       return process.env.REACT_APP_STRAPI_API + bauble.image.url;
     }

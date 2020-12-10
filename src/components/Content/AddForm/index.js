@@ -35,14 +35,13 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    await bauble.setInfo({ name, text, treeId, style, color, image: file });
+    await bauble.setInfo({ name, text, treeId, style, color, image: { file: file, url: preview } });
 
     // Push to database
     await bauble.create();
 
     // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
-    console.log(updatedBauble.image);
     updatedBauble.setOrigin('data');
     history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
   };
@@ -101,7 +100,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     setFile(targetFile);
     setStyle('image');
 
-    bauble.setImage(imageURL);
+    bauble.setImage({ file: targetFile, url: imageURL });
   };
 
   const handleClickRemoveImage = () => {
