@@ -13,10 +13,6 @@ const Tree = observer(({ showTree, setShowTree }) => {
   const { treeStore } = useStore();
   const { treeId } = useParams();
 
-  // useEffect(() => {
-  //   treeStore.findTreeById(treeId);
-  // }, [treeId]);
-
   return (
     <>
       {!showTree && treeStore.currentTree && <Loader setShowTree={setShowTree} />}
@@ -43,7 +39,7 @@ const Tree = observer(({ showTree, setShowTree }) => {
           </Switch>
         </>
       )}
-      {!treeStore.currentTree && (
+      {!treeStore.currentTree && !treeStore.loading && (
         <>
           <div className={styles.error}>
             <h1 className={styles.error__title}>Tree doesn't exist</h1>

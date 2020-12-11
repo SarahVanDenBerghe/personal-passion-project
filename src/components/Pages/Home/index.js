@@ -1,13 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { Container } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { useHistory } from 'react-router-dom';
 import { gsap } from 'gsap';
 import styles from './styles.module.scss';
 
-const Home = () => {
+const Home = ({ setShowDecoration }) => {
   const [active, setActive] = useState(true);
   const history = useHistory();
+
+  useEffect(() => {
+    setShowDecoration(true);
+  }, []);
 
   let title,
     intro,
@@ -46,6 +50,7 @@ const Home = () => {
     <>
       <Container>
         <div className={styles.home}>
+          {/* TEXT */}
           <div className={styles.text}>
             <h1
               className={styles.text__title}
@@ -53,7 +58,8 @@ const Home = () => {
                 title = el;
               }}
             >
-              Create your own <span className={styles.highlight}>Christmas tree</span>
+              Create your own <br />
+              <span className={styles.highlight}>Christmas tree</span>
             </h1>
             <p
               className={styles.text__info}
@@ -66,7 +72,6 @@ const Home = () => {
             </p>
 
             <button
-              // to={ROUTES.create}
               onClick={handleClickButton}
               className={styles.button}
               ref={(el) => {
@@ -76,10 +81,6 @@ const Home = () => {
               Create a tree
             </button>
           </div>
-
-          {/* <Suspense fallback={<h1>Loading posts...</h1>}>
-          <HomeTrees />
-      </Suspense>  */}
         </div>
       </Container>
     </>

@@ -8,7 +8,7 @@ import { useStore } from '../../../hooks';
 const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   const { baublesStore } = useStore();
   // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
-  const gltf = useGLTFLoader('/tree_simple.gltf', true);
+  const gltf = useGLTFLoader('/tree_testing5.glb', true);
   const mesh = useRef();
   const id = pathname.split('/')[2];
 
@@ -44,7 +44,6 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
         onPointerDown={(e) => addBauble(e.point)}
         onPointerMove={(e) => showBaublePreview(e.point)}
       >
-        {/* <ambientLight color={0x404040} intensity={1.2} /> */}
         <primitive object={gltf.scene} dispose={null} />
       </mesh>
     </>

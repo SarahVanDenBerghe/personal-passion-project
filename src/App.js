@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { Navbar } from './components/UI';
 import { Tree, Home, Create } from './components/Pages';
-import { CanvasWrapper } from './components/Scene';
+import { CanvasWrapperCreator, CanvasWrapperHome, HomeTrees, CreateTree } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route } from 'react-router-dom';
 import { Switch, useLocation } from 'react-router';
@@ -16,13 +16,26 @@ import './App.scss';
 const App = () => {
   const { treeStore } = useStore();
   const [showTree, setShowTree] = useState(false);
+  const [showDecoration, setShowDecoration] = useState(true);
+  const [showIntroCanvas, setShowIntroCanvas] = useState(true);
+
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
+  // const isIntro = ROUTES.home === location.pathname || ROUTES.create === location.pathname;
 
+  // useEffect(() => {
+  //   setShowIntroCanvas(isIntro);
+  // }, [location]);
+
+  // setShowIntroCanvas(isIntro);
   if (isTree) {
     const treeId = location.pathname.split('/')[2];
     treeStore.findTreeById(treeId);
   }
+
+  // setTimeout(() => {
+  //   setShowIntroCanvas(false);
+  // }, 2000);
 
   return (
     <>
@@ -31,18 +44,24 @@ const App = () => {
       <Particles className="particles" params={particlesConfig} />
       <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
 
+      {/* Fixed elements & Canvas */}
       <Navbar />
-      {isTree && showTree && treeStore.currentTree && <CanvasWrapper />}
+      {isTree && showTree && treeStore.currentTree && <CanvasWrapperCreator />}
+      {!isTree && <CanvasWrapperHome showDecoration={showDecoration} showIntroCanvas={showIntroCanvas} />}
 
-      {/* TransitionGroup & CSSTransition give time to animate page transitions */}
+      {/* Pages */}
       <TransitionGroup className="transition">
         <CSSTransition key={location.pathname} timeout={500}>
           <Switch location={location}>
             <Route path={ROUTES.tree.path}>
               <Tree setShowTree={setShowTree} showTree={showTree} />
             </Route>
-            <Route exact path={ROUTES.create} component={Create} />
-            <Route exact path={ROUTES.home} component={Home} />
+            <Route exact path={ROUTES.create}>
+              <Create setShowIntroCanvas={setShowIntroCanvas} setShowDecoration={setShowDecoration} />
+            </Route>
+            <Route exact path={ROUTES.home}>
+              <Home setShowDecoration={setShowDecoration} />
+            </Route>
           </Switch>
         </CSSTransition>
       </TransitionGroup>

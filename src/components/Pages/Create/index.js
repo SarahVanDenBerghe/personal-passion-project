@@ -7,11 +7,15 @@ import { gsap } from 'gsap';
 import { useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-const Create = () => {
+const Create = ({ setShowDecoration, setShowIntroCanvas }) => {
   const [active, setActive] = useState(true);
   const [name, setName] = useState('');
   const { treeStore } = useStore();
   const history = useHistory();
+
+  useEffect(() => {
+    setShowDecoration(false);
+  }, [setShowDecoration]);
 
   let title,
     intro,
@@ -51,7 +55,11 @@ const Create = () => {
 
     await tree.create();
     setActive(false);
-    history.push(ROUTES.tree.to + tree.id);
+    setShowIntroCanvas(false);
+
+    setTimeout(() => {
+      history.push(ROUTES.tree.to + tree.id);
+    }, 550); // Wait for canvas to finish animating end
   };
 
   return (
