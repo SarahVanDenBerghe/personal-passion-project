@@ -29,6 +29,10 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
     },
   };
 
+  setTimeout(() => {
+    controls.current.enabled = true;
+  }, 1200);
+
   // Set zoomIn of tree on each route change
   useEffect(() => {
     const checkZoom = `/${page}/` == ROUTES.detail.to;
@@ -93,10 +97,10 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
   useEffect(() => {
     camera.position.x = 0;
     camera.position.y = 0;
-    camera.position.z = 300;
+    camera.position.z = 120;
 
     gsap.to(camera.position, {
-      duration: 2,
+      duration: 1.2,
       ease: 'Power2.easeOut',
       z: 8,
       onComplete: () => {
@@ -113,6 +117,7 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
         enablePan={false}
         enableZoom={false}
         enableDamping={false}
+        enabled={false}
         target={target}
         args={[camera, gl.domElement]}
         ref={controls}

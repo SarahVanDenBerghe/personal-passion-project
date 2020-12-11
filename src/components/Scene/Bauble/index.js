@@ -61,7 +61,6 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
 
   return (
     <Sphere
-      castShadow
       position={[bauble.x, bauble.y, bauble.z]}
       args={args}
       onPointerOver={(e) => toggleInfo(e)}
