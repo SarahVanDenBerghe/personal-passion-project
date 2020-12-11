@@ -11,11 +11,11 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
   const [zoom, setZoom] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [zoomIn, setZoomIn] = useState(false);
-  const [target, setTarget] = useState([0, 0, 0]);
+  // const [target, setTarget] = useState([0, 0, 0]);
   const controls = useRef(null);
   const page = pathname.split('/')[3];
   const id = pathname.split('/')[4];
-  const bauble = baublesStore.baubles.find((bauble) => bauble.id == id);
+  const bauble = baublesStore.baubles.find((bauble) => bauble.id === id);
 
   let currDistance = 0;
   let factor = 0;
@@ -31,20 +31,23 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
 
   setTimeout(() => {
     controls.current.enabled = true;
-  }, 1200);
+  }, 1200); // Enable zoom after loading animation
 
   // Set zoomIn of tree on each route change
   useEffect(() => {
-    const checkZoom = `/${page}/` == ROUTES.detail.to;
+    const checkZoom = `/${page}/` === ROUTES.detail.to;
     setZoomIn(checkZoom);
-  }, [pathname]);
+  }, [pathname, page]);
+
+  currDistance = camera.position.length();
+  factor = zoom / currDistance;
 
   useEffect(() => {
     const zoomDistance = zoomIn ? 8 : 4;
     setZoom(zoomDistance);
 
-    currDistance = camera.position.length();
-    factor = zoom / currDistance;
+    // currDistance = camera.position.length();
+    // factor = zoom / currDistance;
 
     // End position of tree, zoomed
     let x = camera.position.x * factor;
@@ -91,6 +94,7 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
       ease: 'Power2.easeIn',
       x: animation.canvas.xPos,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoomIn]);
 
   // Animating tree from start
@@ -108,7 +112,7 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
         setHasLoaded(true);
       },
     });
-  }, []);
+  }, [camera.position]);
 
   return (
     <>
@@ -118,7 +122,7 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
         enableZoom={false}
         enableDamping={false}
         enabled={false}
-        target={target}
+        // target={target}
         args={[camera, gl.domElement]}
         ref={controls}
       />

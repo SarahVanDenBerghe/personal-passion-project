@@ -3,15 +3,11 @@ import { Canvas } from 'react-three-fiber';
 import { Lights, CreateTree, HomeDecorations } from '..';
 import { PerspectiveCamera } from 'drei';
 import styles from './styles.module.scss';
-import { useLocation } from 'react-router';
-import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
 
 // softShadows();
 const CanvasWrapperHome = ({ showDecoration, showIntroCanvas }) => {
   const canvas = useRef(null);
-  let { pathname } = useLocation();
-  console.log(pathname !== ROUTES.create || pathname !== ROUTES.home);
 
   useEffect(() => {
     gsap.to(canvas.current, {
