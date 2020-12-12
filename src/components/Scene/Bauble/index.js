@@ -66,6 +66,7 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
       onPointerOver={(e) => toggleInfo(e)}
       onPointerOut={(e) => toggleInfo(e)}
       onClick={(e) => handleClickBauble(e)}
+      onTouchStart={(e) => handleClickBauble()}
       ref={(el) => {
         sphereRef = el;
       }}

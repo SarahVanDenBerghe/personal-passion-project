@@ -7,21 +7,25 @@
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: calc(50% - 20rem);
+    top: 50%;
     left: 0;
+    transform: translateY(-50%);
     right: 0;
     text-align: center;
     z-index: 10;
     text-shadow: 0 0 1.5rem rgba(63, 107, 169, 0.4);
     font-family: $font-title;
     color: $light;
-    // pointer-events: none;
     user-select: none;
 
     .add__title {
       @include title-large;
       line-height: 1.5;
       opacity: 0;
+
+      @media (max-width: $breakpoint-small) {
+        font-size: 3.8rem;
+      }
     }
 
     .add__tagline {
@@ -29,12 +33,16 @@
       text-transform: uppercase;
       letter-spacing: 0.5rem;
       opacity: 0;
+
+      @media (max-width: $breakpoint-small) {
+        font-size: 1.6rem;
+      }
     }
 
     .add_icon {
-      margin-top: 10rem;
-      height: 5rem;
-      width: 5rem;
+      margin-top: 7rem;
+      height: 3.5rem;
+      width: 3.5rem;
     }
   }
 }

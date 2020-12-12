@@ -9,6 +9,7 @@ import styles from './styles.module.scss';
 
 const Sidebar = ({ children, active, setActive }) => {
   const { pathname } = useLocation();
+  let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   let sidebar,
     wrapper = useRef(null);
@@ -63,9 +64,11 @@ const Sidebar = ({ children, active, setActive }) => {
         setAnimatedProps({ xys: [0, 0, 1] });
       }}
       style={{
-        transform: animatedProps.xys.interpolate(
-          (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
-        ),
+        transform: !isSafari
+          ? animatedProps.xys.interpolate(
+              (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+            )
+          : '',
       }}
     >
       <a.div

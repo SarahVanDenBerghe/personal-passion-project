@@ -21,8 +21,6 @@ const CanvasWrapperCreator = observer(() => {
   const { baublesStore, treeStore } = useStore();
   const { pathname } = useLocation();
 
-  const timeline = gsap.timeline({ defaults: { duration: 1, ease: 'Power2.easeIn' } });
-
   let title,
     count = useRef(null);
 
@@ -31,6 +29,7 @@ const CanvasWrapperCreator = observer(() => {
   });
 
   useEffect(() => {
+    const timeline = gsap.timeline({ defaults: { duration: 1, ease: 'Power2.easeIn' } });
     timeline.from([count, title], {
       y: 100,
       opacity: 0,
@@ -41,7 +40,7 @@ const CanvasWrapperCreator = observer(() => {
     });
 
     timeline.play();
-  }, []);
+  }, [title]);
 
   const showPreview = ROUTES.add.firststep === `/${pathname.split('/')[3]}/${pathname.split('/')[4]}`;
 
@@ -73,9 +72,8 @@ const CanvasWrapperCreator = observer(() => {
 
       <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas
-          // colorManagement
           shadowMap
-          // resize={{ scroll: false }}
+          resize={{ scroll: false }}
           // onCreated={({ gl }) => {
           //   gl.toneMapping = THREE.Uncharted2ToneMapping;
           //   gl.outputEncoding = THREE.sRGBEncoding;
@@ -93,6 +91,8 @@ const CanvasWrapperCreator = observer(() => {
                 pathname={pathname}
               />
               <Baubles history={history} pathname={pathname} />
+            </Suspense>
+            <Suspense fallback={null}>
               <Preview point={previewLocation} history={history} pathname={pathname} showPreview={showPreview} />
             </Suspense>
           </a.group>

@@ -27,10 +27,12 @@ const Loader = ({ setShowTree }) => {
         scale: 0,
         transformOrigin: '50% 50%',
       });
+
+      setShowTree(true);
     }
 
     /* Content inladen */
-    setTimeout(() => setShowTree(true), 1000);
+    // setTimeout(() => setShowTree(true), 1000);
   }, [treeStore.loading, setShowTree]);
 
   return (

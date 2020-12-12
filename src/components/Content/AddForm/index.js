@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
+import { Close } from '../../UI';
 import { gsap } from 'gsap';
 import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
@@ -29,7 +30,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     nameRef,
     messageRef,
     submitRef,
-    cancelRef,
     styleRef,
     inputNone = useRef(null);
 
@@ -62,7 +62,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   };
 
   useEffect(() => {
-    gsap.to([titleRef, styleRef, nameRef, messageRef, submitRef, cancelRef], {
+    gsap.to([titleRef, styleRef, nameRef, messageRef, submitRef], {
       duration: animation.text.duration,
       y: animation.text.yPos,
       opacity: animation.opacity,
@@ -108,6 +108,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   return (
     <div className={styles.form__wrapper}>
+      <Close handleClickClose={handleClickClose} active={active} />
       <p
         ref={(el) => {
           titleRef = el;
@@ -245,16 +246,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
             </button>
           </div>
         </form>
-
-        <button
-          ref={(el) => {
-            cancelRef = el;
-          }}
-          onClick={() => handleClickClose()}
-          className={styles.form__cancel}
-        >
-          Cancel
-        </button>
       </div>
     </div>
   );

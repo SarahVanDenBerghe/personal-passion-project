@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { TransitionGroup, Transition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
@@ -50,7 +49,6 @@ const Add = () => {
 
   return (
     <div className={styles.add} onClick={() => handleClickNext()}>
-      {/* INFO - laten animeren dan routen naar step/one waarbij user kerstbal kan plaatsen*/}
       <motion.div className={styles.add__text}>
         <p
           ref={(el) => {

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useStore } from '../../../hooks';
 import { ROUTES } from '../../../consts';
-import { Share } from '../../UI';
+import { Share, Close } from '../../UI';
 import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 
@@ -17,7 +17,6 @@ const DetailInfo = observer(({ active, setActive }) => {
   let title,
     name,
     message,
-    close,
     share,
     circle,
     line = useRef(null);
@@ -39,10 +38,6 @@ const DetailInfo = observer(({ active, setActive }) => {
       delay: active ? 0.35 : 0.1,
       stagger: active ? 0.1 : -0.1,
       duration: active ? 0.6 : 0.6,
-    },
-    close: {
-      scale: active ? 1 : 0,
-      delay: active ? 0.3 : 0,
     },
     line: {
       height: active ? '9rem' : '0',
@@ -68,15 +63,6 @@ const DetailInfo = observer(({ active, setActive }) => {
         ease: 'Power2.easeIn',
         amount: animation.text.stagger,
       },
-    });
-
-    gsap.to(close, {
-      duration: 0.4,
-      ease: 'Power2.easeIn',
-      opacity: animation.opacity,
-      scaleX: animation.close.scale,
-      scaleY: animation.close.scale,
-      delay: animation.close.delay,
     });
 
     gsap.to(line, {
@@ -120,13 +106,7 @@ const DetailInfo = observer(({ active, setActive }) => {
 
   return (
     <div className={styles.detail}>
-      <button
-        onClick={() => handleClickClose()}
-        className={styles.detail__close}
-        ref={(el) => {
-          close = el;
-        }}
-      />
+      <Close handleClickClose={handleClickClose} active={active} />
 
       <div className={styles.detail__bauble}>
         <span

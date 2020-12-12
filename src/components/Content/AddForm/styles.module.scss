@@ -5,6 +5,10 @@
   flex-direction: column;
   height: 100%;
 
+  @media (max-width: $breakpoint-small) {
+    height: auto;
+  }
+
   .form__title {
     margin-top: 3rem;
     margin-bottom: 7rem;
@@ -13,13 +17,37 @@
     text-align: center;
   }
 
-  .form__cancel {
-    color: $light;
-    font-size: 1.6rem;
-    display: block;
-    margin: 2rem auto 0;
-    font-family: $font-title;
-    letter-spacing: 0.2rem;
+  .form__close {
+    padding: 3rem;
+    margin-left: auto;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: scale(0, 0);
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: ' ';
+      height: 2.5rem;
+      width: 0.1rem;
+      background-color: $light;
+      left: 3rem;
+      top: 1.75rem;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
   }
 }
 
@@ -27,6 +55,10 @@
   .form__submit {
     display: block;
     margin: 8rem auto 0;
+
+    @media (max-width: $breakpoint-medium) {
+      margin-top: 2rem;
+    }
   }
 
   .form__buttons {

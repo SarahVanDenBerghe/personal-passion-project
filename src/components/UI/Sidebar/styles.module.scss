@@ -3,16 +3,29 @@ $spacing: 3rem;
 $width: 50rem;
 
 .sidebar__wrapper {
-  position: absolute;
-  right: 0;
-  top: 0;
+  // position: absolute;
+  // right: 0;
+  // top: 0;
   height: 100%;
   width: calc(#{$width} + (#{$spacing} * 2));
-  z-index: 10;
+  z-index: 20;
   padding: $spacing;
+  grid-area: main;
+  margin-left: auto;
+
+  @media (max-width: $breakpoint-medium) {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 50%;
+    margin-top: auto;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+  }
 
   .sidebar {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 100%;
     width: 100%;
     transform: translateX(calc(#{$width} + (#{$spacing} * 2)));
@@ -20,8 +33,18 @@ $width: 50rem;
     background: $dark;
     color: $light;
     padding: 6rem;
-    z-index: 12;
+    // z-index: 12;
     border-radius: 0.7rem;
     user-select: none;
+
+    @media (max-width: $breakpoint-medium) {
+      border-radius: 2rem 2rem 0 0;
+    }
+    @media (max-width: $breakpoint-small) {
+      padding: 4rem;
+    }
+    @media (max-width: $breakpoint-extra-small) {
+      padding: 2.5rem;
+    }
   }
 }

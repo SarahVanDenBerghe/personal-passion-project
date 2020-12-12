@@ -1,7 +1,7 @@
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/UI';
 import { Tree, Home, Create } from './components/Pages';
-import { CanvasWrapperCreator, CanvasWrapperHome, HomeTrees, CreateTree } from './components/Scene';
+import { CanvasWrapperCreator, CanvasWrapperHome } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
 import { Route } from 'react-router-dom';
 import { Switch, useLocation } from 'react-router';
@@ -21,21 +21,11 @@ const App = () => {
 
   let location = useLocation();
   const isTree = 'tree' === location.pathname.split('/')[1];
-  // const isIntro = ROUTES.home === location.pathname || ROUTES.create === location.pathname;
 
-  // useEffect(() => {
-  //   setShowIntroCanvas(isIntro);
-  // }, [location]);
-
-  // setShowIntroCanvas(isIntro);
   if (isTree) {
     const treeId = location.pathname.split('/')[2];
     treeStore.findTreeById(treeId);
   }
-
-  // setTimeout(() => {
-  //   setShowIntroCanvas(false);
-  // }, 2000);
 
   return (
     <>
