@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Container } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { useStore } from '../../../hooks';
 import Tree from '../../../models/Tree';
@@ -64,47 +63,45 @@ const Create = ({ setShowDecoration, setShowIntroCanvas }) => {
 
   return (
     <>
-      <Container>
-        <div className={styles.create}>
-          <h1
+      <div className={styles.create}>
+        <h1
+          ref={(el) => {
+            title = el;
+          }}
+          className={styles.title}
+        >
+          Creating your tree
+        </h1>
+        <p
+          className={styles.intro}
+          ref={(el) => {
+            intro = el;
+          }}
+        >
+          Your digital tree is almost ready to be planted. Give your tree a name and you are ready to go.
+        </p>
+        <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
+          <label
+            className={styles.label}
             ref={(el) => {
-              title = el;
+              label = el;
             }}
-            className={styles.title}
+            htmlFor="name"
           >
-            Creating your tree
-          </h1>
-          <p
-            className={styles.intro}
+            <span>Name</span>
+            <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
+          </label>
+          <button
             ref={(el) => {
-              intro = el;
+              button = el;
             }}
+            className={styles.button}
+            type="submit"
           >
-            Your digital tree is almost ready to be planted. Give your tree a name and you are ready to go.
-          </p>
-          <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
-            <label
-              className={styles.label}
-              ref={(el) => {
-                label = el;
-              }}
-              htmlFor="name"
-            >
-              <span>Name</span>
-              <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
-            </label>
-            <button
-              ref={(el) => {
-                button = el;
-              }}
-              className={styles.button}
-              type="submit"
-            >
-              Plant my tree
-            </button>
-          </form>
-        </div>
-      </Container>
+            Plant my tree
+          </button>
+        </form>
+      </div>
     </>
   );
 };

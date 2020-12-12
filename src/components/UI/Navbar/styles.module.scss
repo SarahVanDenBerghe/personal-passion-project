@@ -1,18 +1,15 @@
 @import '../../../styles/styles.scss';
 
 .header {
-  position: absolute;
   display: flex;
   align-items: center;
   height: 100%;
   z-index: 10;
-  width: 8.5rem;
-  // border-right: 0.1rem solid #3D584C;
+  width: $nav-large;
   background: $background;
-  // background: #112C23;
+  grid-area: header;
 
   & .header__content {
-    // border-right: 0.1rem solid $light;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,20 +1,18 @@
 @import '../../../styles/styles.scss';
 
 .loader {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: $light;
-    letter-spacing: .2rem;
-    font-size: 1.4rem;
-    opacity: .3;
-    z-index: 999;
-    position: absolute;
-    
-    circle {
-      transform: translateY(-30px);
-    }
+  color: $light;
+  letter-spacing: 0.2rem;
+  font-size: 1.4rem;
+  opacity: 0.3;
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  circle {
+    transform: translateY(-30px);
+  }
 }

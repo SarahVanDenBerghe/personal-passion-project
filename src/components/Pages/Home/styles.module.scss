@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  grid-area: main;
 
   .text__title {
     font-family: $font-title;

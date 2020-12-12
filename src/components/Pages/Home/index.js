@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
-import { Container } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { useHistory } from 'react-router-dom';
 import { gsap } from 'gsap';
@@ -48,41 +47,39 @@ const Home = ({ setShowDecoration }) => {
 
   return (
     <>
-      <Container>
-        <div className={styles.home}>
-          {/* TEXT */}
-          <div className={styles.text}>
-            <h1
-              className={styles.text__title}
-              ref={(el) => {
-                title = el;
-              }}
-            >
-              Create your own <br />
-              <span className={styles.highlight}>Christmas tree</span>
-            </h1>
-            <p
-              className={styles.text__info}
-              ref={(el) => {
-                intro = el;
-              }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid idunt ut labore et
-              sed do eiusmod tempor inci.
-            </p>
+      <div className={styles.home}>
+        {/* TEXT */}
+        <div className={styles.text}>
+          <h1
+            className={styles.text__title}
+            ref={(el) => {
+              title = el;
+            }}
+          >
+            Create your own <br />
+            <span className={styles.highlight}>Christmas tree</span>
+          </h1>
+          <p
+            className={styles.text__info}
+            ref={(el) => {
+              intro = el;
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid idunt ut labore et sed
+            do eiusmod tempor inci.
+          </p>
 
-            <button
-              onClick={handleClickButton}
-              className={styles.button}
-              ref={(el) => {
-                button = el;
-              }}
-            >
-              Create a tree
-            </button>
-          </div>
+          <button
+            onClick={handleClickButton}
+            className={styles.button}
+            ref={(el) => {
+              button = el;
+            }}
+          >
+            Create a tree
+          </button>
         </div>
-      </Container>
+      </div>
     </>
   );
 };

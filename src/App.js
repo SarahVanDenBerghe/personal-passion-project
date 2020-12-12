@@ -39,32 +39,34 @@ const App = () => {
 
   return (
     <>
-      {/* Style elements */}
-      <div className="noise" />
-      <Particles className="particles" params={particlesConfig} />
-      <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
+      <div className="app">
+        {/* Style elements */}
+        <div className="noise" />
+        <Particles className="particles" params={particlesConfig} />
+        <AnimatedCursor outerAlpha={0.3} color="255, 255, 255" />
 
-      {/* Fixed elements & Canvas */}
-      <Navbar />
-      {isTree && showTree && treeStore.currentTree && <CanvasWrapperCreator />}
-      {!isTree && <CanvasWrapperHome showDecoration={showDecoration} showIntroCanvas={showIntroCanvas} />}
+        {/* Fixed elements & Canvas */}
+        <Navbar />
+        {isTree && showTree && treeStore.currentTree && <CanvasWrapperCreator />}
+        {!isTree && <CanvasWrapperHome showDecoration={showDecoration} showIntroCanvas={showIntroCanvas} />}
 
-      {/* Pages */}
-      <TransitionGroup className="transition">
-        <CSSTransition key={location.pathname} timeout={500}>
-          <Switch location={location}>
-            <Route path={ROUTES.tree.path}>
-              <Tree setShowTree={setShowTree} showTree={showTree} />
-            </Route>
-            <Route exact path={ROUTES.create}>
-              <Create setShowIntroCanvas={setShowIntroCanvas} setShowDecoration={setShowDecoration} />
-            </Route>
-            <Route exact path={ROUTES.home}>
-              <Home setShowDecoration={setShowDecoration} />
-            </Route>
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
+        {/* Pages */}
+        <TransitionGroup className="content">
+          <CSSTransition key={location.pathname} timeout={500}>
+            <Switch location={location}>
+              <Route path={ROUTES.tree.path}>
+                <Tree setShowTree={setShowTree} showTree={showTree} />
+              </Route>
+              <Route exact path={ROUTES.create}>
+                <Create setShowIntroCanvas={setShowIntroCanvas} setShowDecoration={setShowDecoration} />
+              </Route>
+              <Route exact path={ROUTES.home}>
+                <Home setShowDecoration={setShowDecoration} />
+              </Route>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
     </>
   );
 };
