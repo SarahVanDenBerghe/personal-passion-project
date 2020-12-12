@@ -9,6 +9,10 @@
   font-family: $font-title;
   letter-spacing: 0.2rem;
   margin-right: 3rem;
+
+  @media (max-width: $breakpoint-small) {
+    display: none;
+  }
 }
 
 .share__buttons {

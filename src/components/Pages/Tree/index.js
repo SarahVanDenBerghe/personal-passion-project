@@ -39,6 +39,7 @@ const Tree = observer(({ showTree, setShowTree }) => {
           </Switch>
         </>
       )}
+      {/* && !treeStore.loading */}
       {!treeStore.currentTree && !treeStore.loading && (
         <>
           <div className={styles.error}>

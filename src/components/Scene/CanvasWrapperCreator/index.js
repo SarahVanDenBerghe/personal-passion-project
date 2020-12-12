@@ -75,7 +75,7 @@ const CanvasWrapperCreator = observer(() => {
         <Canvas
           // colorManagement
           shadowMap
-          resize={{ scroll: false }}
+          // resize={{ scroll: false }}
           // onCreated={({ gl }) => {
           //   gl.toneMapping = THREE.Uncharted2ToneMapping;
           //   gl.outputEncoding = THREE.sRGBEncoding;

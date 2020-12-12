@@ -1,12 +1,26 @@
 @import '../../../styles/styles.scss';
+$offset: calc(0rem - (#{$spacer-content} + #{$nav-large}) / 2);
 
 .buttons__wrapper {
-  right: 5rem;
-  bottom: 5rem;
-  position: absolute;
-
+  align-self: flex-end;
+  margin: 4rem;
+  margin-left: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
+  z-index: 10;
+  grid-area: main;
+
+  user-select: none;
+
+  @media (max-width: $breakpoint-medium) {
+    margin: 0 0 3rem auto;
+  }
+
+  @media (max-width: $breakpoint-small) {
+    justify-content: space-between;
+    margin: 0 0 3rem 0;
+  }
 
   .button {
     margin-left: 3rem;
@@ -15,6 +29,7 @@
 }
 
 .error {
+  grid-area: main;
   height: 100%;
   text-align: center;
   z-index: 10;
@@ -23,6 +38,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(#{$offset});
 
   .error__title {
     font-family: $font-title;

@@ -9,6 +9,23 @@
   background: $background;
   grid-area: header;
 
+  @media (max-width: $breakpoint-small) {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: $nav-small;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      height: 0.1rem;
+      background: $line;
+      width: 100%;
+      bottom: 0;
+    }
+  }
+
   & .header__content {
     display: flex;
     flex-direction: column;
@@ -17,6 +34,11 @@
     width: 100%;
     height: calc(100% - 5rem);
     padding: 2rem 0;
+
+    @media (max-width: $breakpoint-small) {
+      flex-direction: row;
+      padding: 0 4rem 0;
+    }
   }
 }
 
@@ -24,6 +46,10 @@
   height: 0;
   width: 0.1rem;
   background: $line;
+
+  @media (max-width: $breakpoint-small) {
+    display: none;
+  }
 }
 
 .nav__icon {

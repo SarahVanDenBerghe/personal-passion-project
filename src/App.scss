@@ -2,10 +2,20 @@
 
 .app {
   display: grid;
-  grid-template-columns: $nav-large 1fr;
+  grid-template: 1fr / #{$nav-large} 1fr;
   height: 100%;
   width: 100%;
   grid-template-areas: 'header content';
+
+  @media (max-width: $breakpoint-small) {
+    grid-template: $nav-small 1fr / 1fr;
+    grid-template-areas: 'header' 'content';
+  }
+}
+
+::selection {
+  color: $light;
+  background: $accent;
 }
 
 .content {
@@ -15,6 +25,22 @@
   padding-left: 15rem;
   display: grid;
   grid-template-areas: 'main';
+
+  @media (max-width: $breakpoint-large) {
+    padding-left: 10rem;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    padding: 0 5rem;
+  }
+
+  @media (max-width: $breakpoint-small) {
+    padding: 0 3.5rem;
+  }
+
+  @media (max-width: $breakpoint-extra-small) {
+    padding: 0 2.5rem;
+  }
 }
 
 .particles {

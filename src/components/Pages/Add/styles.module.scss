@@ -1,35 +1,40 @@
 @import '../../../styles/styles.scss';
 
-.add__text {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  top: calc(50% - 20rem);
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-  text-shadow: 0 0 1.5rem rgba(63, 107, 169, 0.4);
-  font-family: $font-title;
-  color: $light;
-  // pointer-events: none;
+.add {
+  grid-area: main;
 
-  .add__title {
-    @include title-large;
-    line-height: 1.5;
-    opacity: 0;
-  }
+  .add__text {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: calc(50% - 20rem);
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    text-shadow: 0 0 1.5rem rgba(63, 107, 169, 0.4);
+    font-family: $font-title;
+    color: $light;
+    // pointer-events: none;
+    user-select: none;
 
-  .add__tagline {
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5rem;
-    opacity: 0;
-  }
+    .add__title {
+      @include title-large;
+      line-height: 1.5;
+      opacity: 0;
+    }
 
-  .add_icon {
-    margin-top: 10rem;
-    height: 5rem;
-    width: 5rem;
+    .add__tagline {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5rem;
+      opacity: 0;
+    }
+
+    .add_icon {
+      margin-top: 10rem;
+      height: 5rem;
+      width: 5rem;
+    }
   }
 }

@@ -7,33 +7,75 @@
   justify-content: center;
   align-items: flex-start;
   grid-area: main;
-}
 
-.title {
-  font-family: $font-title;
-  font-size: 6rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
+  @media (max-width: $breakpoint-small) {
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-top: 8rem;
+    display: flex;
+  }
 
-.intro {
-  max-width: 40rem;
-  margin-bottom: 5rem;
-}
+  .title {
+    font-family: $font-title;
+    font-size: 6rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    line-height: 1.5;
 
-.label {
-  width: 40rem;
-}
+    @media (max-width: $breakpoint-medium) {
+      font-size: 5.6rem;
+    }
 
-.button {
-  margin-top: 2rem;
-  align-self: flex-start;
-}
+    @media (max-width: $breakpoint-small) {
+      font-size: 5rem;
+    }
 
-.title,
-.intro,
-.label,
-.button {
-  transform: translateY(15rem);
-  opacity: 0;
+    @media (max-width: 500px) {
+      font-size: 3.7rem;
+    }
+  }
+
+  .intro {
+    max-width: 40rem;
+    margin-bottom: 5rem;
+  }
+
+  .form {
+    @media (max-width: $breakpoint-small) {
+      width: 100%;
+    }
+  }
+
+  .label {
+    width: 40rem;
+    margin-top: 3rem;
+
+    @media (max-width: $breakpoint-small) {
+      width: 100%;
+    }
+  }
+
+  .button {
+    margin-top: 2rem;
+    align-self: flex-start;
+
+    @media (max-width: $breakpoint-small) {
+      margin: 0 auto;
+    }
+  }
+
+  .title,
+  .intro,
+  .label,
+  .button {
+    transform: translateY(15rem);
+    opacity: 0;
+  }
+
+  .form {
+    @media (max-width: $breakpoint-medium) {
+      font-size: 5.6rem;
+    }
+  }
 }

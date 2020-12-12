@@ -5,19 +5,34 @@
   top: 10rem;
   left: 20rem;
 
+  @media (max-width: $breakpoint-large) {
+    top: 6rem;
+    left: 14rem;
+  }
+
+  @media (max-width: $breakpoint-small) {
+    top: 10rem;
+    left: 3rem;
+  }
+
   .title {
     font-family: $font-title;
     font-size: 4rem;
     font-weight: 500;
-    // opacity: 0;
-    // transform: translateY(15rem);
+    transform: translateY(-1rem);
+
+    @media (max-width: $breakpoint-small) {
+      font-size: 3rem;
+    }
+
+    @media (max-width: $breakpoint-extra-small) {
+      font-size: 3rem;
+    }
   }
 
   .count {
     color: $accent;
     text-transform: uppercase;
-    // opacity: 0;
-    // transform: translateY(12rem);
   }
 }
 
@@ -35,4 +50,13 @@
   height: 100%;
   width: 100%;
   position: absolute;
+
+  @media (max-width: $breakpoint-large) {
+    height: 80%;
+    margin-top: 10rem;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    margin-top: 7rem;
+  }
 }

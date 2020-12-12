@@ -6,6 +6,18 @@
   align-items: center;
   grid-area: main;
 
+  @media (max-width: $breakpoint-small) {
+    align-items: flex-start;
+    margin-top: 8rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: $breakpoint-extra-small) {
+    margin-top: 8rem;
+  }
+
   .text__title {
     font-family: $font-title;
     font-size: 8rem;
@@ -15,6 +27,18 @@
     letter-spacing: 0.1rem;
     transform: translateY(15rem);
     opacity: 0;
+
+    @media (max-width: $breakpoint-medium) {
+      font-size: 5.6rem;
+    }
+
+    @media (max-width: $breakpoint-small) {
+      font-size: 5rem;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 3.7rem;
+    }
 
     & .highlight {
       font-weight: 600;
@@ -34,5 +58,9 @@
     opacity: 0;
     display: flex;
     transform: translateY(15rem);
+
+    @media (max-width: $breakpoint-small) {
+      margin: 0 auto;
+    }
   }
 }

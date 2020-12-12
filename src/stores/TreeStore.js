@@ -25,6 +25,7 @@ class TreeStore {
   };
 
   findTreeById = async (id) => {
+    this.loading = true;
     if (this.currentTree === undefined) {
       const data = await this.strapiService.findTreeById(id);
       if (data !== 404) {
@@ -39,7 +40,8 @@ class TreeStore {
           this.loading = false;
         }
       } else {
-        this.currentTree = undefined;
+        this.setCurrentTree(undefined);
+        this.loading = false;
       }
     }
   };
