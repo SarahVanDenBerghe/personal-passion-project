@@ -94,9 +94,10 @@
         -webkit-appearance: none;
         width: 3.5rem;
         height: 3.5rem;
-        border: 1px solid #464646;
+        border: 0.1rem solid #464646;
         border-radius: 50%;
         outline: none;
+        padding: 0;
       }
 
       .circleRed {
@@ -112,12 +113,11 @@
       }
 
       .circleImage {
-        background-size: cover;
+        background: center / cover no-repeat url('./../../../assets/icons/image.svg');
       }
 
-      .circleImageActive {
-        border: 0.1rem solid $light;
-        box-shadow: 0 0 1rem 0 rgba(8, 8, 8, 0.4) inset;
+      .circleCamera {
+        background: center / cover no-repeat url('./../../../assets/icons/camera.svg');
       }
 
       .circle:hover {
@@ -142,10 +142,32 @@
         display: flex;
       }
 
-      .style__image {
+      .style__custom {
         margin-left: 3rem;
         display: flex;
         align-items: center;
+        position: relative;
+
+        .style__customPreview {
+          height: 3.5rem;
+          width: 3.5rem;
+          border: 0.1rem solid $light;
+          box-shadow: 0 0 1rem 0 rgba(8, 8, 8, 0.4) inset;
+          border-radius: 50%;
+          background-size: cover;
+        }
+
+        .style__remove {
+          text-transform: uppercase;
+          opacity: 0.6;
+          font-size: 1.1rem;
+          letter-spacing: 0.1rem;
+          margin-left: 1.2rem;
+        }
+
+        & div {
+          height: 3.5rem;
+        }
 
         p {
           margin-right: 1rem;
@@ -155,7 +177,7 @@
           position: absolute;
           content: '';
           transform: translateX(-2rem);
-          height: 3rem;
+          height: 100%;
           width: 0.1rem;
           background: rgba(151, 151, 151, 0.4);
         }

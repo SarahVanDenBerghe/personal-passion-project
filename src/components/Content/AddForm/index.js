@@ -1,25 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
-import { Close } from '../../UI';
 import { gsap } from 'gsap';
 import { useStore } from '../../../hooks';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
-import styles from './styles.module.scss';
-import img from '../../../assets/icons/image.svg';
-
-// https://www.npmjs.com/package/react-html5-camera-photo
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
+import styles from './styles.module.scss';
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [cameraActive, setCameraActive] = useState(false);
   const [style, setStyle] = useState('color');
   const [color, setColor] = useState('red');
   const [preview, setPreview] = useState(null);
+  const [imageOrigin, setImageOrigin] = useState('');
   const [file, setFile] = useState(null);
   const bauble = baublesStore.baubleFromUser;
 
@@ -41,11 +39,8 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     await bauble.setInfo({ name, text, treeId, style, color, image: { file: file, url: preview } });
-
-    // Push to database
     await bauble.create();
 
-    // Get updated bauble with right id
     const updatedBauble = baublesStore.baubleFromUser;
     updatedBauble.setOrigin('data');
     history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
@@ -74,19 +69,14 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     });
   });
 
-  // const handleClickClose = async () => {
-  //   setActive(false);
-  //   baublesStore.removeBaubleFromUser();
-  //   history.push(ROUTES.tree.to + treeId);
-  // };
-
   const handleLoadImage = (target) => {
     const targetFile = target.files[0];
+    console.log(targetFile);
     const imageURL = URL.createObjectURL(targetFile);
     setPreview(imageURL);
     setFile(targetFile);
+    setImageOrigin('upload');
     setStyle('image');
-
     bauble.setImage({ file: targetFile, url: imageURL });
   };
 
@@ -101,14 +91,21 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     bauble.setColor(e.target.value);
   };
 
-  const handleTakePhoto = (dataUri) => {
-    // Do stuff with the photo...
-    console.log('takePhoto');
+  const handleTakePhoto = async (dataUri) => {
+    setCameraActive(false);
+    const base64Response = await fetch(`${dataUri}`);
+    const blob = await base64Response.blob();
+    const imageURL = URL.createObjectURL(blob);
+    const file = new File([blob], 'Camera picture');
+    setPreview(imageURL);
+    setImageOrigin('camera');
+    setFile(file);
+    setStyle('image');
+    bauble.setImage({ file: file, url: imageURL });
   };
 
   return (
     <div className={styles.form__wrapper}>
-      {/* <Close handleClickClose={handleClickClose} active={active} /> */}
       <p
         ref={(el) => {
           titleRef = el;
@@ -176,29 +173,64 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                   checked={style === 'image' && true}
                 />
               </div>
-              <div className={styles.style__image}>
-                {/* <Camera
-                  onTakePhoto={(dataUri) => {
-                    handleTakePhoto(dataUri);
-                  }}
-                /> */}
-                <label htmlFor="image" className="hidden">
-                  Image
-                </label>
-                <input
-                  style={{
-                    background: `center / cover no-repeat url(${preview ? preview : img})`,
-                  }}
-                  type="file"
-                  accept="image/*"
-                  id="image"
-                  name="filename"
-                  className={`${styles.circle} ${styles.circleImage} ${preview && styles.circleImageActive}`}
-                  onChange={(e) => handleLoadImage(e.currentTarget)}
-                />
-                {preview && <p onClick={handleClickRemoveImage}>Remove</p>}
+
+              <div className={styles.style__custom}>
+                {!preview && (
+                  <>
+                    {!cameraActive && (
+                      <div className={styles.style__image}>
+                        <label htmlFor="image" className="hidden">
+                          Image
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          id="image"
+                          name="filename"
+                          className={`${styles.circle} ${styles.circleImage}`}
+                          onChange={(e) => handleLoadImage(e.currentTarget)}
+                        />
+                      </div>
+                    )}
+
+                    <div className={styles.style__camera}>
+                      <button
+                        onClick={(e) => {
+                          setCameraActive(true);
+                          e.preventDefault();
+                        }}
+                        className={`${styles.circle} ${styles.circleCamera}`}
+                      />
+                    </div>
+                  </>
+                )}
+                {cameraActive && (
+                  <p className={styles.style__remove} onClick={() => setCameraActive(false)}>
+                    Cancel
+                  </p>
+                )}
+                {preview && (
+                  <>
+                    <div
+                      className={styles.style__customPreview}
+                      style={{
+                        background: `center / cover no-repeat url(${preview ? preview : ''})`,
+                      }}
+                    ></div>
+                    <p className={styles.style__remove} onClick={handleClickRemoveImage}>
+                      Remove
+                    </p>
+                  </>
+                )}
               </div>
             </div>
+            {cameraActive && (
+              <Camera
+                onTakePhoto={(dataUri) => {
+                  handleTakePhoto(dataUri);
+                }}
+              />
+            )}
           </fieldset>
 
           <label

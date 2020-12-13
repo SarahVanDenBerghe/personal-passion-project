@@ -45,20 +45,7 @@ body,
 #root {
   width: 100%;
   height: 100%;
-  // margin: 0;
-  // padding: 0;
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
-  // -khtml-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
-  // overflow: hidden;
 }
-
-// #root {
-//   overflow: auto;
-// }
 
 .Toastify__toast--default {
   background: $dark !important;
@@ -70,4 +57,13 @@ body,
 
 .Toastify__toast {
   padding: 2rem !important;
+}
+
+.react-html5-camera-photo > img,
+.react-html5-camera-photo > video {
+  width: 100% !important;
+}
+
+.react-html5-camera-photo {
+  margin-bottom: 3rem;
 }

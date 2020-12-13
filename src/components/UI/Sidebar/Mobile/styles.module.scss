@@ -14,7 +14,7 @@ $width: 50rem;
   transform: translate3d(0, 0, 0);
   overflow-y: scroll;
 
-  @media (max-width: $breakpoint-small) {
-    padding: 3rem;
+  @media (max-width: $breakpoint-medium) {
+    padding: 3rem 3rem 7rem 3rem;
   }
 }
