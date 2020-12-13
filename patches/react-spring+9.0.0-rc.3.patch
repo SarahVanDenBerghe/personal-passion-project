@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-spring/package.json b/node_modules/react-spring/package.json
+index a8bc373..d6ae6d0 100644
+--- a/node_modules/react-spring/package.json
++++ b/node_modules/react-spring/package.json
+@@ -22,7 +22,6 @@
+   "contributors": [
+     "Alec Larson (https://github.com/aleclarson)"
+   ],
+-  "sideEffects": false,
+   "main": "web.cjs.js",
+   "module": "web.js",
+   "types": "web.d.ts",

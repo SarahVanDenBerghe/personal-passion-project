@@ -12,6 +12,8 @@
     "gsap": "^3.5.1",
     "mobx": "^6.0.4",
     "mobx-react-lite": "^3.1.6",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.1",
     "react-animated-cursor": "^2.1.8",
     "react-dom": "^17.0.1",
@@ -31,6 +33,7 @@
     "uid": "^2.0.0"
   },
   "scripts": {
+    "postinstall": "patch-package",
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
