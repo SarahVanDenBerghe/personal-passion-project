@@ -26,9 +26,9 @@ const Sidebar = ({ children, active, setActive }) => {
           {children}
         </SidebarDesktop>
       ) : (
-        <SidebarMobile active={active} setActive={setActive}>
+        <SidebarDesktop active={active} setActive={setActive}>
           {children}
-        </SidebarMobile>
+        </SidebarDesktop>
       )}
     </>
   );
