@@ -74,11 +74,11 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
     });
   });
 
-  const handleClickClose = async () => {
-    setActive(false);
-    baublesStore.removeBaubleFromUser();
-    history.push(ROUTES.tree.to + treeId);
-  };
+  // const handleClickClose = async () => {
+  //   setActive(false);
+  //   baublesStore.removeBaubleFromUser();
+  //   history.push(ROUTES.tree.to + treeId);
+  // };
 
   const handleLoadImage = (target) => {
     const targetFile = target.files[0];
@@ -108,7 +108,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   return (
     <div className={styles.form__wrapper}>
-      <Close handleClickClose={handleClickClose} active={active} />
+      {/* <Close handleClickClose={handleClickClose} active={active} /> */}
       <p
         ref={(el) => {
           titleRef = el;

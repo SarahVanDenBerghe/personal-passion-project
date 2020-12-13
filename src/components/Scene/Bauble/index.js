@@ -32,7 +32,7 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
   }, [sphereRef, bauble.y]);
 
   const toggleInfo = (e) => {
-    if (pathname !== ROUTES.add.to) {
+    if (pathname.split('/').includes('add') === false) {
       e.stopPropagation();
       setHover(!hovered);
     }
@@ -41,7 +41,7 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
   const handleClickBauble = (e) => {
     e.stopPropagation();
 
-    if (pathname !== ROUTES.add.to) {
+    if (pathname.split('/').includes('add') === false) {
       history.push(ROUTES.tree.to + treeStore.currentTree.id + ROUTES.detail.to + bauble.id);
     }
   };
@@ -66,7 +66,7 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
       onPointerOver={(e) => toggleInfo(e)}
       onPointerOut={(e) => toggleInfo(e)}
       onClick={(e) => handleClickBauble(e)}
-      onTouchStart={(e) => handleClickBauble()}
+      onPointerDown={(e) => handleClickBauble(e)}
       ref={(el) => {
         sphereRef = el;
       }}

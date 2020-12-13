@@ -71,14 +71,7 @@ const CanvasWrapperCreator = observer(() => {
       </div>
 
       <div className={styles.canvas__wrapper} ref={canvas}>
-        <Canvas
-          shadowMap
-          resize={{ scroll: false }}
-          // onCreated={({ gl }) => {
-          //   gl.toneMapping = THREE.Uncharted2ToneMapping;
-          //   gl.outputEncoding = THREE.sRGBEncoding;
-          // }}
-        >
+        <Canvas shadowMap resize={{ scroll: false }}>
           <CameraControls pathname={pathname} canvas={canvas} setGroupPos={setGroupPos} />
           <Lights />
           <Floor />

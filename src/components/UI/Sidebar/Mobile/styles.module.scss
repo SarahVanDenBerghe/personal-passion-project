@@ -1,0 +1,21 @@
+@import '../../../../styles/styles.scss';
+$spacing: 3rem;
+$width: 50rem;
+
+.sheet {
+  padding: 4rem;
+  grid-area: main;
+  z-index: 20;
+  align-self: flex-end;
+  height: 50%;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  background: $dark;
+  touch-action: none;
+  transform: translate3d(0, 0, 0);
+  overflow-y: scroll;
+
+  @media (max-width: $breakpoint-small) {
+    padding: 3rem;
+  }
+}

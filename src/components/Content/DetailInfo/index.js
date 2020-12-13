@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import { useStore } from '../../../hooks';
-import { ROUTES } from '../../../consts';
-import { Share, Close } from '../../UI';
+import { Share } from '../../UI';
 import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 
 const DetailInfo = observer(({ active, setActive }) => {
   const { baublesStore } = useStore();
   const [detail, setDetail] = useState(null);
-  const history = useHistory();
-  const { treeId, baubleId } = useParams();
+  const { baubleId } = useParams();
 
   let title,
     name,
@@ -80,11 +77,6 @@ const DetailInfo = observer(({ active, setActive }) => {
     });
   };
 
-  const handleClickClose = () => {
-    setActive(false);
-    history.push(ROUTES.tree.to + treeId);
-  };
-
   const getBackground = () => {
     if (detail.style === 'image') {
       return `center / cover no-repeat url(${detail.origin === 'data' ? process.env.REACT_APP_STRAPI_API : ''}${
@@ -106,8 +98,6 @@ const DetailInfo = observer(({ active, setActive }) => {
 
   return (
     <div className={styles.detail}>
-      <Close handleClickClose={handleClickClose} active={active} />
-
       <div className={styles.detail__bauble}>
         <span
           className={styles.bauble__line}
@@ -127,7 +117,7 @@ const DetailInfo = observer(({ active, setActive }) => {
       </div>
 
       <div className={styles.detail__text}>
-        <div>
+        <div className={styles.text}>
           <p
             className={styles.detail__title}
             ref={(el) => {

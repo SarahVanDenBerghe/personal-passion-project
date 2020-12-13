@@ -5,6 +5,10 @@
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 0.3rem;
+
+  @media (max-width: $breakpoint-medium) {
+    font-size: 1.6rem;
+  }
 }
 
 @mixin title-large {
@@ -13,4 +17,8 @@
   font-size: 7rem;
   font-weight: 600;
   letter-spacing: 0.15rem;
+
+  @media (max-width: $breakpoint-medium) {
+    font-size: 5rem;
+  }
 }

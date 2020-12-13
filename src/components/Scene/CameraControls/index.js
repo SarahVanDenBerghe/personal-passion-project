@@ -1,11 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useThree } from 'react-three-fiber';
 import { gsap } from 'gsap';
 import { ROUTES } from '../../../consts';
 import { OrbitControls } from 'drei';
 import { useStore } from '../../../hooks';
 
+const useWindowSize = () => {
+  const [size, setSize] = useState(0);
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      setSize(window.innerWidth);
+    };
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
+
 const CameraControls = ({ canvas, pathname, setGroupPos }) => {
+  const width = useWindowSize();
   const { baublesStore } = useStore();
   const { gl, camera } = useThree();
   const [zoom, setZoom] = useState(0);
@@ -86,11 +100,13 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
       );
     }
 
-    gsap.to(canvas.current, {
-      duration: 0.55,
-      ease: 'Power2.easeIn',
-      x: animation.canvas.xPos,
-    });
+    if (width > 768) {
+      gsap.to(canvas.current, {
+        duration: 0.55,
+        ease: 'Power2.easeIn',
+        x: animation.canvas.xPos,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoomIn]);
 
