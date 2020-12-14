@@ -30,6 +30,7 @@ const Share = () => {
           </li>
           <li>
             <a
+              aria-label="Share on Twitter"
               className={styles.icon + ' ' + styles.iconTwitter}
               href={`http://twitter.com/share?text=Check out this Christmas wish!&url=${window.location.href}`}
               target="_blank"
@@ -40,6 +41,7 @@ const Share = () => {
           </li>
           <li>
             <a
+              aria-label="Share on Facebook"
               href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
               className={styles.icon + ' ' + styles.iconFacebook}
               target="_blank"

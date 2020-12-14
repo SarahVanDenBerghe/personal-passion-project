@@ -28,6 +28,7 @@
   .icon {
     display: inherit;
     padding: 0;
+    position: relative;
   }
 
   .icon::after {
@@ -36,6 +37,7 @@
     height: 3rem;
     position: absolute;
     background-repeat: no-repeat;
+    left: 0;
   }
 
   .iconLink::after {

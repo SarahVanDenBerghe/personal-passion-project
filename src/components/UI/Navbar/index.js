@@ -59,6 +59,8 @@ const Navbar = () => {
         </nav>
         <div>
           <img
+            height="17"
+            width="17"
             ref={(el) => {
               music = el;
             }}
