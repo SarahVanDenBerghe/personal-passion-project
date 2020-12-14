@@ -8,7 +8,7 @@ import { useStore } from '../../../hooks';
 const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   const { baublesStore } = useStore();
   // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
-  const gltf = useGLTFLoader('/tree_testing5.glb', true);
+  const gltf = useGLTFLoader('/scene/tree_star.glb', true);
   const mesh = useRef();
   const id = pathname.split('/')[2];
 

@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.scss';
 
 const Share = () => {
+  const tooltip = useRef(null);
+  const copy = () => {
+    let dummy = document.createElement('input'),
+      text = window.location.href;
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    ReactTooltip.show(tooltip.current);
+
+    setTimeout(() => {
+      ReactTooltip.hide(tooltip.current);
+    }, 2000);
+  };
+
   return (
     <>
       <div className={styles.share}>
         <p className={styles.share__title}>Share</p>
         <ul className={styles.share__buttons}>
           <li>
-            <a className={styles.icon + ' ' + styles.iconLink} href={window.location.href} target="_blank">
-              <span className="hidden">Link</span>
-            </a>
+            <p ref={tooltip} data-tip="copied!" />
+            <button className={styles.icon + ' ' + styles.iconLink} onClick={() => copy()} />
+            <ReactTooltip />
           </li>
           <li>
             <a

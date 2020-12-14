@@ -6,7 +6,7 @@ const HomeDecorations = ({ showDecoration }) => {
   const treeDecorated_1 = useGLTFLoader('/scene/tree_decorated_1.glb', true);
   const treeDecorated_2 = useGLTFLoader('/scene/tree_decorated_2.glb', true);
   const treeDecorated_3 = useGLTFLoader('/scene/tree_decorated_3.glb', true);
-  const giftRed = useGLTFLoader('/scene/gift.glb', true);
+  const giftRed = useGLTFLoader('/scene/gift_1.glb', true);
   const giftGreen = useGLTFLoader('/scene/gift_2.glb', true);
   const giftBlue = useGLTFLoader('/scene/gift_3.glb', true);
 

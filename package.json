@@ -24,6 +24,7 @@
     "react-spring": "^9.0.0-rc.3",
     "react-three-fiber": "^4.2.10",
     "react-toastify": "^6.1.0",
+    "react-tooltip": "^4.2.11",
     "react-transition-group": "^4.4.1",
     "react-use-gesture": "^8.0.1",
     "sass": "^1.26.8",

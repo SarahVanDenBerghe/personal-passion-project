@@ -25,6 +25,11 @@
     transition: 0.2;
   }
 
+  .icon {
+    display: inherit;
+    padding: 0;
+  }
+
   .icon::after {
     content: '';
     width: 3rem;
