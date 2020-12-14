@@ -4,18 +4,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  // padding: 3rem;
-
-  // @media (max-width: $breakpoint-medium) {
-  //   padding: 3rem;
-  // }
 
   @media (max-width: $breakpoint-small) {
     height: auto;
   }
 
   .form__title {
-    margin-bottom: 7rem;
+    margin: 3rem 0 5rem 0;
     font-size: 3rem;
     font-family: $font-title;
     text-align: center;
@@ -63,7 +58,7 @@
 .form {
   .form__submit {
     display: block;
-    margin: 8rem auto 0;
+    margin: 5rem auto 0;
 
     @media (max-width: $breakpoint-medium) {
       margin-top: 2rem;

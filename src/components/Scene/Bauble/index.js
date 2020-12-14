@@ -24,7 +24,7 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
 
   const textureFromLoader = useLoader(THREE.TextureLoader, bauble.style === 'image' ? getImage() : img);
   textureFromLoader.minFilter = THREE.LinearFilter;
-  textureFromLoader.offset.x = -0.2;
+  textureFromLoader.offset.x = -0.25;
 
   useEffect(() => {
     const center = new THREE.Vector3(0, bauble.y, 0);

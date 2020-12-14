@@ -260,7 +260,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               id="message"
               value={text}
               cols="50"
-              rows="5"
+              rows="3"
               onChange={(e) => setText(e.currentTarget.value)}
               maxLength="200"
               required
