@@ -19,6 +19,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const [preview, setPreview] = useState(null);
   const [imageOrigin, setImageOrigin] = useState('');
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
   const bauble = baublesStore.baubleFromUser;
 
   const history = useHistory();
@@ -38,12 +39,15 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    await bauble.setInfo({ name, text, treeId, style, color, image: { file: file, url: preview } });
-    await bauble.create();
-
-    const updatedBauble = baublesStore.baubleFromUser;
-    updatedBauble.setOrigin('data');
-    history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
+    if (!loading && bauble) {
+      setLoading(true);
+      await bauble.setInfo({ name, text, treeId, style, color, image: { file: file, url: preview } });
+      await bauble.create();
+      const updatedBauble = await baublesStore.baubleFromUser;
+      updatedBauble.setOrigin('data');
+      history.push(ROUTES.tree.to + treeId + ROUTES.detail.to + updatedBauble.id);
+      setLoading(false);
+    }
   };
 
   const animation = {
@@ -184,7 +188,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                         </label>
                         <input
                           type="file"
-                          accept="image/*"
+                          accept="image/png, image/jpeg, image/jpg"
                           id="image"
                           name="filename"
                           className={`${styles.circle} ${styles.circleImage}`}
