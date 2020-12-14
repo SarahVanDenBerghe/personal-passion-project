@@ -1,12 +1,25 @@
-import React, { Suspense, useRef, useEffect } from 'react';
+import React, { Suspense, useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { Lights, CreateTree, HomeDecorations } from '..';
 import { PerspectiveCamera } from 'drei';
 import styles from './styles.module.scss';
 import { gsap } from 'gsap';
 
-// softShadows();
+const useWindowSize = () => {
+  const [size, setSize] = useState(0);
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      setSize(window.innerWidth);
+    };
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
+
 const CanvasWrapperHome = ({ showDecoration, showIntroCanvas }) => {
+  const width = useWindowSize();
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -24,11 +37,11 @@ const CanvasWrapperHome = ({ showDecoration, showIntroCanvas }) => {
     <>
       <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas className={styles.canvas} shadowMap resize={{ scroll: false }}>
-          <PerspectiveCamera position={[0, 0, 11]} lookAt={[0, 0, 0]} makeDefault />
+          <PerspectiveCamera position={width < 768 ? [3.4, 1.5, 15] : [0, 0, 11]} lookAt={[0, 0, 0]} makeDefault />
           <Lights />
           <group>
             <Suspense fallback={null}>
-              <CreateTree showDecoration={showDecoration} />
+              <CreateTree mobile={width < 768 ? true : false} showDecoration={showDecoration} />
             </Suspense>
             <Suspense fallback={null}>
               <HomeDecorations showDecoration={showDecoration} />

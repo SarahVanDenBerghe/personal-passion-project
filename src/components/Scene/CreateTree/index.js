@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useGLTFLoader } from 'drei';
 import { useSpring, a, config } from 'react-spring/three';
 
-const CreateTree = ({ showDecoration }) => {
-  const [positionTree, setPositionTree] = useState([3.5, -5, 1.2]);
+const CreateTree = ({ showDecoration, mobile }) => {
+  // .5, -5, 1.2
+  const [positionTree, setPositionTree] = useState(mobile ? [5, -5, 1.2] : [3.5, -5, 1.2]);
   const [rotationTree, setRotationTree] = useState([0, 0, 0]);
   const [positionStar, setPositionStar] = useState([3.5, 5, -1]);
   const treeEmpty = useGLTFLoader('/scene/tree_empty.glb', true);
@@ -17,25 +18,17 @@ const CreateTree = ({ showDecoration }) => {
 
   set({ scaleTreeEmpty: [1, 1, 1] });
 
-  // useEffect(() => {
-  //   set({
-  //     scaleTreeEmpty: [0, 0, 0],
-  //     scaleStar: [0, 0, 0],
-  //     config: config.default,
-  //   });
-  // });
-
   useEffect(() => {
     if (!showDecoration) {
       // Only tree and star
-      setPositionTree([3.5, -5, -1]);
+      setPositionTree(mobile ? [3.5, -9, 1.5] : [3.5, -5, -1]);
       setRotationTree([0, 3, 0]);
       setTimeout(() => {
-        setPositionStar([3.5, -5, -1]);
+        setPositionStar(mobile ? [3.5, -9, 1.5] : [3.5, -5, -1]);
       }, 100);
     } else {
       // Tree & Decorationss, no star
-      setPositionTree([3.5, -5, 1.2]);
+      setPositionTree(mobile ? [5, -5, 1.2] : [3.5, -5, 1.2]);
       setRotationTree([0, 0, 0]);
       setPositionStar([4, 2, -1]);
     }

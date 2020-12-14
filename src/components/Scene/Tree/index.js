@@ -2,12 +2,10 @@ import React, { useRef } from 'react';
 import { useGLTFLoader } from 'drei';
 import { ROUTES } from '../../../consts';
 import Bauble from '../../../models/Bauble';
-import { Preview } from '..';
 import { useStore } from '../../../hooks';
 
 const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   const { baublesStore } = useStore();
-  // const gltf = useGLTFLoader('/pine_tree/scene.gltf', true);
   const gltf = useGLTFLoader('/scene/tree_star.glb', true);
   const mesh = useRef();
   const id = pathname.split('/')[2];
@@ -29,7 +27,6 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   };
 
   const showBaublePreview = (point) => {
-    // Warning
     if (showPreview) {
       setPreviewLocation([point.x, point.y, point.z]);
     }

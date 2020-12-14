@@ -17,6 +17,11 @@
     font-family: $font-title;
     color: $light;
     user-select: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .add__title {
       @include title-large;

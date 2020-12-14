@@ -81,8 +81,23 @@
   }
 }
 
-.header__volume {
-  height: 1.7rem;
-  width: 1.7rem;
-  transform: scale(0, 0);
+.volume {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .header__volume {
+    height: 1.7rem;
+    width: 1.7rem;
+    transform: scale(0, 0);
+  }
+
+  .volume__line {
+    position: absolute;
+    background: $accent;
+    height: 0;
+    width: 0.2rem;
+    transform: rotate(40deg);
+  }
 }

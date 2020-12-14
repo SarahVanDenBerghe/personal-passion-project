@@ -42,12 +42,6 @@ const Add = () => {
     setActive(true);
   }, []);
 
-  // setTimeout(() => {
-  //   if (active) {
-  //     handleClickNext();
-  //   }
-  // }, 2000);
-
   const handleClickNext = () => {
     setActive(false);
     history.push(ROUTES.tree.to + treeId + ROUTES.add.firststep);

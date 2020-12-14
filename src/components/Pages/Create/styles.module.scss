@@ -39,6 +39,10 @@
   .intro {
     max-width: 40rem;
     margin-bottom: 5rem;
+
+    @media (max-width: $breakpoint-medium) {
+      margin-bottom: 3rem;
+    }
   }
 
   .form {

@@ -1,7 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import SidebarDesktop from './Desktop';
 import SidebarMobile from './Mobile';
-import styles from './styles.module.scss';
 
 const useWindowSize = () => {
   const [size, setSize] = useState(0);
