@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Loader, Share } from '../../UI';
 import { ROUTES } from '../../../consts';
 import { observer } from 'mobx-react-lite';
@@ -39,7 +39,6 @@ const Tree = observer(({ showTree, setShowTree }) => {
           </Switch>
         </>
       )}
-      {/* && !treeStore.loading */}
       {!treeStore.currentTree && !treeStore.loading && (
         <>
           <div className={styles.error}>

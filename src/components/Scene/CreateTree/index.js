@@ -3,7 +3,6 @@ import { useGLTFLoader } from 'drei';
 import { useSpring, a, config } from 'react-spring/three';
 
 const CreateTree = ({ showDecoration, mobile }) => {
-  // .5, -5, 1.2
   const [positionTree, setPositionTree] = useState(mobile ? [5, -5, 1.2] : [3.5, -5, 1.2]);
   const [rotationTree, setRotationTree] = useState([0, 0, 0]);
   const [positionStar, setPositionStar] = useState([3.5, 5, -1]);
@@ -27,7 +26,7 @@ const CreateTree = ({ showDecoration, mobile }) => {
         setPositionStar(mobile ? [3.5, -9, 1.5] : [3.5, -5, -1]);
       }, 100);
     } else {
-      // Tree & Decorationss, no star
+      // Tree & Decorations, no star
       setPositionTree(mobile ? [5, -5, 1.2] : [3.5, -5, 1.2]);
       setRotationTree([0, 0, 0]);
       setPositionStar([4, 2, -1]);

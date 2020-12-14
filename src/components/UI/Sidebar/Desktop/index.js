@@ -8,8 +8,6 @@ import { useParams } from 'react-router-dom';
 import { useStore } from '../../../../hooks';
 import styles from './styles.module.scss';
 
-// https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js
-
 const SidebarDesktop = ({ children, active, setActive }) => {
   const { treeId } = useParams();
   const { baublesStore } = useStore();
@@ -25,7 +23,6 @@ const SidebarDesktop = ({ children, active, setActive }) => {
   }, []);
 
   const animation = {
-    // show : hide
     opacity: active ? 1 : 0,
     sidebar: {
       xPos: active ? 0 : 600,

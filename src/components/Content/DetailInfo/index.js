@@ -28,7 +28,6 @@ const DetailInfo = observer(({ active, setActive }) => {
   }, [baubleId, baublesStore]);
 
   const animation = {
-    // show : hide
     opacity: active ? 1 : 0,
     text: {
       yPos: active ? 0 : 150,

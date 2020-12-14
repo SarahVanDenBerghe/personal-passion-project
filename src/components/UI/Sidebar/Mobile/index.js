@@ -7,10 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useStore } from '../../../../hooks';
 import { useHistory } from 'react-router';
 
-// https://codesandbox.io/s/usespring-react-hook-forked-k40ut?file=/src/index.js
-
 const height = 350;
-
 const SidebarMobile = ({ children, active, setActive }) => {
   const { treeId } = useParams();
   const history = useHistory();
@@ -54,5 +51,3 @@ const SidebarMobile = ({ children, active, setActive }) => {
 };
 
 export default SidebarMobile;
-
-// https://codesandbox.io/s/action-sheet-zuwji?file=/src/index.js:258-295

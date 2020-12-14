@@ -15,7 +15,6 @@ class StrapiService {
     return response.data[0].id;
   };
 
-  /* BAUBLES -------------- */
   createBauble = async (bauble) => {
     const response = await api.post('/messages', {
       name: bauble.name,
@@ -53,7 +52,6 @@ class StrapiService {
     return response.data;
   };
 
-  /* TREES -------------- */
   createTree = async (tree) => {
     const response = await api.post('/trees', {
       name: tree.name,
@@ -70,7 +68,6 @@ class StrapiService {
       .catch((error) => {
         return error.response.status;
       });
-    // return response.data;
   };
 }
 export default StrapiService;

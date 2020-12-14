@@ -18,7 +18,6 @@ const Home = ({ setShowDecoration }) => {
 
   useEffect(() => {
     const animation = {
-      // show : hide
       opacity: active ? 1 : 0,
       text: {
         yPos: active ? 0 : -150,
@@ -48,7 +47,6 @@ const Home = ({ setShowDecoration }) => {
   return (
     <>
       <div className={styles.home}>
-        {/* TEXT */}
         <div className={styles.text}>
           <h1
             className={styles.text__title}
