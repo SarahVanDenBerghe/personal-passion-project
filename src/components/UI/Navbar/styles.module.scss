@@ -55,8 +55,8 @@
 .nav__icon {
   width: 2.4rem;
   height: 2.5rem;
-  position: relatve;
-  transform: rotate(0deg);
+  position: relative;
+  transform: scale(1) rotate(0deg);
 
   @media (max-width: $breakpoint-small) {
     transform: scale(0.8);

@@ -65,8 +65,7 @@ const Home = ({ setShowDecoration }) => {
               intro = el;
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid idunt ut labore et sed
-            do eiusmod tempor inci.
+            Start creating your own Christmas tree and place digital baubles to share your wishes to family and friends.
           </p>
 
           <button
