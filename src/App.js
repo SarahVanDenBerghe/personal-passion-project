@@ -3,7 +3,7 @@ import { Navbar } from './components/UI';
 import { Tree, Home, Create } from './components/Pages';
 import { CanvasWrapperCreator, CanvasWrapperHome } from './components/Scene';
 import AnimatedCursor from 'react-animated-cursor';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { Switch, useLocation } from 'react-router';
 import { ROUTES } from './consts';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -24,7 +24,9 @@ const App = () => {
 
   if (isTree) {
     const treeId = location.pathname.split('/')[2];
-    treeStore.findTreeById(treeId);
+    if (treeId) {
+      treeStore.findTreeById(treeId);
+    }
   }
 
   return (
@@ -52,6 +54,9 @@ const App = () => {
               </Route>
               <Route exact path={ROUTES.home}>
                 <Home setShowDecoration={setShowDecoration} />
+              </Route>
+              <Route>
+                <Redirect to={ROUTES.home} />
               </Route>
             </Switch>
           </CSSTransition>

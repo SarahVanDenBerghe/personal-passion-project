@@ -44,6 +44,7 @@ $offset: calc(0rem - (#{$spacer-content} + #{$nav-large}) / 2);
     font-family: $font-title;
     font-size: 5rem;
     font-weight: 600;
+    opacity: 0;
   }
 
   .error__text {
