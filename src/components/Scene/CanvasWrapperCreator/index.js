@@ -1,7 +1,7 @@
 import React, { useState, Suspense, useRef, useEffect } from 'react';
 import { Canvas } from 'react-three-fiber';
 import { softShadows } from 'drei';
-import { Lights, Tree, Floor, Baubles, CameraControls, Preview } from '..';
+import { Lights, Tree, Baubles, CameraControls, Preview } from '..';
 import { useHistory, useLocation } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { useStore } from '../../../hooks';
@@ -74,7 +74,7 @@ const CanvasWrapperCreator = observer(() => {
         <Canvas shadowMap resize={{ scroll: false }}>
           <CameraControls pathname={pathname} canvas={canvas} setGroupPos={setGroupPos} />
           <Lights />
-          <Floor />
+
           <a.group position={spring.group}>
             <Suspense fallback={null}>
               <Tree
