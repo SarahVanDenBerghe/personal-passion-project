@@ -25,7 +25,7 @@ const Share = () => {
         <ul className={styles.share__buttons}>
           <li>
             <p ref={tooltip} data-tip="copied!" />
-            <button className={styles.icon + ' ' + styles.iconLink} onClick={() => copy()} />
+            <button className={styles.icon + ' ' + styles.iconLink} onClick={() => copy()} aria-label="Copy link" />
             <ReactTooltip />
           </li>
           <li>
@@ -33,8 +33,9 @@ const Share = () => {
               className={styles.icon + ' ' + styles.iconTwitter}
               href={`http://twitter.com/share?text=Check out this Christmas wish!&url=${window.location.href}`}
               target="_blank"
+              rel="noopener"
             >
-              <span className="hidden">Twitter</span>
+              <span className="hidden">Share on Twitter</span>
             </a>
           </li>
           <li>
@@ -42,8 +43,9 @@ const Share = () => {
               href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
               className={styles.icon + ' ' + styles.iconFacebook}
               target="_blank"
+              rel="noopener"
             >
-              <span className="hidden">Facebook</span>
+              <span className="hidden">Share on Facebook</span>
             </a>
           </li>
         </ul>
