@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
 import { ROUTES } from '../../../consts';
 import { gsap } from 'gsap';
@@ -8,6 +8,19 @@ import { useParams } from 'react-router-dom';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import styles from './styles.module.scss';
+
+const useWindowSize = () => {
+  const [size, setSize] = useState(0);
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      setSize(window.innerWidth);
+    };
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
 
 const AddForm = observer(({ active, setActive, setRedirect }) => {
   const { baublesStore } = useStore();
@@ -21,6 +34,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const bauble = baublesStore.baubleFromUser;
+  const width = useWindowSize();
 
   const history = useHistory();
   const { treeId } = useParams();
@@ -196,16 +210,17 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
                         />
                       </div>
                     )}
-
-                    <div className={styles.style__camera}>
-                      <button
-                        onClick={(e) => {
-                          setCameraActive(true);
-                          e.preventDefault();
-                        }}
-                        className={`${styles.circle} ${styles.circleCamera}`}
-                      />
-                    </div>
+                    {width > 768 && (
+                      <div className={styles.style__camera}>
+                        <button
+                          onClick={(e) => {
+                            setCameraActive(true);
+                            e.preventDefault();
+                          }}
+                          className={`${styles.circle} ${styles.circleCamera}`}
+                        />
+                      </div>
+                    )}
                   </>
                 )}
                 {cameraActive && (
