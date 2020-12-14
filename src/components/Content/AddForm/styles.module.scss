@@ -58,10 +58,10 @@
 .form {
   .form__submit {
     display: block;
-    margin: 5rem auto 0;
+    margin: 5rem auto 5rem;
 
     @media (max-width: $breakpoint-medium) {
-      margin-top: 2rem;
+      margin: 2rem auto 0;
     }
   }
 

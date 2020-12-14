@@ -1,6 +1,6 @@
 @import '../../../../styles/styles.scss';
 $spacing: 3rem;
-$width: 50rem;
+$width: 42rem;
 
 .sidebar__wrapper {
   height: 100%;
@@ -9,6 +9,7 @@ $width: 50rem;
   padding: $spacing;
   grid-area: main;
   margin-left: auto;
+  position: relative;
 
   @media (max-width: $breakpoint-medium) {
     margin: 0;
@@ -22,8 +23,10 @@ $width: 50rem;
   }
 
   .sidebar {
+    position: absolute;
+    right: $spacing;
     overflow-y: scroll;
-    height: 100%;
+    height: calc(100% - (#{$spacing} * 2));
     width: 100%;
     transform: translateX(calc(#{$width} + (#{$spacing} * 2)));
     opacity: 0;

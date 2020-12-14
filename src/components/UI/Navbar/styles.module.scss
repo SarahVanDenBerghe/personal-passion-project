@@ -37,7 +37,7 @@
 
     @media (max-width: $breakpoint-small) {
       flex-direction: row;
-      padding: 0 4rem 0;
+      padding: 0 2.5rem 0;
     }
   }
 }
@@ -57,6 +57,10 @@
   height: 2.5rem;
   position: relatve;
   transform: rotate(0deg);
+
+  @media (max-width: $breakpoint-small) {
+    transform: scale(0.8);
+  }
 
   & span {
     display: block;
@@ -86,6 +90,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: $breakpoint-small) {
+    transform: scale(0.8);
+  }
 
   .header__volume {
     height: 1.7rem;
