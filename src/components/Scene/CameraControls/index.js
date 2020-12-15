@@ -44,7 +44,9 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
   };
 
   setTimeout(() => {
-    controls.current.enabled = true;
+    if (controls.current) {
+      controls.current.enabled = true;
+    }
   }, 1200); // Enable zoom after loading animation
 
   // Set zoomIn of tree on each route change
@@ -134,11 +136,11 @@ const CameraControls = ({ canvas, pathname, setGroupPos }) => {
         enablePan={false}
         enableZoom={false}
         enableDamping={false}
-        enabled={false}
         target={[0, 0, 0]}
         // target={target}
         args={[camera, gl.domElement]}
         ref={controls}
+        enabled={false}
       />
     </>
   );
