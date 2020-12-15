@@ -245,6 +245,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
             </div>
             {cameraActive && (
               <Camera
+                isSilentMode={true}
                 onTakePhoto={(dataUri) => {
                   handleTakePhoto(dataUri);
                 }}
@@ -261,6 +262,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
           >
             <span>Name</span>
             <input
+              autoComplete="off"
               id="name"
               type="text"
               value={name}
@@ -278,6 +280,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
           >
             <span>Message</span>
             <textarea
+              autoComplete="off"
               id="message"
               value={text}
               cols="50"

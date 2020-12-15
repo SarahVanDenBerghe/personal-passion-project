@@ -89,7 +89,14 @@ const Create = ({ setShowDecoration, setShowIntroCanvas }) => {
             htmlFor="name"
           >
             <span>Name of your tree</span>
-            <input id="name" type="text" value={name} onChange={(e) => setName(e.currentTarget.value)} required />
+            <input
+              autoComplete="off"
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+              required
+            />
           </label>
           <button
             ref={(el) => {
