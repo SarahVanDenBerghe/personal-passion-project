@@ -59,14 +59,18 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
     }
   };
 
+  const events = {
+    onPointerOver: (e) => toggleInfo(e),
+    onPointerOut: (e) => toggleInfo(e),
+    onClick: (e) => handleClickBauble(e),
+    onPointerDown: (e) => handleClickBauble(e),
+  };
+
   return (
     <Sphere
       position={[bauble.x, bauble.y, bauble.z]}
       args={args}
-      onPointerOver={(e) => toggleInfo(e)}
-      onPointerOut={(e) => toggleInfo(e)}
-      onClick={(e) => handleClickBauble(e)}
-      onPointerDown={(e) => handleClickBauble(e)}
+      {...(!preview && events)}
       ref={(el) => {
         sphereRef = el;
       }}

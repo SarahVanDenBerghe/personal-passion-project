@@ -43,7 +43,7 @@ const Create = ({ setShowDecoration, setShowIntroCanvas }) => {
         amount: animation.text.stagger,
       },
     });
-  }, [active]);
+  }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();

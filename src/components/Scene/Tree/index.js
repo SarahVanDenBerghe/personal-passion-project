@@ -10,15 +10,15 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   const mesh = useRef();
   const id = pathname.split('/')[2];
 
-  const addBauble = (point) => {
+  const addBauble = (e) => {
     const addBaublePath = ROUTES.tree.to + id + ROUTES.add.firststep;
     const baubleUser = baublesStore.baubleFromUser;
 
     if (pathname === addBaublePath && !baubleUser) {
       new Bauble({
-        x: point.x,
-        y: point.y,
-        z: point.z,
+        x: e.point.x,
+        y: e.point.y,
+        z: e.point.z,
         store: baublesStore,
         origin: 'user',
       });
@@ -26,9 +26,10 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
     }
   };
 
-  const showBaublePreview = (point) => {
+  const showBaublePreview = (e) => {
+    e.stopPropagation();
     if (showPreview) {
-      setPreviewLocation([point.x, point.y, point.z]);
+      setPreviewLocation([e.point.x, e.point.y, e.point.z]);
     }
   };
 
@@ -37,8 +38,8 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
       <mesh
         useRef={mesh}
         position={[0, -5, 0]}
-        onPointerDown={(e) => addBauble(e.point)}
-        onPointerMove={(e) => showBaublePreview(e.point)}
+        onPointerDown={(e) => addBauble(e)}
+        onPointerMove={(e) => showBaublePreview(e)}
       >
         <primitive object={gltf.scene} dispose={null} />
       </mesh>
