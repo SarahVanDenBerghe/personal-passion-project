@@ -74,7 +74,6 @@ const CanvasWrapperCreator = observer(() => {
         <Canvas shadowMap resize={{ scroll: false }}>
           <CameraControls pathname={pathname} canvas={canvas} setGroupPos={setGroupPos} />
           <Lights />
-
           <a.group position={spring.group}>
             <Suspense fallback={null}>
               <Tree

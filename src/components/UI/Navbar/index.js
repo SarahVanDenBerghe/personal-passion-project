@@ -30,7 +30,7 @@ const Navbar = () => {
     if (!audio) {
       const audioFromFile = new Audio('/assets/music/background.mp3');
       audioFromFile.loop = true;
-      audioFromFile.volume = 0.009;
+      audioFromFile.volume = 0.04;
       setAudio(audioFromFile);
     }
   }, []);

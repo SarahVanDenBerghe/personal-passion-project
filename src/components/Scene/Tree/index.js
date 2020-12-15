@@ -35,7 +35,6 @@ const Tree = ({ showPreview, setPreviewLocation, history, pathname }) => {
   return (
     <>
       <mesh
-        castShadow
         useRef={mesh}
         position={[0, -5, 0]}
         onPointerDown={(e) => addBauble(e.point)}
