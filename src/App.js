@@ -55,9 +55,9 @@ const App = () => {
               <Route exact path={ROUTES.home}>
                 <Home setShowDecoration={setShowDecoration} />
               </Route>
-              {/* <Route>
+              <Route>
                 <Redirect to={ROUTES.home} />
-              </Route> */}
+              </Route>
             </Switch>
           </CSSTransition>
         </TransitionGroup>
