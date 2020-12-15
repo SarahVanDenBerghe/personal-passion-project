@@ -61,12 +61,28 @@
   @media (max-width: $breakpoint-small) {
     transform: scale(0.8);
   }
-}
 
-.header__tree {
-  height: 4rem;
-  width: 4rem;
-  transform: scale(0, 0);
+  .header__tree {
+    height: 4rem;
+    width: 4rem;
+    transform: scale(0, 0);
+  }
+
+  &::before {
+    position: absolute;
+    background: url('./../../../assets/icons/tree-circle-hover.svg');
+    content: '';
+    height: 4rem;
+    width: 4rem;
+    top: 4.5;
+    z-index: 2;
+    opacity: 0;
+    transition: 0.4s;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
 }
 
 .tree__line {
