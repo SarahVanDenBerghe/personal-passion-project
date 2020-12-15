@@ -52,36 +52,35 @@
   }
 }
 
-.nav__icon {
-  width: 2.4rem;
-  height: 2.5rem;
-  position: relative;
-  transform: scale(1) rotate(0deg);
+.tree {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 
   @media (max-width: $breakpoint-small) {
     transform: scale(0.8);
   }
+}
 
-  & span {
-    display: block;
-    height: 0.1rem;
-    width: 0;
-    background: $light;
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-    border-radius: 0;
-    transform-origin: center;
-    position: absolute;
-    transform: translate3d(0, 0, 0) rotate(0);
-  }
+.header__tree {
+  height: 4rem;
+  width: 4rem;
+  transform: scale(0, 0);
+}
 
-  & span:nth-of-type(2) {
-    top: 9px;
-  }
+.tree__line {
+  top: 0;
+  position: absolute;
+  content: '';
+  height: 4.5rem;
+  width: 0.1rem;
+  background-color: $accent;
+  transform: scaleY(0);
+  transform-origin: bottom;
 
-  & span:nth-of-type(3) {
-    transform: translate3d(0, 1.8rem, 0) rotate(0);
-    max-width: 75%;
+  @media (max-width: $breakpoint-small) {
+    height: 0;
   }
 }
 
