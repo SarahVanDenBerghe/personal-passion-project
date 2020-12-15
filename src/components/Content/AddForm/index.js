@@ -89,7 +89,6 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
 
   const handleLoadImage = (target) => {
     const targetFile = target.files[0];
-    console.log(targetFile);
     const imageURL = URL.createObjectURL(targetFile);
     setPreview(imageURL);
     setFile(targetFile);

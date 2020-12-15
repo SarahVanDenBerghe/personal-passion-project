@@ -78,9 +78,9 @@ const DetailInfo = observer(({ active, setActive }) => {
 
   const getBackground = () => {
     if (detail.style === 'image') {
-      return `center / cover no-repeat url(${detail.origin === 'data' ? process.env.REACT_APP_STRAPI_API : ''}${
-        detail.image.url
-      })`;
+      return `center / cover no-repeat url(${
+        detail.origin === 'data' ? process.env.REACT_APP_STRAPI_API : process.env.REACT_APP_STRAPI_API
+      }${detail.image.url})`;
     } else {
       switch (detail.color) {
         case 'red':

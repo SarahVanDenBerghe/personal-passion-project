@@ -44,6 +44,8 @@ class StrapiService {
       image: imageId,
     });
 
+    console.log(response);
+
     return response.data;
   };
 

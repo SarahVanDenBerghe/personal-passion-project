@@ -11,13 +11,17 @@ import img from '../../../assets/icons/image.svg';
 const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
   const { treeStore } = useStore();
   const [hovered, setHover] = useState(false);
+  const [currTexture, setCurrTexture] = useState(false);
   const isUser = bauble.origin === 'user';
   let sphereRef = useRef(null);
 
   const getImage = () => {
-    if ((bauble.style === 'image' && bauble.origin === 'user') || bauble.origin === 'socket') {
+    if (bauble.style === 'image' && bauble.origin === 'user') {
       return bauble.image.url;
-    } else if (bauble.style === 'image' && bauble.origin === 'data') {
+    } else if (
+      (bauble.style === 'image' && bauble.origin === 'data') ||
+      (bauble.style === 'image' && bauble.origin === 'socket')
+    ) {
       return process.env.REACT_APP_STRAPI_API + bauble.image.url;
     }
   };
@@ -80,7 +84,6 @@ const Bauble = observer(({ bauble, args, pathname, history, preview }) => {
           <p>{bauble && bauble.name}</p>
         </Html>
       )}
-
       {bauble.style === 'image' ? (
         <meshLambertMaterial attach="material" map={textureFromLoader} />
       ) : (

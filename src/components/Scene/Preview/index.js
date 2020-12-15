@@ -9,7 +9,7 @@ const Preview = ({ point, history, pathname, showPreview }) => {
         position={point}
         bauble={{
           x: showPreview ? point[0] : 0,
-          y: showPreview ? point[1] : 0,
+          y: showPreview ? point[1] : 99,
           z: showPreview ? point[2] : 0,
           style: 'color',
           color: 'white',
