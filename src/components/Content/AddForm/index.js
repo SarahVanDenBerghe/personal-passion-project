@@ -253,6 +253,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
           </fieldset>
 
           <label
+            className={styles.label__name}
             ref={(el) => {
               nameRef = el;
             }}
@@ -269,6 +270,7 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
             />
           </label>
           <label
+            className={styles.label__message}
             ref={(el) => {
               messageRef = el;
             }}
@@ -285,14 +287,13 @@ const AddForm = observer(({ active, setActive, setRedirect }) => {
               required
             />
           </label>
-          <div className={styles.form__buttons}>
-            <button
-              ref={(el) => {
-                submitRef = el;
-              }}
-              className={styles.form__submit}
-              type="submit"
-            >
+          <div
+            className={styles.form__buttons}
+            ref={(el) => {
+              submitRef = el;
+            }}
+          >
+            <button className={styles.form__submit} type="submit">
               Add my message
             </button>
           </div>

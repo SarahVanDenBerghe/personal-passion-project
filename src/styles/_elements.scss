@@ -5,6 +5,11 @@
   font-weight: 300;
   padding: 1.5rem 2rem;
   background: $accent;
+  transition: 0.4s;
+
+  &:hover {
+    background: #a0331f;
+  }
 }
 
 form {

@@ -24,7 +24,7 @@ const Share = () => {
         <p className={styles.share__title}>Share</p>
         <ul className={styles.share__buttons}>
           <li>
-            <p ref={tooltip} data-tip="copied!" />
+            <p ref={tooltip} data-tip="Copied!" />
             <button className={styles.icon + ' ' + styles.iconLink} onClick={() => copy()} aria-label="Copy link" />
             <ReactTooltip />
           </li>

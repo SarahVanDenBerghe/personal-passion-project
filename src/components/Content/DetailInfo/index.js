@@ -143,6 +143,7 @@ const DetailInfo = observer(({ active, setActive }) => {
           </p>
         </div>
         <div
+          className={styles.detail__share}
           ref={(el) => {
             share = el;
           }}

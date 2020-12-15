@@ -180,3 +180,12 @@
     }
   }
 }
+
+.form__buttons,
+.label__message,
+.form__title,
+.label__name,
+.form__style {
+  opacity: 0;
+  transform: translateY(15rem);
+}
