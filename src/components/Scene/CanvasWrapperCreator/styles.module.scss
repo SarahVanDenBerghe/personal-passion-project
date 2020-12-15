@@ -6,11 +6,6 @@
   left: 20rem;
 
   @media (max-width: $breakpoint-large) {
-    top: 6rem;
-    left: 14rem;
-  }
-
-  @media (max-width: $breakpoint-small) {
     top: 10rem;
     left: 3rem;
   }

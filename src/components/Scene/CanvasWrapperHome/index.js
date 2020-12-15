@@ -37,11 +37,11 @@ const CanvasWrapperHome = ({ showDecoration, showIntroCanvas }) => {
     <>
       <div className={styles.canvas__wrapper} ref={canvas}>
         <Canvas className={styles.canvas} shadowMap resize={{ scroll: false }}>
-          <PerspectiveCamera position={width < 768 ? [3.4, 1.5, 15] : [0, 0, 11]} lookAt={[0, 0, 0]} makeDefault />
+          <PerspectiveCamera position={width < 992 ? [3.4, 1.5, 15] : [0, 0, 11]} lookAt={[0, 0, 0]} makeDefault />
           <Lights />
           <group>
             <Suspense fallback={null}>
-              <CreateTree mobile={width < 768 ? true : false} showDecoration={showDecoration} />
+              <CreateTree mobile={width < 992 ? true : false} showDecoration={showDecoration} />
             </Suspense>
             <Suspense fallback={null}>
               <HomeDecorations showDecoration={showDecoration} />

@@ -8,12 +8,11 @@
   align-items: flex-start;
   grid-area: main;
 
-  @media (max-width: $breakpoint-small) {
+  @media (max-width: $breakpoint-large) {
+    margin-top: 8rem;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-    margin-top: 8rem;
-    display: flex;
   }
 
   .title {
@@ -64,7 +63,7 @@
     margin-top: 2rem;
     align-self: flex-start;
 
-    @media (max-width: $breakpoint-small) {
+    @media (max-width: $breakpoint-large) {
       margin: 0 auto;
     }
   }

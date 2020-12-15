@@ -6,16 +6,12 @@
   align-items: center;
   grid-area: main;
 
-  @media (max-width: $breakpoint-small) {
-    align-items: flex-start;
+  @media (max-width: $breakpoint-large) {
     margin-top: 8rem;
+    align-items: flex-start;
     text-align: center;
     display: flex;
     justify-content: center;
-  }
-
-  @media (max-width: $breakpoint-extra-small) {
-    margin-top: 8rem;
   }
 
   .text__title {
@@ -27,6 +23,10 @@
     letter-spacing: 0.1rem;
     transform: translateY(15rem);
     opacity: 0;
+
+    @media (max-width: $breakpoint-extra-large) {
+      font-size: 5.5rem;
+    }
 
     @media (max-width: $breakpoint-medium) {
       font-size: 5.6rem;
@@ -59,7 +59,7 @@
     display: flex;
     transform: translateY(15rem);
 
-    @media (max-width: $breakpoint-small) {
+    @media (max-width: $breakpoint-large) {
       margin: 0 auto;
     }
   }

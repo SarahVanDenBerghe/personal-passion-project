@@ -31,7 +31,7 @@ const CreateTree = ({ showDecoration, mobile }) => {
       setRotationTree([0, 0, 0]);
       setPositionStar([4, 2, -1]);
     }
-  }, [showDecoration]);
+  }, [showDecoration, mobile]);
 
   const spring = useSpring({ positionTree: positionTree, rotationTree: rotationTree, positionStar: positionStar });
 
