@@ -65,7 +65,6 @@ const Home = ({ setShowDecoration }) => {
           >
             Start creating your own Christmas tree and place digital baubles to share your wishes to family and friends.
           </p>
-
           <button
             onClick={handleClickButton}
             className={styles.button}
